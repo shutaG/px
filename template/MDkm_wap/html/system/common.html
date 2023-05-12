@@ -1,0 +1,30 @@
+				{include file="system/popup"}
+				<script src="{$maccms.path}MDassets/js/MDsystem.js"></script>
+				<script src="{$maccms.path}MDassets/js/layer.js"></script>
+				<script>
+				function favs(id){
+					var userstatus ="{$user.user_id}";
+					$.get("/index.php/user/ajax_ulog/?ac=set&mid=1&id="+id+"&type=2",function(data){
+						if(data.msg=="获取成功"){
+							layer.msg('已收藏');
+						}else if(userstatus=="0"){
+							layer.msg('请先登录');
+						}else if(userstatus=="1"){
+							layer.msg('收藏成功');
+						}
+					},"json");
+				}
+				function actorfavs(id){
+					var userstatus ="{$user.user_id}";
+					$.get("/index.php/user/ajax_ulog/?ac=set&mid=8&id="+id+"&type=2",function(data){
+						if(data.msg=="获取成功"){
+							layer.msg('已收藏');
+						}else if(userstatus=="0"){
+							layer.msg('请先登录');
+						}else if(userstatus=="1"){
+							layer.msg('收藏成功');
+						}
+					},"json");
+				}
+				</script>
+				<div style="display: none;">{$maccms.site_tj}</div>

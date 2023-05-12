@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<title>专题首页 - 精品专题 - 推荐专题 - {$maccms.site_name}</title>
+		<meta name="keywords" content="电影专题,电视剧专题,综艺专题,动漫专题,推荐专题,专题收录" />
+		<meta name="description" content="本站提供最新最全精品专题数据" />
+		{include file="system/include"}
+	</head>
+	<body>
+		<div id="app">
+			<div id="index" class="publicAllContentBg">
+				{include file="system/header"}
+				<div class="publicBigMainContentBox">
+					<div class="">
+						<div id="specialList" class="publicAllContentBg">
+							<ul class="specialList">
+								{maccms:topic num="100" paging="yes" order="desc" by="time"}
+								<li>
+									<a href="{:mac_url_topic_detail($vo)}" class="specialListStyle">
+										<div class="left">
+											<img src="{$vo.topic_pic|mac_url_img}" class="aesImgTag">
+											<p class="top">{$vo.topic_name}</p>
+										</div>
+									</a>
+								</li>
+								{/maccms:topic}
+							</ul>
+						</div>
+					</div>
+				</div>
+				{include file="system/footer"}
+			</div>
+		</div>
+		
+	</body>
+</html>

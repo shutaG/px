@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-title" content="">
+		<title>{$maccms.site_name}</title>
+		<meta name="keywords" content="{$maccms.site_keywords}" />
+		<meta name="description" content="{$maccms.site_description}" />
+		{include file="system/include"}
+	</head>
+	<body>
+		<div id="app">
+			<div id="index" class="publicAllContentBg allIndex fullHeight">
+				{include file="system/headtop"}
+				<div class="indexTopTabBox">
+					{include file="system/headlist"}
+					<div class="publicAllContentBg">
+						{include file="module/banner"}
+						<div class="publicIndexVideoMoudleBox">
+							<div class="publicContentHeaderBox">
+								<div class="left">
+									<i class="van-icon">
+										<img src="{$maccms.path}MDassets/img/free.png" class="van-icon__image">
+									</i>
+									限时免费
+								</div>
+							</div>
+							<div  id="publicVideoListModule" class="publicAllContentBg">
+								<div class="videoListBox cbox_list">
+									{maccms:vod num="4" type="'.($mdym['type']['free']).'" by="time" order="desc"}
+										<a href="{:mac_url_vod_play($vo)}" class="videoListStyle cbox1">
+										<div class="imgArea">
+											<div class="aseImgVanImage van-image">
+												<img src="{:mac_url_img($vo.vod_pic)}" class="van-image__img" style="object-fit: cover;">
+											</div>
+											<div class="bottomInfo">
+												<div class="left"></div>
+												<div class="time">{$vo.vod_duration}</div>
+											</div>
+										</div>
+										<p class="title">【免费】{$vo.vod_name}</p>
+										{include file="module/freemark"}
+									</a>
+									{/maccms:vod}
+
+
+									{maccms:vod num="4" type="'.($mdym['type']['free']).'" by="time" start="5" order="desc"}
+									<a href="{:mac_url_vod_play($vo)}" class="videoListStyle cbox2 hidden">
+										<div class="imgArea">
+											<div class="aseImgVanImage van-image">
+												<img src="{:mac_url_img($vo.vod_pic)}" class="van-image__img" style="object-fit: cover;">
+											</div>
+											<div class="bottomInfo">
+												<div class="left"></div>
+												<div class="time">{$vo.vod_duration}</div>
+											</div>
+										</div>
+										<p class="title">【会员免费】{$vo.vod_name}</p>
+										{include file="module/vodlist"}
+									</a>
+									{/maccms:vod}
+
+
+									{maccms:vod num="4" type="'.($mdym['type']['free']).'" by="time" start="9" order="desc"}
+									<a href="{:mac_url_vod_play($vo)}" class="videoListStyle cbox3 hidden">
+										<div class="imgArea">
+											<div class="aseImgVanImage van-image">
+												<img src="{:mac_url_img($vo.vod_pic)}" class="van-image__img" style="object-fit: cover;">
+											</div>
+											<div class="bottomInfo">
+												<div class="left"></div>
+												<div class="time">{$vo.vod_duration}</div>
+											</div>
+										</div>
+										<p class="title">【会员免费】{$vo.vod_name}</p>
+										{include file="module/vodlist"}
+									</a>
+									{/maccms:vod}
+
+								</div>
+							</div>
+
+							<div class="bottom">
+								<a href="{:mac_url('/vod/type/id/'.($mdym['type']['free']).'')}" class="more" style="color: #a0a4ae;"><i class="van-icon van-icon-add-o" style="margin-right: 4px; color: rgb(160, 164, 174); font-size: 16px;"></i>
+									更多
+								</a>
+								<a class="change v_change"><i class="van-icon van-icon-replay" style="margin-right: 4px; color: rgb(160, 164, 174); font-size: 16px;"></i>
+									换一批
+								</a>
+							</div>
+						</div>
+
+
+
+
+						<div class="publicIndexVideoMoudleBox">
+							<div class="publicContentHeaderBox">
+								<div class="left">
+								<i class="van-icon">
+									<img src="{$maccms.path}MDassets/img/official.png" class="van-icon__image">
+								</i>
+									官方严选
+								</div>
+							</div>
+							<div id="publicVideoListModule" class="publicAllContentBg">
+								<div class="videoListBox cbox_list">
+									{maccms:vod num="'.($mdym['index']['num']).'" by="score" order="desc"
+									level="2"
+									typenot="'.($mdym['type']['free']).'"}
+									{include file="module/vodlistone"}
+									{/maccms:vod}
+
+
+									{maccms:vod
+									level="2"
+									num="4" by="score" start="5" order="desc" typenot="'.($mdym['type']['free']).'" }
+									{include file="module/vodlisttwo"}
+									{/maccms:vod}
+
+
+									{maccms:vod level="2"
+									num="4" by="score" start="9" order="desc" typenot="'.($mdym['type']['free']).'"  }
+									{include file="module/vodlistthree"}
+									{/maccms:vod}
+								</div>
+							</div>
+							<div class="bottom">
+								<a href="{:mac_url_search(['wd'=>$param['wd'],'area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>'score' ],'vod')}" class="more" style="color: #a0a4ae;"><i class="van-icon van-icon-add-o" style="margin-right: 4px; color: rgb(160, 164, 174); font-size: 16px;"></i>
+									更多
+								</a>
+								<a class="change v_change">
+									<i class="van-icon van-icon-replay" style="margin-right: 4px; color: rgb(160, 164, 174); font-size: 16px;"></i>
+									换一批
+								</a>
+							</div>
+						</div>
+						<div class="publicIndexVideoMoudleBox">
+							<div class="publicContentHeaderBox">
+								<div class="left">
+									<i class="van-icon">
+										<img src="{$maccms.path}MDassets/img/hot.png" class="van-icon__image">
+									</i>
+									人气排行
+								</div>
+							</div>
+							<div id="publicVideoListModule" class="publicAllContentBg">
+								<div class="videoListBox cbox_list">
+									{maccms:vod level="3" num="4" by="hits" order="desc"  typenot="'.($mdym['type']['free']).'" }
+									{include file="module/vodlistone"}
+									{/maccms:vod}
+									{maccms:vod num="4" level="3" by="hits" start="5" order="desc"  typenot="'.($mdym['type']['free']).'" }
+									{include file="module/vodlisttwo"}
+									{/maccms:vod}
+									{maccms:vod num="4" level="3" by="hits" start="9" order="desc"  typenot="'.($mdym['type']['free']).'" }
+									{include file="module/vodlistthree"}
+									{/maccms:vod}
+								</div>
+							</div>
+							<div class="bottom">
+								<a href="{:mac_url_search(['wd'=>$param['wd'],'area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>'hits' ],'vod')}" class="more" style="color: #a0a4ae;"><i class="van-icon van-icon-add-o" style="margin-right: 4px; color: rgb(160, 164, 174); font-size: 16px;"></i>
+									更多
+								</a>
+								<a class="change v_change"><i class="van-icon van-icon-replay" style="margin-right: 4px; color: rgb(160, 164, 174); font-size: 16px;"></i>
+									换一批
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			{include file="system/footer"}
+		</div>
+		{include file="system/common"}
+	</body>
+</html>

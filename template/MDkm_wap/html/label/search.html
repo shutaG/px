@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-title" content="">
+		<title>{$maccms.site_name}</title>
+		<meta name="keywords" content="{$maccms.site_keywords}" />
+		<meta name="description" content="{$maccms.site_description}" />
+		{include file="system/include"}
+	</head>
+	<body>
+		<div id="app">
+			<div id="searchIndex" class="publicAllContentBg">
+				<div id="publicTopHeaderWithCancel" class="publicAllContentBg">
+					<div class="publicAllNavbarClass paddingTop van-nav-bar van-hairline--bottom">
+						<div class="van-nav-bar__left">
+							<form class="van-form" method="get" action="{:mac_url('vod/search')}">
+								<div class="van-cell van-field">
+									<div class="van-field__left-icon">
+										<i class="van-icon van-icon-search"></i>
+									</div>
+									<div class="van-cell__value van-cell__value--alone van-field__value">
+										<div class="van-field__body">
+											<input type="text" name="wd" placeholder="{$mdym.search}" class="van-field__control">
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="van-nav-bar__title van-ellipsis"></div>
+						<div onclick="javascript:history.back(-1);" class="van-nav-bar__right">
+							<span class="van-nav-bar__text">取消</span>
+						</div>
+					</div>
+				</div>
+				<div class="publicNeedXPaddingBg">
+					<ul class="hotSearchList">
+						{maccms:foreach name=":explode(',',$maccms.search_hot)" id="vo2" key="key2"}
+						<li>
+							<a href="{:mac_url('vod/search',['wd'=>$vo2])}">
+								<span>{$key2+1}</span>{$vo2}
+							</a>
+						</li>
+						{/maccms:foreach}
+						
+					</ul>
+				</div>
+			</div>
+			{include file="system/footer"}
+		</div>
+		{include file="system/common"}
+	</body>
+</html>

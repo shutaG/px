@@ -1,0 +1,108 @@
+<div id="publicFooterModule" class="publicAllContentBg">
+					<div class="footerBg">
+						<div class="footerBox">
+							<div class="left">
+								<div class="content">
+									<div class="top">
+										<span>
+											<div id="iphonepop" class="el-popover el-popper bottomPopupClass hidden" style="width: 50px; transform-origin: center bottom; z-index: 2005; left: 30px; top: -131px; " x-placement="top-end">
+												<div class="bottomImgBox">
+													<img src="{$mdym.down.ios}">
+												</div>
+													 <div class="popper__arrow" style="left: 82.5px;"></div>
+											</div>
+											<p id="iphone" class="bottomButton el-popover__reference" tabindex="0">
+												<i class="van-icon">
+												<img src="{$maccms.path}MDassets/img/ios.png" class="van-icon__image">
+												</i>iphone下载
+											</p>
+										</span>
+									</div>
+									<div class="bottom">
+										<span>
+											<div id="androidpop" class="el-popover el-popper bottomPopupClass hidden" style="width: 50px; transform-origin: center bottom; z-index: 2005; left: 30px; top: -46px; " x-placement="top-end">
+												<div class="bottomImgBox">
+													<img src="{$mdym.down.android}">
+												</div>
+												 <div class="popper__arrow" style="left: 82.5px;"></div>
+											</div>
+											<p id="android" class="bottomButton el-popover__reference" tabindex="0">
+												<i class="van-icon">
+												<img src="{$maccms.path}MDassets/img/android.png" class="van-icon__image">
+												</i>Android下载
+											</p>
+										</span>
+									</div>
+								</div> <img src="{$maccms.path}MDassets/img/down_bg.png">
+							</div>
+							<div class="right">
+								<ul class="top">
+									<li>
+										<a href="{$mdym.join}" class="footerOptionBox">
+											<div class="left"><img src="{$maccms.path}MDassets/img/concur.png" alt="加盟"></div>
+											<div class="right">
+												<p class="top">代理加盟</p>
+												<p class="bottom">优质合作伙伴共同成长</p>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="{:mac_url('label/question')}" class="footerOptionBox" target="_blank">
+											<div class="left"><img src="{$maccms.path}MDassets/img/wt.png" alt="问题"></div>
+											<div class="right">
+												<p class="top">常见问题</p>
+												<p class="bottom">及时在线解决问题</p>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="{$mdym.serve}" class="footerOptionBox" target="_blank">
+											<div class="left"><img src="{$maccms.path}MDassets/img/kefu.png" alt="客服"></div>
+											<div class="right">
+												<p class="top">在线客服</p>
+												<p class="bottom">7*24小时免费在线咨询</p>
+											</div>
+										</a>
+									</li>
+								</ul>
+								<div class="bottom">
+									<div class="left">
+										<p>广告服务</p> 
+										<span class="publicTopHeaderLine"></span>
+										<p>千寻</p>
+									</div>
+									<p class="right">Copyright©2021.All Rights Reserved.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<script src="{$maccms.path}MDassets/js/MDsystem.js"></script>
+				<script src="{$maccms.path}MDassets/js/layer.js"></script>
+				<script>
+				function favs(id){
+					var userstatus ="{$user.user_id}";
+					$.get("/index.php/user/ajax_ulog/?ac=set&mid=1&id="+id+"&type=2",function(data){
+						if(data.msg=="获取成功"){
+							layer.msg('已收藏');
+						}else if(userstatus=="0"){
+							layer.msg('请先登录');
+						}else if(userstatus=="1"){
+							layer.msg('收藏成功');
+						}
+					},"json");
+				}
+				function actorfavs(id){
+					var userstatus ="{$user.user_id}";
+					$.get("/index.php/user/ajax_ulog/?ac=set&mid=8&id="+id+"&type=2",function(data){
+						if(data.msg=="获取成功"){
+							layer.msg('已收藏');
+						}else if(userstatus=="0"){
+							layer.msg('请先登录');
+						}else if(userstatus=="1"){
+							layer.msg('收藏成功');
+						}
+					},"json");
+				}
+				</script>
+				<div style="display: none;">{$maccms.site_tj}</div>

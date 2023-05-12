@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<title>{$obj.actor_name}个人资料_{$obj.actor_name}演过的电视剧_{$obj.actor_name}电影全集-{$maccms.site_name}</title>
+		<meta name="keywords" content="{$obj.actor_name}个人资料,{$obj.actor_name}演过的电视剧,{$obj.actor_name}电影全集,{$obj.actor_name}最新电影,{$obj.actor_name}最新电视剧">
+		<meta name="description" content="{$maccms.site_name}演示站为你收集了{$obj.actor_name}个人资料包括了{$obj.actor_name}最新演过的电视剧,{$obj.actor_name}电影全集,以及{$obj.actor_name}图片剧照最近动态等信息希望你能喜欢。">
+		{include file="system/include"}
+	</head>
+	<body>
+		<div id="app">
+			<div id="index" class="publicAllContentBg">
+				{include file="system/header"}
+				<div class="publicBigMainContentBox">
+					<div class="">
+						<div id="specialContent" class="publicAllContentBg">
+							<div class="topTitleLine">
+								<p class="left">{$obj.actor_name}</p>
+							</div>
+							<div id="publicVideoListModule" class="publicAllContentBg">
+								<div class="videoListBox">
+								{maccms:vod actor="'.$obj['actor_name'].'" order="desc" by="time"}
+								{include file="module/vodlist"}
+								{/maccms:vod}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				{include file="system/footer"}
+			</div>
+		</div>
+		
+	</body>
+</html>

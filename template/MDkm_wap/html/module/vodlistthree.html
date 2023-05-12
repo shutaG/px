@@ -1,0 +1,35 @@
+<a href="{:mac_url_vod_play($vo)}" class="videoListStyle cbox3 hidden">
+										<div class="imgArea">
+											<div class="aseImgVanImage van-image">
+												<img src="{:mac_url_img($vo.vod_pic)}" class="van-image__img" style="object-fit: cover;">
+											</div>
+											<div class="bottomInfo">
+												<div class="left"></div>
+												<div class="time">{$vo.vod_duration}</div>
+											</div>
+										</div>
+										<p class="title">{$vo.vod_name}</p>
+<!--										    {if condition="$mdym.free.state eq '0'"}-->
+<!--									    	{if condition="$vo.vod_points_play eq ''"}-->
+<!--										    {if condition="$vo.type_id == $mdym['type']['free']"}-->
+<!--											{include file="module/freemark"}-->
+<!--											{else}-->
+<!--											{include file="module/vipmark"}-->
+<!--											{/if}-->
+<!--											{else}-->
+<!--										   	{include file="module/diamondmark"}-->
+<!--											{/if}-->
+<!--											{else}-->
+<!--										   	{include file="module/freemark"}-->
+<!--											{/if}-->
+
+	{if  condition= "$mdym.free.state eq '0'"  }
+	{include file="module/freemark"}
+	{elseif  condition= "$vo.vod_points_play eq ''"}
+	{include file="module/vipmark"}
+	{elseif condition="$vo.type_id == $mdym['type']['free']"}
+	{include file="module/diamondmark"}
+	{else /}
+	{include file="module/freemark"}
+	{/if}
+									</a>

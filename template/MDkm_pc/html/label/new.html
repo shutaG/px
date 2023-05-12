@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<title>最近更新 - {$maccms.site_name}</title>
+		<meta name="keywords" content="最近更新 - {$obj.type_key}" />
+		<meta name="description" content="最近更新 - {$obj.type_des}" />
+		{include file="system/include"}
+	</head>
+	<body>
+		<div id="app">
+			<div id="index" class="publicAllContentBg">
+				{include file="system/header"}
+				<div class="publicBigMainContentBox">
+					<div class="">
+						<div id="secondPage" class="publicAllContentBg">
+							<div class="topTitleLine"></div>
+							<div id="publicVideoListModule" class="publicAllContentBg">
+								<div class="videoListBox">
+									{maccms:vod num="16" paging="yes" pageurl="label/new" order="desc" by="time"}
+									{include file="module/vodlist"}
+									{/maccms:vod}
+								</div>
+							</div>
+							{include file="system/paging"}
+						</div>
+					</div>
+				</div>
+				{include file="system/footer"}
+			</div>
+		</div>
+	</body>
+</html>

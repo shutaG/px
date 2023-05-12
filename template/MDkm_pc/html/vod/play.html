@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<title>在线播放{$obj.vod_name} {$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']} - 高清资源 - {$maccms.site_name}</title>
+		<meta name="keywords" content="{$obj.vod_name}{$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']}免费在线观看,{$obj.vod_name}剧情介绍" />
+		<meta name="description" content="{$obj.vod_name}{$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']}免费在线观看,{$obj.vod_name}剧情介绍" />
+		{include file="system/include"}
+	</head>
+	<body>
+		<div id="app">
+			<div id="index" class="publicAllContentBg">
+				{include file="system/header"}
+				<div class="publicBigMainContentBox">
+					<div class="fullWidth">
+						<div id="videoContent" class="publicAllContentBg">
+							<div class="video">
+								<div>
+								    {if condition="$mdym.free.state eq '0'"}
+									{if condition="$GLOBALS['user']['group_id'] eq 3"}
+									<div class="canPlayVideoFirstShowBg">
+									{$player_data}{$player_js}
+									</div>
+									{else}
+									{if condition="$GLOBALS['user']['group_id'] eq 1"}
+									<div class="canPlayVideoFirstShowBg">
+									{if condition="$obj.type_id == $mdym['type']['free']"}
+									{$player_data}{$player_js}
+									{else}
+										<img src="{:mac_url_img($obj.vod_pic)}" class="aesImgTag">
+										<div class="unLoginBox">
+											<p class="textLine">免费注册 精彩视频免费看</p>
+											<p class="textLine">赶快加入 体验更多精彩</p>
+											<div class="buttonLine"><a id="login_play_btn" class="linkOutButton vip">登录</a></div>
+										</div>
+									{/if}
+									</div>
+									{else if condition="$GLOBALS['user']['group_id'] eq 2"}
+									{if condition="$obj.vod_points_play eq ''"}
+									{if condition="$obj.type_id == $mdym['type']['free']"}
+									<div class="canPlayVideoFirstShowBg">
+									{$player_data}{$player_js}
+									</div>
+									{else}
+									<div class="userStatusBg split">
+										<div class="unLoginBox">
+											<p class="textLine vip">会员免广告，极速秒播{$obj.vod_points_play}</p>
+											<p class="textLine vip">海量视频任意观看</p>
+											<div class="buttonLine vip">
+												<a href="{:mac_url('user/upgrade')}" class="linkOutButton vip">
+												<img src="{$maccms.path}MDassets/img/vips.png" style="margin-right: 4px;">充值VIP</a>
+											</div>
+										</div>
+										<div class="backImg">
+											<img src="{:mac_url_img($obj.vod_pic)}" class="aesImgTag">
+										</div>
+									</div>
+									<div class="exchangeBg" style="{$maccms.path}MDassets/img/time.png">
+										<div class="topTitle">
+											<img src="">
+											<p>限时促销</p>
+											<div class="van-count-down" data="8640"></div>
+										</div>
+										<ul class="list">
+											<li>
+												<div class="exchangeListStyle">
+													<div class="left">
+														<p class="top"><span >￥</span>{$GLOBALS['config']['site']['site_point_0']}</p>
+														<p class="bottom">体验卡 - {$GLOBALS['config']['site']['site_time_0']}天</p>
+													</div>
+													<div class="right btn-pay" data-price="{$GLOBALS['config']['site']['site_point_0']}">
+														<div class="button active">购买</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="exchangeListStyle">
+													<div class="left">
+														<p class="top"><span >￥</span>{$GLOBALS['config']['site']['site_point_1']}</p>
+														<p class="bottom">月卡-{$GLOBALS['config']['site']['site_time_1']}天</p>
+													</div>
+													<div class="right btn-pay" data-price="{$GLOBALS['config']['site']['site_point_1']}">
+														<div class="button active">购买</div>
+													</div>
+												</div>
+											</li>
+											<li >
+												<div class="exchangeListStyle">
+													<div class="left">
+														<p class="top"><span >￥</span>{$GLOBALS['config']['site']['site_point_2']}</p>
+														<p class="bottom">季卡-{$GLOBALS['config']['site']['site_time_2']}天</p>
+													</div>
+													<div class="right btn-pay" data-price="{$GLOBALS['config']['site']['site_point_2']}">
+														<div class="button active">购买</div>
+													</div>
+												</div>
+											</li>
+											<li>
+												<div class="exchangeListStyle">
+													<div class="left">
+														<p class="top"><span >￥</span>{$GLOBALS['config']['site']['site_point_3']}</p>
+														<p class="bottom">年卡-{$GLOBALS['config']['site']['site_time_3']}天</p>
+													</div>
+													<div class="right btn-pay" data-price="{$GLOBALS['config']['site']['site_point_3']}">
+														<div class="button active">购买</div>
+													</div>
+												</div>
+											</li>
+										</ul>
+									</div>
+									{/if}
+									{else}
+									<div class="canPlayVideoFirstShowBg">
+									{$player_data}{$player_js}
+									</div>
+									{/if}
+									{/if}
+									{/if}
+									{else}
+									<div class="canPlayVideoFirstShowBg">
+									{$player_data}{$player_js}
+									</div>
+									{/if}
+
+									<div id="videoBigBg" class="videoBigBg">
+									</div>
+								</div>
+							</div>
+							<div class="info">
+								<div class="publicVideoInfoBox">
+									<div class="left">
+										<p class="name">{$obj.vod_name}
+											<i class="btn-favs van-icon van-icon-like-o" data-type="2" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}"></i>
+											<i style="display:none" class="btn-favs van-icon van-icon-like" data-type="2" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}"></i>
+										</p>
+										<p class="middleInfo">
+											<span><span class="mac_hits hits" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-type="hits"></span>次播放</span>
+											<span>{$obj.vod_time|date='Y-m-d',###}</span>
+
+
+										</p>
+										<p class="intro"></p>
+										<div class="videoSignBox">
+											<ul id="tags">
+												{$obj.vod_tag|mac_url_create='tag'}
+											</ul>
+										</div>
+									</div>
+								</div>
+								<ul>
+									<li>
+										<a href="https://xydai.cn" target="_blank" class="adBox">
+<!--											<img src="https://sc04.alicdn.com/kf/H49a91853e14b499fb3b033af2d6bd389m.jpg" class="aesImgTag">-->
+										</a>
+									</li>
+								</ul>
+								<div id="publicIndexVideoListModule" class="publicIndexVideoListModule">
+									<div class="top">
+										<div class="left">
+											<p class="title">猜你喜欢</p>
+											<p class="info">根据你的喜好推荐</p>
+										</div>
+										<div class="right">
+											<p class="change v_change"><i class="el-icon-refresh"></i>换一批</p>
+										</div>
+									</div>
+									<div id="publicVideoListModule" class="publicAllContentBg">
+										<div class="videoListBox needClear cbox_list">
+										{maccms:vod num="8" type="current" order="desc" by="time"}
+										{include file="module/vodlistone"}
+										{/maccms:vod}
+										{maccms:vod num="8" start="9" type="current" order="desc" by="time"}
+										{include file="module/vodlisttwo"}
+										{/maccms:vod}
+										{maccms:vod num="8" start="17" type="current" order="desc" by="time"}
+										{include file="module/vodlistthree"}
+										{/maccms:vod}
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				{include file="system/footer"}
+			</div>
+		</div>
+		<span style="display:none" class="mac_ulog_set" alt="设置播放页浏览记录" data-type="4" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-sid="{$param.sid}" data-nid="{$param.nid}"></span>
+														<script>
+        $('.btn-favs').on('click',function(){
+            if({$user.user_id}){
+                if($('.btn-favs').attr('data-ulog')==''){
+                    MAC.Ajax(maccms.path+'/index.php/user/ajax_ulog/?ac=set&mid='+$(this).attr("data-mid")+'&id='+$(this).attr("data-id")+'&type='+$(this).attr("data-type"),'get','json','',function(r){
+                        if(r.code==1){
+                            MAC.Ulog.Get({$maccms.mid},{$obj.vod_id},2,1,'',function(r){
+                                $('.btn-favs').attr('data-ulog',r.list[0].ulog_id);
+                                $('.van-icon-like-o').hide();
+                                $('.van-icon-like').show();
+								layer.msg("收藏成功");
+                            })
+                        }
+                    })
+                }else{
+                    $.post("{:url('user/ulog_del')}",{ids:$('.btn-favs').attr('data-ulog'),type:2},function(data) {
+                        if (data.code == '1') {
+                            $('.van-icon-like-o').show();
+                            $('.van-icon-like').hide();
+							layer.msg("取消收藏");
+							location.reload();
+                        }else {
+
+                        }
+                    }, 'json')
+                }
+            }else{
+                $('#login').show(600);
+            }
+        })
+
+        {if $user.user_id != 0}
+            MAC.Ulog.Get({$maccms.mid},{$obj.vod_id},2,1,'',function(r){
+                if(r.total==1){
+                    $('.btn-favs').attr('data-ulog',r.list[0].ulog_id);
+                    $('.van-icon-like-o').hide();
+                    $('.van-icon-like').show();
+                }else{
+                    $('.btn-favs').attr('data-ulog','')
+                }
+            })
+        {/if}
+    </script>
+	<script>
+	$('.btn-pay').click(function(){
+		var that=$(this);
+		var price = that.attr('data-price');
+		if(Number(price)<1){
+			return;
+		}
+		layer.confirm('确定要在线升级VIP吗？', {
+		title:'提示',btn: ['确定','取消'] //按钮
+		}, function(){
+  			$.ajax({
+				url: "{:mac_url('user/buy')}",
+				type: "post",
+				dataType: "json",
+				data: {price: price,flag:'pay'},
+				beforeSend: function () {
+					$("#btn_submit_pay").val("loading...");
+				},
+				success: function (r) {
+					if (r.code == 1) {
+						location.href="{:mac_url('user/pay')}?order_code=" + r.data.order_code;
+					}
+					else{
+						layer.msg(r.msg);
+					}
+				},
+				complete: function () {
+					$("#btn_submit_pay").val("提交");
+				}
+			});
+
+	});
+	});
+
+
+   </script>
+	</body>
+</html>

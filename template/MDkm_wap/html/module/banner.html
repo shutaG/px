@@ -1,0 +1,14 @@
+<div class="indexSwiper van-swipe swiper-container" id="publicIndexBanner">
+							<div class="van-swipe__track swiper-wrapper">
+								{maccms:website order="desc" type="'.($mdym['type']['bannerwap']).'" }
+								<div class="van-swipe-item swiper-slide">
+									<div class="aseImgVanImage van-image">
+										<a href="{$vo.website_jumpurl}" target="_blank">
+											<img src="{:mac_url_img($vo.website_logo)}" class="van-image__img" style="object-fit: fill;">
+										</a>
+									</div>
+								</div>
+								{/maccms:website}
+							</div>
+							<div class="swiper-pagination"></div>
+</div>

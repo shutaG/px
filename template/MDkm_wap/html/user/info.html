@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-title" content="">
+		<title>修改密码 - {$maccms.site_name}</title>
+		<meta name="keywords" content="{$maccms.site_keywords}" />
+		<meta name="description" content="{$maccms.site_description}" />
+		{include file="system/include"}
+	</head>
+	<body class="van-overflow-hidden">
+		<div id="app">
+			<div id="login" class="publicAllContentBg fullHeight login">
+				<div class="loginButtonBox"></div>
+				<div class="van-overlay" style="z-index: 2001;"></div>
+				<div class="van-popup van-popup--round van-popup--bottom" style="z-index: 2002;">
+					<div class="loginFormBg">
+						<h3>修改密码</h3>
+						<div class="loginFormBox">
+						<form id="changePwd" name="changePwd" class="publicAllContentBg fullHeight" method="post" action="" >
+							<div class="van-cell van-cell--borderless van-field">
+								<div class="van-cell__value van-cell__value--alone van-field__value">
+									<div class="van-field__body"><input type="password" name="user_pwd" autocomplete="off" placeholder="请输入您的旧密码" class="van-field__control"></div>
+								</div>
+							</div>
+							<div class="van-cell van-cell--borderless van-field">
+								<div class="van-cell__value van-cell__value--alone van-field__value">
+									<div class="van-field__body"><input type="password" name="user_pwd1" autocomplete="off" placeholder="请输入您的新密码" class="van-field__control"></div>
+								</div>
+							</div>
+							<div class="van-cell van-cell--borderless van-field">
+								<div class="van-cell__value van-cell__value--alone van-field__value">
+									<div class="van-field__body"><input type="password" name="user_pwd2" autocomplete="off" placeholder="请重复您的新密码" class="van-field__control"></div>
+								</div>
+							</div>
+							<div class="buttonLine">
+								<button id="info_submit" type="button" class="van-button van-button--info van-button--normal van-button--block"
+								 style="color: rgb(255, 255, 255); background: linear-gradient(to right, rgb(230, 66, 122), rgb(252, 103, 103)); border: 0px;">
+									<div class="van-button__content">
+										<span class="van-button__text">修改密码</span>
+									</div>
+								</button>
+							</div>
+						</form>	
+						</div>
+						<div  class="bottomLine">
+						</div>
+					</div>
+					<i onclick="javascript:history.back(-1);" role="button" tabindex="0" class="van-icon van-icon-cross van-popup__close-icon van-popup__close-icon--top-right"></i>
+				</div>
+			</div>
+			
+		</div>
+		{include file="system/common"}
+		<script type="text/javascript">
+			$('.btn_unbind').click(function(){
+				var ac = $(this).attr('ac');
+				if(ac!='email' && ac!='phone'){
+					layer.msg('参数错误');
+				}
+				if(confirm('确认解除绑定吗？此操作不可恢复？')) {
+					$.ajax({
+						url: "{:url('user/unbind')}",
+						type: "post",
+						dataType: "json",
+						data: {ac: ac},
+						beforeSend: function () {
+							//开启loading
+						},
+						success: function (r) {
+							layer.msg(r.msg);
+							if(r.code==1){
+								location.href="{:url('user/info')}";
+							}
+						},
+						complete: function () {
+							//结束loading
+						}
+					});
+				}
+			});
+
+			$("#info_submit").click(function() {
+				var data = $("#changePwd").serialize();
+				$.ajax({
+					url: "{:url('user/info')}",
+					type: "post",
+					dataType: "json",
+					data: data,
+					beforeSend: function () {
+						//开启loading
+						//$(".loading_box").css("display","block");
+						$("#info_submit").val("loading...");
+					},
+					success: function (r) {
+						layer.msg(r.msg);
+						if(r.code==1){
+							location.href="{:url('user/info')}";
+						}
+					},
+					complete: function () {
+						//结束loading
+						//$(".loading_box").css("display","none");
+						$("#info_submit").val("提交");
+					}
+				});
+			});
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,3896 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<title>千寻视频_影视APP</title>
+		<meta name="keywords" content="千寻视频_影视APP" />
+		<meta name="description" content="千寻视频_影视APP" />
+				<link href="/MDassets/css/app.css" rel="stylesheet">
+		<script src="/static/js/jquery.js"></script>
+		<script>var maccms={"path":"","mid":"","aid":"1","url":"127.0.0.1","wapurl":"127.0.0.1","mob_status":"2"};</script>
+		<script src="/static/js/home.js"></script>
+		<style type="text/css">
+			.xgplayer-skin-default {
+				background: #000;
+				width: 100%;
+				height: 100%;
+				position: relative;
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				user-select: none;
+				-ms-user-select: none
+			}
+
+			.xgplayer-skin-default * {
+				margin: 0;
+				padding: 0;
+				border: 0;
+				font-size: 100%;
+				font: inherit;
+				vertical-align: baseline
+			}
+
+			.xgplayer-skin-default.xgplayer-rotate-fullscreen {
+				position: absolute;
+				top: 0;
+				left: 100%;
+				bottom: 0;
+				right: 0;
+				height: 100vw !important;
+				width: 100vh !important;
+				-webkit-transform-origin: top left;
+				-ms-transform-origin: top left;
+				transform-origin: top left;
+				-webkit-transform: rotate(90deg);
+				-ms-transform: rotate(90deg);
+				transform: rotate(90deg)
+			}
+
+			.xgplayer-skin-default.xgplayer-is-fullscreen {
+				width: 100% !important;
+				height: 100% !important;
+				padding-top: 0 !important;
+				z-index: 9999
+			}
+
+			.xgplayer-skin-default.xgplayer-is-fullscreen.xgplayer-inactive {
+				cursor: none
+			}
+
+			.xgplayer-skin-default video {
+				width: 100%;
+				height: 100%;
+				outline: none
+			}
+
+			.xgplayer-skin-default .xgplayer-none {
+				display: none
+			}
+
+			@-webkit-keyframes loadingRotate {
+				0% {
+					-webkit-transform: rotate(0);
+					transform: rotate(0)
+				}
+
+				to {
+					-webkit-transform: rotate(1turn);
+					transform: rotate(1turn)
+				}
+			}
+
+			@keyframes loadingRotate {
+				0% {
+					-webkit-transform: rotate(0);
+					transform: rotate(0)
+				}
+
+				to {
+					-webkit-transform: rotate(1turn);
+					transform: rotate(1turn)
+				}
+			}
+
+			@-webkit-keyframes loadingDashOffset {
+				0% {
+					stroke-dashoffset: 236
+				}
+
+				to {
+					stroke-dashoffset: 0
+				}
+			}
+
+			@keyframes loadingDashOffset {
+				0% {
+					stroke-dashoffset: 236
+				}
+
+				to {
+					stroke-dashoffset: 0
+				}
+			}
+
+			.xgplayer-skin-default .xgplayer-play,
+			.xgplayer-skin-default .xgplayer-play-img {
+				width: 40px;
+				position: relative;
+				-webkit-order: 0;
+				-moz-box-ordinal-group: 1;
+				order: 0;
+				display: block;
+				cursor: pointer;
+				margin-left: 3px
+			}
+
+			.xgplayer-skin-default .xgplayer-play-img .xgplayer-icon,
+			.xgplayer-skin-default .xgplayer-play .xgplayer-icon {
+				margin-top: 3px;
+				width: 32px
+			}
+
+			.xgplayer-skin-default .xgplayer-play-img .xgplayer-icon div,
+			.xgplayer-skin-default .xgplayer-play .xgplayer-icon div {
+				position: absolute
+			}
+
+			.xgplayer-skin-default .xgplayer-play-img .xgplayer-icon .xgplayer-icon-play,
+			.xgplayer-skin-default .xgplayer-play .xgplayer-icon .xgplayer-icon-play {
+				display: block
+			}
+
+			.xgplayer-skin-default .xgplayer-play-img .xgplayer-icon .xgplayer-icon-pause,
+			.xgplayer-skin-default .xgplayer-play .xgplayer-icon .xgplayer-icon-pause {
+				display: none
+			}
+
+			.xgplayer-skin-default .xgplayer-play-img .xgplayer-tips .xgplayer-tip-play,
+			.xgplayer-skin-default .xgplayer-play .xgplayer-tips .xgplayer-tip-play {
+				display: block
+			}
+
+			.xgplayer-skin-default .xgplayer-play-img .xgplayer-tips .xgplayer-tip-pause,
+			.xgplayer-skin-default .xgplayer-play .xgplayer-tips .xgplayer-tip-pause {
+				display: none
+			}
+
+			.xgplayer-skin-default .xgplayer-play-img:hover,
+			.xgplayer-skin-default .xgplayer-play:hover {
+				opacity: .85
+			}
+
+			.xgplayer-skin-default .xgplayer-play-img:hover .xgplayer-tips,
+			.xgplayer-skin-default .xgplayer-play:hover .xgplayer-tips {
+				display: block
+			}
+
+			.xgplayer-skin-default.xgplayer-playing .xgplayer-play-img .xgplayer-icon .xgplayer-icon-play,
+			.xgplayer-skin-default.xgplayer-playing .xgplayer-play .xgplayer-icon .xgplayer-icon-play {
+				display: none
+			}
+
+			.xgplayer-skin-default.xgplayer-playing .xgplayer-play-img .xgplayer-icon .xgplayer-icon-pause,
+			.xgplayer-skin-default.xgplayer-playing .xgplayer-play .xgplayer-icon .xgplayer-icon-pause {
+				display: block
+			}
+
+			.xgplayer-skin-default.xgplayer-playing .xgplayer-play-img .xgplayer-tips .xgplayer-tip-play,
+			.xgplayer-skin-default.xgplayer-playing .xgplayer-play .xgplayer-tips .xgplayer-tip-play {
+				display: none
+			}
+
+			.xgplayer-skin-default.xgplayer-pause .xgplayer-play-img .xgplayer-icon .xgplayer-icon-play,
+			.xgplayer-skin-default.xgplayer-pause .xgplayer-play .xgplayer-icon .xgplayer-icon-play,
+			.xgplayer-skin-default.xgplayer-playing .xgplayer-play-img .xgplayer-tips .xgplayer-tip-pause,
+			.xgplayer-skin-default.xgplayer-playing .xgplayer-play .xgplayer-tips .xgplayer-tip-pause {
+				display: block
+			}
+
+			.xgplayer-skin-default.xgplayer-pause .xgplayer-play-img .xgplayer-icon .xgplayer-icon-pause,
+			.xgplayer-skin-default.xgplayer-pause .xgplayer-play .xgplayer-icon .xgplayer-icon-pause {
+				display: none
+			}
+
+			.xgplayer-skin-default.xgplayer-pause .xgplayer-play-img .xgplayer-tips .xgplayer-tip-play,
+			.xgplayer-skin-default.xgplayer-pause .xgplayer-play .xgplayer-tips .xgplayer-tip-play {
+				display: block
+			}
+
+			.xgplayer-skin-default.xgplayer-pause .xgplayer-play-img .xgplayer-tips .xgplayer-tip-pause,
+			.xgplayer-skin-default.xgplayer-pause .xgplayer-play .xgplayer-tips .xgplayer-tip-pause {
+				display: none
+			}
+
+			.xgplayer-skin-default .xgplayer-start {
+				border-radius: 50%;
+				display: inline-block;
+				width: 70px;
+				height: 70px;
+				background: rgba(0, 0, 0, .38);
+				overflow: hidden;
+				text-align: center;
+				line-height: 70px;
+				vertical-align: middle;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				z-index: 115;
+				margin: -35px auto auto -35px;
+				cursor: pointer
+			}
+
+			.xgplayer-skin-default .xgplayer-start div {
+				position: absolute
+			}
+
+			.xgplayer-skin-default .xgplayer-start div svg {
+				fill: hsla(0, 0%, 100%, .7)
+			}
+
+			.xgplayer-skin-default .xgplayer-start .xgplayer-icon-play {
+				display: block
+			}
+
+			.xgplayer-skin-default .xgplayer-start .xgplayer-icon-pause {
+				display: none
+			}
+
+			.xgplayer-skin-default .xgplayer-start:hover {
+				opacity: .85
+			}
+
+			.xgplayer-skin-default.xgplayer-playing .xgplayer-start,
+			.xgplayer-skin-default.xgplayer-playing .xgplayer-start .xgplayer-icon-play {
+				display: none
+			}
+
+			.xgplayer-skin-default.xgplayer-playing .xgplayer-start .xgplayer-icon-pause {
+				display: block
+			}
+
+			.xgplayer-skin-default.xgplayer-pause .xgplayer-start {
+				display: inline-block
+			}
+
+			.xgplayer-skin-default.xgplayer-pause .xgplayer-start .xgplayer-icon-play {
+				display: block
+			}
+
+			.xgplayer-skin-default.replay .xgplayer-start,
+			.xgplayer-skin-default.xgplayer-pause .xgplayer-start .xgplayer-icon-pause {
+				display: none
+			}
+
+			.xgplayer-skin-default.replay .xgplayer-start .xgplayer-icon-play {
+				display: block
+			}
+
+			.xgplayer-skin-default.replay .xgplayer-start .xgplayer-icon-pause {
+				display: none
+			}
+
+			.xgplayer-skin-default .xgplayer-enter {
+				display: none;
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background: #000;
+				z-index: 120
+			}
+
+			.xgplayer-skin-default .xgplayer-enter .xgplayer-enter-spinner {
+				display: block;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				height: 100px;
+				width: 100px;
+				position: relative;
+				-webkit-transform: translate(-50%, -50%);
+				-ms-transform: translate(-50%, -50%);
+				transform: translate(-50%, -50%)
+			}
+
+			.xgplayer-skin-default .xgplayer-enter .xgplayer-enter-spinner div {
+				width: 12%;
+				height: 26%;
+				background-color: hsla(0, 0%, 100%, .7);
+				position: absolute;
+				left: 44%;
+				top: 37%;
+				opacity: 0;
+				border-radius: 30px;
+				-webkit-animation: fade 1s linear infinite;
+				animation: fade 1s linear infinite
+			}
+
+			.xgplayer-skin-default .xgplayer-enter .xgplayer-enter-spinner div.xgplayer-enter-bar1 {
+				-webkit-transform: rotate(0deg) translateY(-142%);
+				-ms-transform: rotate(0deg) translateY(-142%);
+				transform: rotate(0deg) translateY(-142%);
+				-webkit-animation-delay: 0s;
+				animation-delay: 0s
+			}
+
+			.xgplayer-skin-default .xgplayer-enter .xgplayer-enter-spinner div.xgplayer-enter-bar2 {
+				-webkit-transform: rotate(30deg) translateY(-142%);
+				-ms-transform: rotate(30deg) translateY(-142%);
+				transform: rotate(30deg) translateY(-142%);
+				-webkit-animation-delay: -.9163s;
+				animation-delay: -.9163s
+			}
+
+			.xgplayer-skin-default .xgplayer-enter .xgplayer-enter-spinner div.xgplayer-enter-bar3 {
+				-webkit-transform: rotate(60deg) translateY(-142%);
+				-ms-transform: rotate(60deg) translateY(-142%);
+				transform: rotate(60deg) translateY(-142%);
+				-webkit-animation-delay: -.833s;
+				animation-delay: -.833s
+			}
+
+			.xgplayer-skin-default .xgplayer-enter .xgplayer-enter-spinner div.xgplayer-enter-bar4 {
+				-webkit-transform: rotate(90deg) translateY(-142%);
+				-ms-transform: rotate(90deg) translateY(-142%);
+				transform: rotate(90deg) translateY(-142%);
+				-webkit-animation-delay: -.7497s;
+				animation-delay: -.7497s
+			}
+
+			.xgplayer-skin-default .xgplayer-enter .xgplayer-enter-spinner div.xgplayer-enter-bar5 {
+				-webkit-transform: rotate(120deg) translateY(-142%);
+				-ms-transform: rotate(120deg) translateY(-142%);
+				transform: rotate(120deg) translateY(-142%);
+				-webkit-animation-delay: -.6664s;
+				animation-delay: -.6664s
+			}
+
+			.xgplayer-skin-default .xgplayer-enter .xgplayer-enter-spinner div.xgplayer-enter-bar6 {
+				-webkit-transform: rotate(150deg) translateY(-142%);
+				-ms-transform: rotate(150deg) translateY(-142%);
+				transform: rotate(150deg) translateY(-142%);
+				-webkit-animation-delay: -.5831s;
+				animation-delay: -.5831s
+			}
+
+			.xgplayer-skin-default .xgplayer-enter .xgplayer-enter-spinner div.xgplayer-enter-bar7 {
+				-webkit-transform: rotate(180deg) translateY(-142%);
+				-ms-transform: rotate(180deg) translateY(-142%);
+				transform: rotate(180deg) translateY(-142%);
+				-webkit-animation-delay: -.4998s;
+				animation-delay: -.4998s
+			}
+
+			.xgplayer-skin-default .xgplayer-enter .xgplayer-enter-spinner div.xgplayer-enter-bar8 {
+				-webkit-transform: rotate(210deg) translateY(-142%);
+				-ms-transform: rotate(210deg) translateY(-142%);
+				transform: rotate(210deg) translateY(-142%);
+				-webkit-animation-delay: -.4165s;
+				animation-delay: -.4165s
+			}
+
+			.xgplayer-skin-default .xgplayer-enter .xgplayer-enter-spinner div.xgplayer-enter-bar9 {
+				-webkit-transform: rotate(240deg) translateY(-142%);
+				-ms-transform: rotate(240deg) translateY(-142%);
+				transform: rotate(240deg) translateY(-142%);
+				-webkit-animation-delay: -.3332s;
+				animation-delay: -.3332s
+			}
+
+			.xgplayer-skin-default .xgplayer-enter .xgplayer-enter-spinner div.xgplayer-enter-bar10 {
+				-webkit-transform: rotate(270deg) translateY(-142%);
+				-ms-transform: rotate(270deg) translateY(-142%);
+				transform: rotate(270deg) translateY(-142%);
+				-webkit-animation-delay: -.2499s;
+				animation-delay: -.2499s
+			}
+
+			.xgplayer-skin-default .xgplayer-enter .xgplayer-enter-spinner div.xgplayer-enter-bar11 {
+				-webkit-transform: rotate(300deg) translateY(-142%);
+				-ms-transform: rotate(300deg) translateY(-142%);
+				transform: rotate(300deg) translateY(-142%);
+				-webkit-animation-delay: -.1666s;
+				animation-delay: -.1666s
+			}
+
+			.xgplayer-skin-default .xgplayer-enter .xgplayer-enter-spinner div.xgplayer-enter-bar12 {
+				-webkit-transform: rotate(330deg) translateY(-142%);
+				-ms-transform: rotate(330deg) translateY(-142%);
+				transform: rotate(330deg) translateY(-142%);
+				-webkit-animation-delay: -.0833s;
+				animation-delay: -.0833s
+			}
+
+			@-webkit-keyframes fade {
+				0% {
+					opacity: 1
+				}
+
+				to {
+					opacity: .25
+				}
+			}
+
+			@keyframes fade {
+				0% {
+					opacity: 1
+				}
+
+				to {
+					opacity: .25
+				}
+			}
+
+			.xgplayer-skin-default.xgplayer-is-enter .xgplayer-enter {
+				display: block
+			}
+
+			.xgplayer-skin-default .xgplayer-poster {
+				display: none;
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				z-index: 100;
+				background-size: cover;
+				background-position: 50%
+			}
+
+			.xgplayer-skin-default.xgplayer-nostart .xgplayer-poster {
+				display: block
+			}
+
+			.xgplayer-skin-default .xgplayer-placeholder {
+				-webkit-flex: 1;
+				-moz-box-flex: 1;
+				flex: 1;
+				-webkit-order: 3;
+				-moz-box-ordinal-group: 4;
+				order: 3;
+				display: block
+			}
+
+			.xgplayer-skin-default .xgplayer-fullscreen,
+			.xgplayer-skin-default .xgplayer-fullscreen-img {
+				position: relative;
+				-webkit-order: 13;
+				-moz-box-ordinal-group: 14;
+				order: 13;
+				display: block;
+				cursor: pointer;
+				margin-left: 5px;
+				margin-right: 3px
+			}
+
+			.xgplayer-skin-default .xgplayer-fullscreen-img .xgplayer-icon,
+			.xgplayer-skin-default .xgplayer-fullscreen .xgplayer-icon {
+				margin-top: 3px
+			}
+
+			.xgplayer-skin-default .xgplayer-fullscreen-img .xgplayer-icon div,
+			.xgplayer-skin-default .xgplayer-fullscreen .xgplayer-icon div {
+				position: absolute
+			}
+
+			.xgplayer-skin-default .xgplayer-fullscreen-img .xgplayer-icon .xgplayer-icon-requestfull,
+			.xgplayer-skin-default .xgplayer-fullscreen .xgplayer-icon .xgplayer-icon-requestfull {
+				display: block
+			}
+
+			.xgplayer-skin-default .xgplayer-fullscreen-img .xgplayer-icon .xgplayer-icon-exitfull,
+			.xgplayer-skin-default .xgplayer-fullscreen .xgplayer-icon .xgplayer-icon-exitfull {
+				display: none
+			}
+
+			.xgplayer-skin-default .xgplayer-fullscreen-img .xgplayer-tips,
+			.xgplayer-skin-default .xgplayer-fullscreen .xgplayer-tips {
+				position: absolute;
+				right: 0;
+				left: auto
+			}
+
+			.xgplayer-skin-default .xgplayer-fullscreen-img .xgplayer-tips .xgplayer-tip-requestfull,
+			.xgplayer-skin-default .xgplayer-fullscreen .xgplayer-tips .xgplayer-tip-requestfull {
+				display: block
+			}
+
+			.xgplayer-skin-default .xgplayer-fullscreen-img .xgplayer-tips .xgplayer-tip-exitfull,
+			.xgplayer-skin-default .xgplayer-fullscreen .xgplayer-tips .xgplayer-tip-exitfull {
+				display: none
+			}
+
+			.xgplayer-skin-default .xgplayer-fullscreen-img:hover,
+			.xgplayer-skin-default .xgplayer-fullscreen:hover {
+				opacity: .85
+			}
+
+			.xgplayer-skin-default .xgplayer-fullscreen-img:hover .xgplayer-tips,
+			.xgplayer-skin-default .xgplayer-fullscreen:hover .xgplayer-tips {
+				display: block
+			}
+
+			.xgplayer-skin-default.xgplayer-is-fullscreen .xgplayer-fullscreen-img .xgplayer-icon .xgplayer-icon-requestfull,
+			.xgplayer-skin-default.xgplayer-is-fullscreen .xgplayer-fullscreen .xgplayer-icon .xgplayer-icon-requestfull,
+			.xgplayer-skin-default.xgplayer-rotate-fullscreen .xgplayer-fullscreen-img .xgplayer-icon .xgplayer-icon-requestfull,
+			.xgplayer-skin-default.xgplayer-rotate-fullscreen .xgplayer-fullscreen .xgplayer-icon .xgplayer-icon-requestfull {
+				display: none
+			}
+
+			.xgplayer-skin-default.xgplayer-is-fullscreen .xgplayer-fullscreen-img .xgplayer-icon .xgplayer-icon-exitfull,
+			.xgplayer-skin-default.xgplayer-is-fullscreen .xgplayer-fullscreen .xgplayer-icon .xgplayer-icon-exitfull,
+			.xgplayer-skin-default.xgplayer-rotate-fullscreen .xgplayer-fullscreen-img .xgplayer-icon .xgplayer-icon-exitfull,
+			.xgplayer-skin-default.xgplayer-rotate-fullscreen .xgplayer-fullscreen .xgplayer-icon .xgplayer-icon-exitfull {
+				display: block
+			}
+
+			.xgplayer-skin-default.xgplayer-is-fullscreen .xgplayer-fullscreen-img .xgplayer-tips .xgplayer-tip-requestfull,
+			.xgplayer-skin-default.xgplayer-is-fullscreen .xgplayer-fullscreen .xgplayer-tips .xgplayer-tip-requestfull,
+			.xgplayer-skin-default.xgplayer-rotate-fullscreen .xgplayer-fullscreen-img .xgplayer-tips .xgplayer-tip-requestfull,
+			.xgplayer-skin-default.xgplayer-rotate-fullscreen .xgplayer-fullscreen .xgplayer-tips .xgplayer-tip-requestfull {
+				display: none
+			}
+
+			.xgplayer-skin-default.xgplayer-is-fullscreen .xgplayer-fullscreen-img .xgplayer-tips .xgplayer-tip-exitfull,
+			.xgplayer-skin-default.xgplayer-is-fullscreen .xgplayer-fullscreen .xgplayer-tips .xgplayer-tip-exitfull,
+			.xgplayer-skin-default.xgplayer-rotate-fullscreen .xgplayer-fullscreen-img .xgplayer-tips .xgplayer-tip-exitfull,
+			.xgplayer-skin-default.xgplayer-rotate-fullscreen .xgplayer-fullscreen .xgplayer-tips .xgplayer-tip-exitfull {
+				display: block
+			}
+
+			.xgplayer-skin-default .xgplayer-cssfullscreen,
+			.xgplayer-skin-default .xgplayer-cssfullscreen-img {
+				position: relative;
+				-webkit-order: 12;
+				-moz-box-ordinal-group: 13;
+				order: 12;
+				display: block;
+				cursor: pointer
+			}
+
+			.xgplayer-skin-default .xgplayer-cssfullscreen-img .xgplayer-icon,
+			.xgplayer-skin-default .xgplayer-cssfullscreen .xgplayer-icon {
+				width: 32px;
+				margin-top: 5px
+			}
+
+			.xgplayer-skin-default .xgplayer-cssfullscreen-img .xgplayer-icon div,
+			.xgplayer-skin-default .xgplayer-cssfullscreen .xgplayer-icon div {
+				position: absolute
+			}
+
+			.xgplayer-skin-default .xgplayer-cssfullscreen-img .xgplayer-icon .xgplayer-icon-requestfull,
+			.xgplayer-skin-default .xgplayer-cssfullscreen .xgplayer-icon .xgplayer-icon-requestfull {
+				display: block
+			}
+
+			.xgplayer-skin-default .xgplayer-cssfullscreen-img .xgplayer-icon .xgplayer-icon-exitfull,
+			.xgplayer-skin-default .xgplayer-cssfullscreen .xgplayer-icon .xgplayer-icon-exitfull {
+				display: none
+			}
+
+			.xgplayer-skin-default .xgplayer-cssfullscreen-img .xgplayer-tips,
+			.xgplayer-skin-default .xgplayer-cssfullscreen .xgplayer-tips {
+				margin-left: -40px
+			}
+
+			.xgplayer-skin-default .xgplayer-cssfullscreen-img .xgplayer-tips .xgplayer-tip-requestfull,
+			.xgplayer-skin-default .xgplayer-cssfullscreen .xgplayer-tips .xgplayer-tip-requestfull {
+				display: block
+			}
+
+			.xgplayer-skin-default .xgplayer-cssfullscreen-img .xgplayer-tips .xgplayer-tip-exitfull,
+			.xgplayer-skin-default .xgplayer-cssfullscreen .xgplayer-tips .xgplayer-tip-exitfull {
+				display: none
+			}
+
+			.xgplayer-skin-default .xgplayer-cssfullscreen-img:hover,
+			.xgplayer-skin-default .xgplayer-cssfullscreen:hover {
+				opacity: .85
+			}
+
+			.xgplayer-skin-default .xgplayer-cssfullscreen-img:hover .xgplayer-tips,
+			.xgplayer-skin-default .xgplayer-cssfullscreen:hover .xgplayer-tips {
+				display: block
+			}
+
+			.xgplayer-skin-default.xgplayer-is-cssfullscreen .xgplayer-cssfullscreen-img .xgplayer-icon .xgplayer-icon-requestfull,
+			.xgplayer-skin-default.xgplayer-is-cssfullscreen .xgplayer-cssfullscreen .xgplayer-icon .xgplayer-icon-requestfull {
+				display: none
+			}
+
+			.xgplayer-skin-default.xgplayer-is-cssfullscreen .xgplayer-cssfullscreen-img .xgplayer-icon .xgplayer-icon-exitfull,
+			.xgplayer-skin-default.xgplayer-is-cssfullscreen .xgplayer-cssfullscreen .xgplayer-icon .xgplayer-icon-exitfull {
+				display: block
+			}
+
+			.xgplayer-skin-default.xgplayer-is-cssfullscreen .xgplayer-cssfullscreen-img .xgplayer-tips,
+			.xgplayer-skin-default.xgplayer-is-cssfullscreen .xgplayer-cssfullscreen .xgplayer-tips {
+				margin-left: -47px
+			}
+
+			.xgplayer-skin-default.xgplayer-is-cssfullscreen .xgplayer-cssfullscreen-img .xgplayer-tips .xgplayer-tip-requestfull,
+			.xgplayer-skin-default.xgplayer-is-cssfullscreen .xgplayer-cssfullscreen .xgplayer-tips .xgplayer-tip-requestfull {
+				display: none
+			}
+
+			.xgplayer-skin-default.xgplayer-is-cssfullscreen .xgplayer-cssfullscreen-img .xgplayer-tips .xgplayer-tip-exitfull,
+			.xgplayer-skin-default.xgplayer-is-cssfullscreen .xgplayer-cssfullscreen .xgplayer-tips .xgplayer-tip-exitfull {
+				display: block
+			}
+
+			.xgplayer-skin-default.xgplayer-is-fullscreen .xgplayer-cssfullscreen,
+			.xgplayer-skin-default.xgplayer-is-fullscreen .xgplayer-cssfullscreen-img {
+				display: none
+			}
+
+			.xgplayer-skin-default.xgplayer-is-cssfullscreen {
+				position: fixed !important;
+				left: 0 !important;
+				top: 0 !important;
+				width: 100% !important;
+				height: 100% !important;
+				z-index: 99999 !important
+			}
+
+			.lang-is-en .xgplayer-cssfullscreen-img .xgplayer-tips,
+			.lang-is-en .xgplayer-cssfullscreen .xgplayer-tips,
+			.lang-is-en.xgplayer-is-cssfullscreen .xgplayer-cssfullscreen-img .xgplayer-tips,
+			.lang-is-en.xgplayer-is-cssfullscreen .xgplayer-cssfullscreen .xgplayer-tips {
+				margin-left: -46px
+			}
+
+			.lang-is-jp .xgplayer-cssfullscreen-img .xgplayer-tips,
+			.lang-is-jp .xgplayer-cssfullscreen .xgplayer-tips {
+				margin-left: -120px
+			}
+
+			.lang-is-jp.xgplayer-is-cssfullscreen .xgplayer-cssfullscreen-img .xgplayer-tips,
+			.lang-is-jp.xgplayer-is-cssfullscreen .xgplayer-cssfullscreen .xgplayer-tips {
+				margin-left: -60px
+			}
+
+			.xgplayer-skin-default .xgplayer-volume {
+				outline: none;
+				-webkit-order: 4;
+				-moz-box-ordinal-group: 5;
+				order: 4;
+				width: 40px;
+				height: 40px;
+				display: block;
+				position: relative;
+				z-index: 18
+			}
+
+			.xgplayer-skin-default .xgplayer-volume .xgplayer-icon {
+				margin-top: 8px;
+				cursor: pointer;
+				position: absolute;
+				bottom: -9px
+			}
+
+			.xgplayer-skin-default .xgplayer-volume .xgplayer-icon div {
+				position: absolute
+			}
+
+			.xgplayer-skin-default .xgplayer-volume .xgplayer-icon .xgplayer-icon-large {
+				display: block
+			}
+
+			.xgplayer-skin-default .xgplayer-volume .xgplayer-icon .xgplayer-icon-muted,
+			.xgplayer-skin-default .xgplayer-volume .xgplayer-icon .xgplayer-icon-small {
+				display: none
+			}
+
+			.xgplayer-skin-default .xgplayer-slider {
+				display: none;
+				position: absolute;
+				width: 28px;
+				height: 92px;
+				background: rgba(0, 0, 0, .54);
+				border-radius: 1px;
+				bottom: 42px;
+				outline: none
+			}
+
+			.xgplayer-skin-default .xgplayer-slider:after {
+				content: " ";
+				display: block;
+				height: 15px;
+				width: 28px;
+				position: absolute;
+				bottom: -15px;
+				left: 0;
+				z-index: 20
+			}
+
+			.xgplayer-skin-default .xgplayer-bar,
+			.xgplayer-skin-default .xgplayer-drag {
+				display: block;
+				position: absolute;
+				bottom: 6px;
+				left: 12px;
+				background: hsla(0, 0%, 100%, .3);
+				border-radius: 100px;
+				width: 4px;
+				height: 76px;
+				outline: none;
+				cursor: pointer
+			}
+
+			.xgplayer-skin-default .xgplayer-drag {
+				bottom: 0;
+				left: 0;
+				background: #fa1f41;
+				max-height: 76px
+			}
+
+			.xgplayer-skin-default .xgplayer-drag:after {
+				content: " ";
+				display: inline-block;
+				width: 8px;
+				height: 8px;
+				background: #fff;
+				box-shadow: 0 0 5px 0 rgba(0, 0, 0, .26);
+				position: absolute;
+				border-radius: 50%;
+				left: -2px;
+				top: -6px
+			}
+
+			.xgplayer-skin-default.xgplayer-volume-active .xgplayer-slider,
+			.xgplayer-skin-default.xgplayer-volume-large .xgplayer-volume .xgplayer-icon .xgplayer-icon-large {
+				display: block
+			}
+
+			.xgplayer-skin-default.xgplayer-volume-large .xgplayer-volume .xgplayer-icon .xgplayer-icon-muted,
+			.xgplayer-skin-default.xgplayer-volume-large .xgplayer-volume .xgplayer-icon .xgplayer-icon-small,
+			.xgplayer-skin-default.xgplayer-volume-small .xgplayer-volume .xgplayer-icon .xgplayer-icon-large {
+				display: none
+			}
+
+			.xgplayer-skin-default.xgplayer-volume-small .xgplayer-volume .xgplayer-icon .xgplayer-icon-small {
+				display: block
+			}
+
+			.xgplayer-skin-default.xgplayer-volume-muted .xgplayer-volume .xgplayer-icon .xgplayer-icon-large,
+			.xgplayer-skin-default.xgplayer-volume-muted .xgplayer-volume .xgplayer-icon .xgplayer-icon-small,
+			.xgplayer-skin-default.xgplayer-volume-small .xgplayer-volume .xgplayer-icon .xgplayer-icon-muted {
+				display: none
+			}
+
+			.xgplayer-skin-default.xgplayer-volume-muted .xgplayer-volume .xgplayer-icon .xgplayer-icon-muted {
+				display: block
+			}
+
+			.xgplayer-skin-default.xgplayer-mobile .xgplayer-volume .xgplayer-slider {
+				display: none
+			}
+
+			.xgplayer-skin-default .xgplayer-definition {
+				-webkit-order: 5;
+				-moz-box-ordinal-group: 6;
+				order: 5;
+				width: 60px;
+				height: 42px;
+				z-index: 18;
+				position: relative;
+				outline: none;
+				display: none;
+				cursor: default;
+				margin-left: 10px;
+				margin-top: -7px
+			}
+
+			.xgplayer-skin-default .xgplayer-definition ul {
+				display: none;
+				list-style: none;
+				width: 78px;
+				background: rgba(0, 0, 0, .54);
+				border-radius: 1px;
+				position: absolute;
+				bottom: 42px;
+				left: 0;
+				text-align: center;
+				white-space: nowrap;
+				margin-left: -10px;
+				z-index: 26;
+				cursor: pointer
+			}
+
+			.xgplayer-skin-default .xgplayer-definition ul li {
+				opacity: .7;
+				font-family: PingFangSC-Regular;
+				font-size: 11px;
+				color: hsla(0, 0%, 100%, .8);
+				padding: 6px 13px
+			}
+
+			.xgplayer-skin-default .xgplayer-definition ul li.selected,
+			.xgplayer-skin-default .xgplayer-definition ul li:hover {
+				color: #fff;
+				opacity: 1
+			}
+
+			.xgplayer-skin-default .xgplayer-definition .name {
+				text-align: center;
+				font-family: PingFangSC-Regular;
+				font-size: 13px;
+				cursor: pointer;
+				color: hsla(0, 0%, 100%, .8);
+				position: absolute;
+				bottom: 5px;
+				width: 60px;
+				height: 20px;
+				line-height: 20px;
+				background: rgba(0, 0, 0, .38);
+				border-radius: 10px;
+				display: inline-block;
+				vertical-align: middle
+			}
+
+			.xgplayer-skin-default.xgplayer-definition-active .xgplayer-definition ul,
+			.xgplayer-skin-default.xgplayer-is-definition .xgplayer-definition {
+				display: block
+			}
+
+			.xgplayer-skin-default .xgplayer-time {
+				-webkit-order: 2;
+				-moz-box-ordinal-group: 3;
+				order: 2;
+				font-family: ArialMT;
+				font-size: 13px;
+				color: #fff;
+				line-height: 40px;
+				height: 40px;
+				text-align: center;
+				display: inline-block;
+				margin: auto 8px
+			}
+
+			.xgplayer-skin-default .xgplayer-time span {
+				color: hsla(0, 0%, 100%, .5)
+			}
+
+			.xgplayer-skin-default .xgplayer-time .xgplayer-time-current {
+				color: #fff
+			}
+
+			.xgplayer-skin-default .xgplayer-time .xgplayer-time-current:after {
+				content: "/";
+				display: inline-block;
+				padding: 0 3px
+			}
+
+			.xgplayer-skin-default .xgplayer-controls {
+				display: -webkit-flex;
+				display: -moz-box;
+				display: flex;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				height: 40px;
+				background-image: linear-gradient(180deg, transparent, rgba(0, 0, 0, .37), rgba(0, 0, 0, .75), rgba(0, 0, 0, .75));
+				z-index: 10
+			}
+
+			.xgplayer-skin-default.no-controls .xgplayer-controls,
+			.xgplayer-skin-default.xgplayer-inactive .xgplayer-controls,
+			.xgplayer-skin-default.xgplayer-is-live .xgplayer-controls .xgplayer-progress,
+			.xgplayer-skin-default.xgplayer-is-live .xgplayer-controls .xgplayer-time,
+			.xgplayer-skin-default.xgplayer-nostart .xgplayer-controls {
+				display: none
+			}
+
+			.xgplayer-skin-default.xgplayer-is-live .xgplayer-controls .xgplayer-live {
+				display: block
+			}
+
+			.xgplayer-skin-default .xgplayer-live {
+				display: block;
+				font-size: 12px;
+				color: #fff;
+				line-height: 40px;
+				-webkit-order: 1;
+				-moz-box-ordinal-group: 2;
+				order: 1
+			}
+
+			.xgplayer-skin-default .xgplayer-loading {
+				display: none;
+				width: 100px;
+				height: 100px;
+				overflow: hidden;
+				-webkit-transform: scale(.7);
+				-ms-transform: scale(.7);
+				transform: scale(.7);
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				margin: -50px auto auto -50px
+			}
+
+			.xgplayer-skin-default .xgplayer-loading svg {
+				border-radius: 50%;
+				-webkit-transform-origin: center;
+				-ms-transform-origin: center;
+				transform-origin: center;
+				-webkit-animation: loadingRotate 1s linear infinite;
+				animation: loadingRotate 1s linear infinite
+			}
+
+			.xgplayer-skin-default .xgplayer-loading svg path {
+				stroke: #ddd;
+				stroke-dasharray: 236;
+				-webkit-animation: loadingDashOffset 2s linear infinite;
+				animation: loadingDashOffset 2s linear infinite;
+				animation-direction: alternate-reverse;
+				fill: none;
+				stroke-width: 12px
+			}
+
+			.xgplayer-skin-default.xgplayer-nostart .xgplayer-loading {
+				display: none
+			}
+
+			.xgplayer-skin-default.xgplayer-pause .xgplayer-loading {
+				display: none !important
+			}
+
+			.xgplayer-skin-default.xgplayer-isloading .xgplayer-loading {
+				display: block
+			}
+
+			.xgplayer-skin-default .xgplayer-progress {
+				display: block;
+				position: absolute;
+				height: 20px;
+				line-height: 20px;
+				left: 12px;
+				right: 12px;
+				outline: none;
+				top: -15px;
+				z-index: 35
+			}
+
+			.xgplayer-skin-default .xgplayer-progress-outer {
+				background: hsla(0, 0%, 100%, .3);
+				display: block;
+				height: 3px;
+				line-height: 3px;
+				margin-top: 8.5px;
+				width: 100%;
+				position: relative;
+				cursor: pointer
+			}
+
+			.xgplayer-skin-default .xgplayer-progress-cache,
+			.xgplayer-skin-default .xgplayer-progress-played {
+				display: block;
+				height: 100%;
+				line-height: 1;
+				position: absolute;
+				left: 0;
+				top: 0
+			}
+
+			.xgplayer-skin-default .xgplayer-progress-cache {
+				width: 0;
+				background: hsla(0, 0%, 100%, .5)
+			}
+
+			.xgplayer-skin-default .xgplayer-progress-played {
+				display: block;
+				width: 0;
+				background-image: linear-gradient(-90deg, #fa1f41, #e31106);
+				border-radius: 0 1.5px 1.5px 0
+			}
+
+			.xgplayer-skin-default .xgplayer-progress-btn {
+				display: none;
+				position: absolute;
+				left: 0;
+				top: -5px;
+				width: 13px;
+				height: 13px;
+				border-radius: 30px;
+				background: #fff;
+				box-shadow: 0 0 2px 0 rgba(0, 0, 0, .26);
+				left: 100%;
+				-webkit-transform: translate(-50%);
+				-ms-transform: translate(-50%);
+				transform: translate(-50%)
+			}
+
+			.xgplayer-skin-default .xgplayer-progress-point {
+				position: absolute
+			}
+
+			.xgplayer-skin-default .xgplayer-progress-point.xgplayer-tips {
+				margin-left: 0;
+				top: -25px;
+				display: none;
+				z-index: 100
+			}
+
+			.xgplayer-skin-default .xgplayer-progress-dot {
+				display: inline-block;
+				position: absolute;
+				height: 3px;
+				width: 5px;
+				top: 0;
+				background: #fff;
+				border-radius: 6px;
+				z-index: 16
+			}
+
+			.xgplayer-skin-default .xgplayer-progress-dot .xgplayer-progress-tip {
+				position: absolute;
+				left: 0;
+				top: -40px;
+				height: auto;
+				line-height: 30px;
+				width: auto;
+				-webkit-transform: scale(.8);
+				-ms-transform: scale(.8);
+				transform: scale(.8);
+				background: rgba(0, 0, 0, .3);
+				border-radius: 6px;
+				border: 1px solid rgba(0, 0, 0, .8);
+				cursor: default;
+				white-space: nowrap;
+				display: none
+			}
+
+			.xgplayer-skin-default .xgplayer-progress-dot-show .xgplayer-progress-tip {
+				display: block
+			}
+
+			.xgplayer-skin-default .xgplayer-progress-thumbnail {
+				position: absolute;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box
+			}
+
+			.xgplayer-skin-default .xgplayer-progress-thumbnail.xgplayer-tips {
+				margin-left: 0;
+				display: none;
+				z-index: 99
+			}
+
+			.xgplayer-skin-default .xgplayer-progress:focus .xgplayer-progress-outer,
+			.xgplayer-skin-default .xgplayer-progress:hover .xgplayer-progress-outer {
+				height: 6px;
+				margin-top: 7px
+			}
+
+			.xgplayer-skin-default .xgplayer-progress:focus .xgplayer-progress-dot,
+			.xgplayer-skin-default .xgplayer-progress:hover .xgplayer-progress-dot {
+				height: 6px
+			}
+
+			.xgplayer-skin-default .xgplayer-progress:focus .xgplayer-progress-btn,
+			.xgplayer-skin-default .xgplayer-progress:hover .xgplayer-progress-btn {
+				display: block;
+				top: -3px
+			}
+
+			.xgplayer-skin-default.xgplayer-definition-active .xgplayer-progress,
+			.xgplayer-skin-default.xgplayer-playbackrate-active .xgplayer-progress,
+			.xgplayer-skin-default.xgplayer-texttrack-active .xgplayer-progress,
+			.xgplayer-skin-default.xgplayer-volume-active .xgplayer-progress {
+				z-index: 15
+			}
+
+			.xgplayer-skin-default.xgplayer-mobile .xgplayer-progress-btn {
+				display: block !important
+			}
+
+			.xgplayer-skin-default.xgplayer-mobile .xgplayer-progress:focus .xgplayer-progress-outer,
+			.xgplayer-skin-default.xgplayer-mobile .xgplayer-progress:hover .xgplayer-progress-outer {
+				height: 3px !important;
+				margin-top: 8.5px !important
+			}
+
+			.xgplayer-skin-default.xgplayer-mobile .xgplayer-progress:focus .xgplayer-progress-btn,
+			.xgplayer-skin-default.xgplayer-mobile .xgplayer-progress:hover .xgplayer-progress-btn {
+				display: block !important;
+				top: -5px !important
+			}
+
+			.xgplayer-skin-default .xgplayer-replay {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				z-index: 105;
+				display: none;
+				-webkit-justify-content: center;
+				-moz-box-pack: center;
+				justify-content: center;
+				-webkit-align-items: center;
+				-moz-box-align: center;
+				align-items: center;
+				background: rgba(0, 0, 0, .54);
+				-webkit-flex-direction: column;
+				-moz-box-orient: vertical;
+				-moz-box-direction: normal;
+				flex-direction: column
+			}
+
+			.xgplayer-skin-default .xgplayer-replay svg {
+				background: rgba(0, 0, 0, .58);
+				border-radius: 100%;
+				cursor: pointer
+			}
+
+			.xgplayer-skin-default .xgplayer-replay svg path {
+				-webkit-transform: translate(20px, 21px);
+				-ms-transform: translate(20px, 21px);
+				transform: translate(20px, 21px);
+				fill: #ddd
+			}
+
+			.xgplayer-skin-default .xgplayer-replay svg:hover {
+				background: rgba(0, 0, 0, .38)
+			}
+
+			.xgplayer-skin-default .xgplayer-replay svg:hover path {
+				fill: #fff
+			}
+
+			.xgplayer-skin-default .xgplayer-replay .xgplayer-replay-txt {
+				display: inline-block;
+				font-family: PingFangSC-Regular;
+				font-size: 14px;
+				color: #fff;
+				line-height: 34px
+			}
+
+			.xgplayer-skin-default.xgplayer.xgplayer-ended .xgplayer-controls {
+				display: none
+			}
+
+			.xgplayer-skin-default.xgplayer.xgplayer-ended .xgplayer-replay {
+				display: -webkit-flex;
+				display: -moz-box;
+				display: flex
+			}
+
+			.xgplayer-skin-default .xgplayer-playbackrate {
+				-webkit-order: 8;
+				-moz-box-ordinal-group: 9;
+				order: 8;
+				width: 60px;
+				height: 20px;
+				z-index: 18;
+				position: relative;
+				display: inline-block;
+				cursor: default
+			}
+
+			.xgplayer-skin-default .xgplayer-playbackrate ul {
+				display: none;
+				list-style: none;
+				width: 78px;
+				background: rgba(0, 0, 0, .54);
+				border-radius: 1px;
+				position: absolute;
+				bottom: 20px;
+				left: 50%;
+				-webkit-transform: translateX(-50%);
+				-ms-transform: translateX(-50%);
+				transform: translateX(-50%);
+				text-align: left;
+				white-space: nowrap;
+				z-index: 26;
+				cursor: pointer
+			}
+
+			.xgplayer-skin-default .xgplayer-playbackrate ul li {
+				opacity: .7;
+				font-family: PingFangSC-Regular;
+				font-size: 11px;
+				color: hsla(0, 0%, 100%, .8);
+				position: relative;
+				padding: 4px 0;
+				text-align: center
+			}
+
+			.xgplayer-skin-default .xgplayer-playbackrate ul li.selected,
+			.xgplayer-skin-default .xgplayer-playbackrate ul li:hover {
+				color: #fff;
+				opacity: 1
+			}
+
+			.xgplayer-skin-default .xgplayer-playbackrate ul li:first-child {
+				position: relative;
+				margin-top: 12px
+			}
+
+			.xgplayer-skin-default .xgplayer-playbackrate ul li:last-child {
+				position: relative;
+				margin-bottom: 12px
+			}
+
+			.xgplayer-skin-default .xgplayer-playbackrate .name {
+				height: 20px;
+				position: relative;
+				top: 11px;
+				text-align: center;
+				background: rgba(0, 0, 0, .38);
+				color: hsla(0, 0%, 100%, .8);
+				border-radius: 10px;
+				line-height: 20px
+			}
+
+			.xgplayer-skin-default .xgplayer-playbackrate span {
+				position: relative;
+				top: 19px;
+				font-weight: 700;
+				text-shadow: 0 0 4px rgba(0, 0, 0, .6)
+			}
+
+			.xgplayer-skin-default .xgplayer-playbackrate:hover {
+				opacity: 1
+			}
+
+			.xgplayer-skin-default.xgplayer-playbackrate-active .xgplayer-playbackrate ul {
+				display: block
+			}
+
+			.xgplayer-skin-default .xgplayer-download {
+				position: relative;
+				-webkit-order: 9;
+				-moz-box-ordinal-group: 10;
+				order: 9;
+				display: block;
+				cursor: pointer
+			}
+
+			.xgplayer-skin-default .xgplayer-download .xgplayer-icon {
+				margin-top: 3px
+			}
+
+			.xgplayer-skin-default .xgplayer-download .xgplayer-icon div {
+				position: absolute
+			}
+
+			.xgplayer-skin-default .xgplayer-download .xgplayer-icon svg {
+				position: relative;
+				top: 5px;
+				left: 5px
+			}
+
+			.xgplayer-skin-default .xgplayer-download .xgplayer-tips {
+				margin-left: -20px
+			}
+
+			.xgplayer-skin-default .xgplayer-download .xgplayer-tips .xgplayer-tip-download {
+				display: block
+			}
+
+			.xgplayer-skin-default .xgplayer-download:hover {
+				opacity: .85
+			}
+
+			.xgplayer-skin-default .xgplayer-download:hover .xgplayer-tips {
+				display: block
+			}
+
+			.lang-is-en .xgplayer-download .xgplayer-tips {
+				margin-left: -32px
+			}
+
+			.lang-is-jp .xgplayer-download .xgplayer-tips {
+				margin-left: -40px
+			}
+
+			.xgplayer-skin-default .danmu-switch {
+				-webkit-order: 6;
+				-moz-box-ordinal-group: 7;
+				order: 6;
+				z-index: 26
+			}
+
+			.xgplayer-skin-default .xgplayer-danmu {
+				display: none;
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 100%;
+				overflow: hidden;
+				z-index: 9;
+				outline: none
+			}
+
+			.xgplayer-skin-default .xgplayer-danmu>* {
+				position: absolute;
+				white-space: nowrap;
+				z-index: 9
+			}
+
+			.xgplayer-skin-default .xgplayer-danmu.xgplayer-has-danmu {
+				display: block
+			}
+
+			.xgplayer-skin-default .xgplayer-panel {
+				outline: none;
+				-webkit-order: 7;
+				-moz-box-ordinal-group: 8;
+				order: 7;
+				width: 40px;
+				height: 40px;
+				display: inline-block;
+				position: relative;
+				font-family: PingFangSC-Regular;
+				font-size: 13px;
+				color: hsla(0, 0%, 100%, .8);
+				z-index: 36
+			}
+
+			.xgplayer-skin-default .xgplayer-panel .xgplayer-panel-icon {
+				cursor: pointer;
+				position: absolute;
+				margin-left: 5px;
+				top: 10px
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-active {
+				display: block !important;
+				bottom: 30px
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider {
+				z-index: 36;
+				display: none;
+				position: absolute;
+				width: 230px;
+				height: 230px;
+				background: rgba(0, 0, 0, .54);
+				border-radius: 1px;
+				padding: 10px 20px;
+				outline: none;
+				left: -115px;
+				bottom: 40px
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-hidemode {
+				padding-bottom: 10px
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-hidemode-radio li {
+				display: inline;
+				list-style: none;
+				cursor: pointer
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-hidemode ul {
+				display: -webkit-flex;
+				display: -moz-box;
+				display: flex;
+				-webkit-justify-content: space-around;
+				justify-content: space-around
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-hidemode li {
+				margin: 0 12px;
+				font-size: 11px;
+				color: #aaa
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-hidemode-font {
+				margin-bottom: 10px
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-transparency {
+				display: block;
+				margin-top: 10px
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-transparency .xgplayer-transparency-line {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				cursor: pointer;
+				outline: none;
+				width: 150px;
+				height: 4px;
+				background: #aaa;
+				border-radius: 4px;
+				border-style: none;
+				margin-left: 10px;
+				margin-top: -2px
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-transparency .xgplayer-transparency-line::-moz-focus-outer {
+				border: 0 !important
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-transparency .xgplayer-transparency-color::-webkit-slider-runnable-track {
+				outline: none;
+				width: 150px;
+				height: 4px;
+				border-radius: 4px
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-transparency .xgplayer-transparency-color::-moz-range-track {
+				outline: none;
+				background-color: #aaa;
+				border-color: transparent;
+				cursor: pointer;
+				width: 150px;
+				height: 4px;
+				border-radius: 4px
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-transparency .xgplayer-transparency-color::-ms-track {
+				outline: none;
+				background-color: #aaa;
+				color: transparent;
+				border-color: transparent;
+				width: 150px;
+				height: 4px;
+				border-radius: 4px
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-transparency .xgplayer-transparency-bar::-webkit-slider-thumb {
+				outline: none;
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				border: 6px solid #f85959;
+				height: 6px;
+				width: 6px;
+				margin-top: -4px;
+				border-radius: 6px;
+				cursor: pointer
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-transparency .xgplayer-transparency-bar::-moz-range-thumb {
+				outline: none;
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				border: 6px solid #f85959;
+				height: 0;
+				width: 0;
+				border-radius: 6px;
+				cursor: pointer
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-transparency .xgplayer-transparency-bar::-ms-thumb {
+				outline: none;
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				border: 6px solid #f85959;
+				height: 6px;
+				width: 6px;
+				border-radius: 6px;
+				cursor: pointer
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-transparency .xgplayer-transparency-bar::-moz-range-progress {
+				outline: none;
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				height: 4px;
+				border-radius: 4px;
+				background: linear-gradient(90deg, #f85959, #f85959 100%, #aaa)
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-showarea {
+				display: block;
+				margin-top: 8px
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-showarea-name {
+				display: inline-block;
+				position: relative;
+				top: -10px
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-showarea-control {
+				display: inline-block
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-showarea-control-up {
+				width: 150px;
+				margin-left: 10px;
+				display: -moz-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-justify-content: space-between;
+				-moz-box-pack: justify;
+				justify-content: space-between;
+				color: #aaa
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-showarea-control-down {
+				position: relative;
+				top: -10px
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-showarea-control-down-dots {
+				display: -webkit-flex;
+				display: -moz-box;
+				display: flex;
+				width: 150px;
+				margin-left: 10px;
+				-webkit-justify-content: space-between;
+				-moz-box-pack: justify;
+				justify-content: space-between
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-showarea-threequarters,
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-showarea-twoquarters {
+				margin-left: -6px
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-showarea-full {
+				margin-right: 3px
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-showarea .xgplayer-showarea-line {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				cursor: pointer;
+				outline: none;
+				width: 150px;
+				height: 4px;
+				background: #aaa;
+				border-radius: 4px;
+				border-style: none;
+				margin-left: 10px;
+				margin-top: -2px
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-showarea .xgplayer-showarea-line::-moz-focus-outer {
+				border: 0 !important
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-showarea .xgplayer-showarea-color::-webkit-slider-runnable-track {
+				outline: none;
+				width: 150px;
+				height: 4px;
+				border-radius: 4px
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-showarea .xgplayer-showarea-color::-moz-range-track {
+				outline: none;
+				background-color: #aaa;
+				border-color: transparent;
+				cursor: pointer;
+				width: 150px;
+				height: 4px;
+				border-radius: 4px
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-showarea .xgplayer-showarea-color::-ms-track {
+				outline: none;
+				background-color: #aaa;
+				color: transparent;
+				border-color: transparent;
+				width: 150px;
+				height: 4px;
+				border-radius: 4px
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-showarea .xgplayer-showarea-bar::-webkit-slider-thumb {
+				outline: none;
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				border: 6px solid #f85959;
+				height: 6px;
+				width: 6px;
+				margin-top: -4px;
+				border-radius: 6px;
+				cursor: pointer
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-showarea .xgplayer-showarea-bar::-moz-range-thumb {
+				outline: none;
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				border: 6px solid #f85959;
+				height: 0;
+				width: 0;
+				border-radius: 6px;
+				cursor: pointer
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-showarea .xgplayer-showarea-bar::-ms-thumb {
+				outline: none;
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				border: 6px solid #f85959;
+				height: 6px;
+				width: 6px;
+				border-radius: 6px;
+				cursor: pointer
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-showarea .xgplayer-showarea-full-dot,
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-showarea .xgplayer-showarea-onequarters-dot,
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-showarea .xgplayer-showarea-threequarters-dot,
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-showarea .xgplayer-showarea-twoquarters-dot,
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-showarea .xgplayer-showarea-zero-dot {
+				width: 3px;
+				height: 3px;
+				border: 3px solid #aaa;
+				border-radius: 50%;
+				background-color: #aaa;
+				position: relative;
+				top: 16px;
+				z-index: -1
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-danmuspeed {
+				display: block
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-danmuspeed-name {
+				display: inline-block;
+				position: relative;
+				top: -10px
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-danmuspeed-control {
+				display: inline-block
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-danmuspeed-control-up {
+				width: 150px;
+				margin-left: 10px;
+				display: -moz-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-justify-content: space-between;
+				-moz-box-pack: justify;
+				justify-content: space-between;
+				color: #aaa
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-danmuspeed-control-down {
+				position: relative;
+				top: -10px
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-danmuspeed-control-down-dots {
+				display: -webkit-flex;
+				display: -moz-box;
+				display: flex;
+				width: 150px;
+				margin-left: 10px;
+				-webkit-justify-content: space-between;
+				-moz-box-pack: justify;
+				justify-content: space-between
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-danmuspeed .xgplayer-danmuspeed-line {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				cursor: pointer;
+				outline: none;
+				width: 150px;
+				height: 4px;
+				background: #aaa;
+				border-radius: 4px;
+				border-style: none;
+				margin-left: 10px;
+				margin-top: -2px
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-danmuspeed .xgplayer-danmuspeed-line::-moz-focus-outer {
+				border: 0 !important
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-danmuspeed .xgplayer-danmuspeed-color::-webkit-slider-runnable-track {
+				outline: none;
+				width: 150px;
+				height: 4px;
+				border-radius: 4px
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-danmuspeed .xgplayer-danmuspeed-color::-moz-range-track {
+				outline: none;
+				background-color: #aaa;
+				border-color: transparent;
+				cursor: pointer;
+				width: 150px;
+				height: 4px;
+				border-radius: 4px
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-danmuspeed .xgplayer-danmuspeed-color::-ms-track {
+				outline: none;
+				background-color: #aaa;
+				color: transparent;
+				border-color: transparent;
+				width: 150px;
+				height: 4px;
+				border-radius: 4px
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-danmuspeed .xgplayer-danmuspeed-bar::-webkit-slider-thumb {
+				outline: none;
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				border: 6px solid #f85959;
+				height: 6px;
+				width: 6px;
+				margin-top: -4px;
+				border-radius: 6px;
+				cursor: pointer
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-danmuspeed .xgplayer-danmuspeed-bar::-moz-range-thumb {
+				outline: none;
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				border: 6px solid #f85959;
+				height: 0;
+				width: 0;
+				border-radius: 6px;
+				cursor: pointer
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-danmuspeed .xgplayer-danmuspeed-bar::-ms-thumb {
+				outline: none;
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				border: 6px solid #f85959;
+				height: 6px;
+				width: 6px;
+				border-radius: 6px;
+				cursor: pointer
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-danmuspeed .xgplayer-danmuspeed-large-dot,
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-danmuspeed .xgplayer-danmuspeed-middle-dot,
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-danmuspeed .xgplayer-danmuspeed-small-dot {
+				width: 3px;
+				height: 3px;
+				border: 3px solid #aaa;
+				border-radius: 50%;
+				background-color: #aaa;
+				position: relative;
+				top: 16px;
+				z-index: -1
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-danmufont {
+				display: block
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-danmufont-name {
+				display: inline-block;
+				position: relative;
+				top: -10px
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-danmufont-control {
+				display: inline-block
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-danmufont-control-up {
+				width: 150px;
+				margin-left: 10px;
+				display: -moz-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-justify-content: space-between;
+				-moz-box-pack: justify;
+				justify-content: space-between;
+				color: #aaa
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-danmufont-control-down {
+				position: relative;
+				top: -10px
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-danmufont-control-down-dots {
+				display: -webkit-flex;
+				display: -moz-box;
+				display: flex;
+				width: 150px;
+				margin-left: 10px;
+				-webkit-justify-content: space-between;
+				-moz-box-pack: justify;
+				justify-content: space-between
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-danmufont .xgplayer-danmufont-line {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				cursor: pointer;
+				outline: none;
+				width: 150px;
+				height: 4px;
+				background: #aaa;
+				border-radius: 4px;
+				border-style: none;
+				margin-left: 10px;
+				margin-top: -2px
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-danmufont .xgplayer-danmufont-line::-moz-focus-outer {
+				border: 0 !important
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-danmufont .xgplayer-danmufont-color::-webkit-slider-runnable-track {
+				outline: none;
+				width: 150px;
+				height: 4px;
+				border-radius: 4px
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-danmufont .xgplayer-danmufont-color::-moz-range-track {
+				outline: none;
+				background-color: #aaa;
+				border-color: transparent;
+				cursor: pointer;
+				width: 150px;
+				height: 4px;
+				border-radius: 4px
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-danmufont .xgplayer-danmufont-color::-ms-track {
+				outline: none;
+				background-color: #aaa;
+				color: transparent;
+				border-color: transparent;
+				width: 150px;
+				height: 4px;
+				border-radius: 4px
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-danmufont .xgplayer-danmufont-bar::-webkit-slider-thumb {
+				outline: none;
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				border: 6px solid #f85959;
+				height: 6px;
+				width: 6px;
+				margin-top: -4px;
+				border-radius: 6px;
+				cursor: pointer
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-danmufont .xgplayer-danmufont-bar::-moz-range-thumb {
+				outline: none;
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				border: 6px solid #f85959;
+				height: 0;
+				width: 0;
+				border-radius: 6px;
+				cursor: pointer
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-danmufont .xgplayer-danmufont-bar::-ms-thumb {
+				outline: none;
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				border: 6px solid #f85959;
+				height: 6px;
+				width: 6px;
+				border-radius: 6px;
+				cursor: pointer
+			}
+
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-danmufont .xgplayer-danmufont-large-dot,
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-danmufont .xgplayer-danmufont-middle-dot,
+			.xgplayer-skin-default .xgplayer-panel-slider .xgplayer-danmufont .xgplayer-danmufont-small-dot {
+				width: 3px;
+				height: 3px;
+				border: 3px solid #aaa;
+				border-radius: 50%;
+				background-color: #aaa;
+				position: relative;
+				top: 16px;
+				z-index: -1
+			}
+
+			.xgplayer-skin-default .xgplayer-playnext {
+				position: relative;
+				-webkit-order: 1;
+				-moz-box-ordinal-group: 2;
+				order: 1;
+				display: block;
+				cursor: pointer;
+				top: -2px
+			}
+
+			.xgplayer-skin-default .xgplayer-playnext .xgplayer-icon div {
+				position: absolute
+			}
+
+			.xgplayer-skin-default .xgplayer-playnext .xgplayer-tips .xgplayer-tip-playnext {
+				display: block
+			}
+
+			.xgplayer-skin-default .xgplayer-playnext:hover {
+				opacity: .85
+			}
+
+			.xgplayer-skin-default .xgplayer-playnext:hover .xgplayer-tips {
+				display: block
+			}
+
+			.lang-is-en .xgplayer-playnext .xgplayer-tips {
+				margin-left: -25px
+			}
+
+			.lang-is-jp .xgplayer-playnext .xgplayer-tips {
+				margin-left: -38px
+			}
+
+			.xgplayer-skin-default.xgplayer-playnext-inactive .xgplayer-playnext {
+				display: none
+			}
+
+			.xgplayer-skin-default .xgplayer-pip {
+				-webkit-order: 9;
+				-moz-box-ordinal-group: 10;
+				order: 9;
+				position: relative;
+				outline: none;
+				display: block;
+				cursor: pointer;
+				height: 20px;
+				top: 8px
+			}
+
+			.xgplayer-skin-default .xgplayer-pip .name {
+				text-align: center;
+				font-family: PingFangSC-Regular;
+				font-size: 13px;
+				line-height: 20px;
+				height: 20px;
+				color: hsla(0, 0%, 100%, .8)
+			}
+
+			.xgplayer-skin-default .xgplayer-pip .name span {
+				width: 60px;
+				height: 20px;
+				line-height: 20px;
+				background: rgba(0, 0, 0, .38);
+				border-radius: 10px;
+				display: inline-block;
+				vertical-align: middle
+			}
+
+			.xgplayer-skin-default .xgplayer-pip-lay {
+				position: absolute;
+				top: 26px;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				z-index: 130;
+				cursor: pointer;
+				background-color: transparent;
+				display: none
+			}
+
+			.xgplayer-skin-default .xgplayer-pip-lay div {
+				width: 100%;
+				height: 100%
+			}
+
+			.xgplayer-skin-default .xgplayer-pip-drag {
+				cursor: move;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 26px;
+				line-height: 26px;
+				background-image: linear-gradient(rgba(0, 0, 0, .3), transparent);
+				z-index: 130;
+				display: none
+			}
+
+			.xgplayer-skin-default.xgplayer-pip-active {
+				position: fixed;
+				right: 0;
+				bottom: 200px;
+				width: 320px !important;
+				height: 180px !important;
+				z-index: 110 !important
+			}
+
+			.xgplayer-skin-default.xgplayer-pip-active .xgplayer-controls,
+			.xgplayer-skin-default.xgplayer-pip-active .xgplayer-danmu {
+				display: none
+			}
+
+			.xgplayer-skin-default.xgplayer-pip-active .xgplayer-pip-lay {
+				display: block
+			}
+
+			.xgplayer-skin-default.xgplayer-pip-active .xgplayer-pip-drag {
+				display: -webkit-flex;
+				display: -moz-box;
+				display: flex
+			}
+
+			.xgplayer-skin-default.xgplayer-inactive .xgplayer-pip-drag {
+				display: none
+			}
+
+			.lang-is-jp .xgplayer-pip .name span {
+				width: 70px;
+				height: 20px
+			}
+
+			.xgplayer-skin-default .xgplayer-rotate {
+				position: relative;
+				-webkit-order: 10;
+				-moz-box-ordinal-group: 11;
+				order: 10;
+				display: block;
+				cursor: pointer
+			}
+
+			.xgplayer-skin-default .xgplayer-rotate .xgplayer-icon {
+				margin-top: 7px;
+				width: 26px
+			}
+
+			.xgplayer-skin-default .xgplayer-rotate .xgplayer-icon div {
+				position: absolute
+			}
+
+			.xgplayer-skin-default .xgplayer-rotate .xgplayer-tips {
+				margin-left: -22px
+			}
+
+			.xgplayer-skin-default .xgplayer-rotate .xgplayer-tips .xgplayer-tip-rotate {
+				display: block
+			}
+
+			.xgplayer-skin-default .xgplayer-rotate:hover {
+				opacity: .85
+			}
+
+			.xgplayer-skin-default .xgplayer-rotate:hover .xgplayer-tips {
+				display: block
+			}
+
+			.lang-is-en .xgplayer-rotate .xgplayer-tips {
+				margin-left: -26px
+			}
+
+			.lang-is-jp .xgplayer-rotate .xgplayer-tips {
+				margin-left: -38px
+			}
+
+			.xgplayer-skin-default .xgplayer-reload {
+				position: relative;
+				-webkit-order: 1;
+				-moz-box-ordinal-group: 2;
+				order: 1;
+				display: block;
+				width: 40px;
+				height: 40px;
+				cursor: pointer
+			}
+
+			.xgplayer-skin-default .xgplayer-reload .xgplayer-icon {
+				margin-top: 7px;
+				width: 26px
+			}
+
+			.xgplayer-skin-default .xgplayer-reload .xgplayer-icon div {
+				position: absolute
+			}
+
+			.xgplayer-skin-default .xgplayer-reload .xgplayer-tips {
+				margin-left: -22px
+			}
+
+			.xgplayer-skin-default .xgplayer-reload .xgplayer-tips .xgplayer-tip-reload {
+				display: block
+			}
+
+			.xgplayer-skin-default .xgplayer-reload:hover {
+				opacity: .85
+			}
+
+			.xgplayer-skin-default .xgplayer-reload:hover .xgplayer-tips {
+				display: block
+			}
+
+			.lang-is-en .xgplayer-reload .xgplayer-tips {
+				margin-left: -26px
+			}
+
+			.lang-is-jp .xgplayer-reload .xgplayer-tips {
+				margin-left: -38px
+			}
+
+			.xgplayer-skin-default .xgplayer-screenshot {
+				-webkit-order: 11;
+				-moz-box-ordinal-group: 12;
+				order: 11;
+				position: relative;
+				outline: none;
+				display: block;
+				cursor: pointer;
+				height: 20px;
+				top: 8px
+			}
+
+			.xgplayer-skin-default .xgplayer-screenshot .name {
+				text-align: center;
+				font-family: PingFangSC-Regular;
+				font-size: 13px;
+				line-height: 20px;
+				height: 20px;
+				color: hsla(0, 0%, 100%, .8)
+			}
+
+			.xgplayer-skin-default .xgplayer-screenshot .name span {
+				width: 60px;
+				height: 20px;
+				line-height: 20px;
+				background: rgba(0, 0, 0, .38);
+				border-radius: 10px;
+				display: inline-block;
+				vertical-align: middle
+			}
+
+			.lang-is-en .xgplayer-screenshot .name span,
+			.lang-is-jp .xgplayer-screenshot .name span {
+				width: 75px;
+				height: 20px
+			}
+
+			.xgplayer-skin-default .xgplayer-texttrack {
+				-webkit-order: 7;
+				-moz-box-ordinal-group: 8;
+				order: 7;
+				width: 60px;
+				height: 150px;
+				z-index: 18;
+				position: relative;
+				outline: none;
+				display: none;
+				cursor: default;
+				margin-top: -119px
+			}
+
+			.xgplayer-skin-default .xgplayer-texttrack ul {
+				display: none;
+				list-style: none;
+				min-width: 78px;
+				background: rgba(0, 0, 0, .54);
+				border-radius: 1px;
+				position: absolute;
+				bottom: 30px;
+				text-align: center;
+				white-space: nowrap;
+				left: 50%;
+				-webkit-transform: translateX(-50%);
+				-ms-transform: translateX(-50%);
+				transform: translateX(-50%);
+				width: -webkit-fit-content;
+				width: -moz-fit-content;
+				width: fit-content;
+				z-index: 26;
+				cursor: pointer
+			}
+
+			.xgplayer-skin-default .xgplayer-texttrack ul li {
+				opacity: .7;
+				font-family: PingFangSC-Regular;
+				font-size: 11px;
+				color: hsla(0, 0%, 100%, .8);
+				width: -webkit-fit-content;
+				width: -moz-fit-content;
+				width: fit-content;
+				margin: auto;
+				padding: 6px 13px
+			}
+
+			.xgplayer-skin-default .xgplayer-texttrack ul li.selected,
+			.xgplayer-skin-default .xgplayer-texttrack ul li:hover {
+				color: #fff;
+				opacity: 1
+			}
+
+			.xgplayer-skin-default .xgplayer-texttrack .name {
+				text-align: center;
+				font-family: PingFangSC-Regular;
+				font-size: 13px;
+				cursor: pointer;
+				color: hsla(0, 0%, 100%, .8);
+				position: absolute;
+				bottom: 0;
+				width: 60px;
+				height: 20px;
+				line-height: 20px;
+				background: rgba(0, 0, 0, .38);
+				border-radius: 10px;
+				display: inline-block;
+				vertical-align: middle
+			}
+
+			.xgplayer-skin-default.xgplayer-is-texttrack .xgplayer-texttrack,
+			.xgplayer-skin-default.xgplayer-texttrack-active .xgplayer-texttrack ul {
+				display: block
+			}
+
+			.xgplayer-skin-default .xgplayer-icon {
+				display: block;
+				width: 40px;
+				height: 40px;
+				overflow: hidden;
+				fill: #fff
+			}
+
+			.xgplayer-skin-default .xgplayer-icon svg {
+				position: absolute
+			}
+
+			.xgplayer-skin-default .xgplayer-tips {
+				background: rgba(0, 0, 0, .54);
+				border-radius: 1px;
+				display: none;
+				position: absolute;
+				font-family: PingFangSC-Regular;
+				font-size: 11px;
+				color: #fff;
+				padding: 2px 4px;
+				text-align: center;
+				top: -30px;
+				left: 50%;
+				margin-left: -16px;
+				width: auto;
+				white-space: nowrap
+			}
+
+			.xgplayer-skin-default.xgplayer-mobile .xgplayer-tips {
+				display: none !important
+			}
+
+			.xgplayer-skin-default .xgplayer-error {
+				background: #000;
+				display: none;
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				z-index: 125;
+				font-family: PingFangSC-Regular;
+				font-size: 14px;
+				color: #fff;
+				text-align: center;
+				line-height: 100%;
+				-webkit-justify-content: center;
+				-moz-box-pack: center;
+				justify-content: center;
+				-webkit-align-items: center;
+				-moz-box-align: center;
+				align-items: center
+			}
+
+			.xgplayer-skin-default .xgplayer-error .xgplayer-error-refresh {
+				color: #fa1f41;
+				padding: 0 3px;
+				cursor: pointer
+			}
+
+			.xgplayer-skin-default .xgplayer-error .xgplayer-error-text {
+				line-height: 18px;
+				margin: auto 6px
+			}
+
+			.xgplayer-skin-default.xgplayer-is-error .xgplayer-error {
+				display: -webkit-flex;
+				display: -moz-box;
+				display: flex
+			}
+
+			.xgplayer-skin-default .xgplayer-memoryplay-spot {
+				position: absolute;
+				height: 32px;
+				left: 10px;
+				bottom: 46px;
+				background: rgba(0, 0, 0, .5);
+				border-radius: 32px;
+				line-height: 32px;
+				color: #ddd;
+				z-index: 15;
+				padding: 0 32px 0 16px
+			}
+
+			.xgplayer-skin-default .xgplayer-memoryplay-spot .xgplayer-lasttime {
+				color: red;
+				font-weight: 700
+			}
+
+			.xgplayer-skin-default .xgplayer-memoryplay-spot .btn-close {
+				position: absolute;
+				width: 16px;
+				height: 16px;
+				right: 10px;
+				top: 2px;
+				cursor: pointer;
+				color: #fff;
+				font-size: 16px
+			}
+		</style>
+		<style type="text/css">
+			.danmu {
+				overflow: hidden;
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				user-select: none;
+				-ms-user-select: none
+			}
+
+			.danmu>* {
+				position: absolute;
+				white-space: nowrap
+			}
+
+			.danmu-switch {
+				width: 32px;
+				height: 20px;
+				border-radius: 100px;
+				background-color: #ccc;
+				-webkit-box-sizing: border-box;
+				box-sizing: border-box;
+				outline: none;
+				cursor: pointer;
+				position: relative;
+				text-align: center;
+				margin: 10px auto
+			}
+
+			.danmu-switch.danmu-switch-active {
+				padding-left: 12px;
+				background-color: #f85959
+			}
+
+			.danmu-switch span.txt {
+				width: 20px;
+				height: 20px;
+				line-height: 20px;
+				text-align: center;
+				display: block;
+				border-radius: 100px;
+				background-color: #ffffff;
+				-webkit-box-shadow: -2px 0 0 0 rgba(0, 0, 0, .04);
+				box-shadow: -2px 0 0 0 rgba(0, 0, 0, .04);
+				font-family: PingFangSC;
+				font-size: 10px;
+				font-weight: 500;
+				color: #f44336
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div id="index" class="publicAllContentBg">
+				<div id="publicHeaderModule" class="publicAllContentBg">
+					
+					<div class="topHeaderBg">
+						<div class="topHeaderBox">
+							<div class="left">
+								<a href="" target="_blank">网站公告</a> 
+								<span class="publicTopHeaderLine"></span> 
+								<a href="/index.php/label/question.html">常见问题</a>
+								<span class="publicTopHeaderLine"></span> 
+								<a href="http://wpa.qq.com/msgrd?v=3&uin=1747597875&site=qq&menu=yes" target="_blank">在线客服</a>
+							</div>
+							<div class="right">
+								<p><i class="van-icon"><img src="/MDassets/img/ios.png" class="van-icon__image"></i> 
+								<a href="https://www.ht.com" target="_blank" style="color: rgb(104, 108, 117);">APP下载</a></p>
+								<span class="publicTopHeaderLine"></span>
+								<p><i class="van-icon"><img  src="/MDassets/img/proxy.png" class="van-icon__image"></i> 
+								<a href="https://xydai.cn" target="_blank" style="color: rgb(104, 108, 117);">代理加盟</a></p>
+							</div>
+						</div>
+					</div>
+					<div class="middleHeaderBg">
+						<div class="middleHeaderBox">
+							<div class="left"><img src="/MDassets/img/logo.png" alt="logo"></div>
+							<div class="right">
+								<a id="login_btn"  class="recharge"><i class="van-icon"><img src="/MDassets/img/diamond.png" class="van-icon__image"></i>
+									会员充值
+								</a>
+																<div class="topLoginButtonLine"><i class="van-icon"><img src="/MDassets/img/user.png" class="van-icon__image"></i>
+									<p id="login_btn">登录</p> 
+									<span style="margin: 0px 6px;">/</span>
+									<p id="signup_btn">注册</p>
+								</div>
+															</div>
+						</div>
+					</div>
+					<div class="bottomHeaderNavBg">
+						<div class="bottomHeaderNavBox">
+							<div class="left">
+								<ul class="navList">
+									<li>
+										<a  class="active" href="/"><span>首页</span></a>
+									</li>
+									<li>
+										<a href="/index.php/label/new.html" ><span>最近更新</span></a>
+									</li>
+									<li>
+										<a href="/index.php/topic/index.html" ><span>专题</span></a>
+									</li>
+									<li>
+										<a href="/index.php/actor/index.html" ><span>明星</span></a>
+									</li>
+																		<li>
+										<a  href="/index.php/vod/type/id/1.html"><span>国产</span></a>
+									</li>
+																		<li>
+										<a  href="/index.php/vod/type/id/2.html"><span>日韩</span></a>
+									</li>
+																		<li>
+										<a  href="/index.php/vod/type/id/3.html"><span>欧美</span></a>
+									</li>
+																		<li>
+										<a  href="/index.php/vod/type/id/4.html"><span>动漫</span></a>
+									</li>
+																		<li>
+										<a  href="/index.php/vod/type/id/5.html"><span>中文</span></a>
+									</li>
+																		<li>
+										<a  href="/index.php/vod/type/id/6.html"><span>免费</span></a>
+									</li>
+																		
+								</ul>
+							</div>
+							<div class="right">
+								<div aria-haspopup="listbox" role="combobox" aria-owns="el-autocomplete-1542" class="el-autocomplete">
+									<form class="el-input el-input-group el-input-group--append el-input--prefix" method="get" action="/index.php/vod/search.html">
+										<input id="search" type="text" name="wd" autocomplete="off"  placeholder="永久网址 cat.com" value="" class="el-input__inner">
+										<span class="el-input__prefix"><i class="el-icon-search"></i></span>
+										<div class="el-input-group__append">
+											<button type="submit" class="el-button el-button--default" style="background: linear-gradient(rgb(247, 131, 97) 0%, rgb(245, 75, 100) 100%); color: rgb(255, 255, 255);">
+												<span>GO</span>
+											</button>
+										</div>
+									</form>
+									<div role="region" id="searchtwo" class="el-autocomplete-suggestion el-popper hidden" style="position: absolute; top: 40px; left: 0px; transform-origin: center top; z-index: 2008; width: 215px;"  x-placement="bottom-start">
+										<div class="el-scrollbar">
+											<div class="el-autocomplete-suggestion__wrap el-scrollbar__wrap" style="margin-bottom: -17px; margin-right: -17px;">
+												<ul class="el-scrollbar__view el-autocomplete-suggestion__list">
+																										<li>
+														<a href="/index.php/vod/search/wd/%E6%97%A5%E6%9C%AC.html" class="popperLineStyle">
+															<div class="active">1</div>
+															<p>日本</p>
+														</a>
+													</li>
+																										<li>
+														<a href="/index.php/vod/search/wd/%E6%AC%A7%E7%BE%8E.html" class="popperLineStyle">
+															<div class="active">2</div>
+															<p>欧美</p>
+														</a>
+													</li>
+																										<li>
+														<a href="/index.php/vod/search/wd/%E5%A4%A7%E9%99%86.html" class="popperLineStyle">
+															<div class="active">3</div>
+															<p>大陆</p>
+														</a>
+													</li>
+																										<li>
+														<a href="/index.php/vod/search/wd/%E5%8F%B0%E6%B9%BE.html" class="popperLineStyle">
+															<div class="active">4</div>
+															<p>台湾</p>
+														</a>
+													</li>
+																										<li>
+														<a href="/index.php/vod/search/wd/%E9%A6%99%E6%B8%AF.html" class="popperLineStyle">
+															<div class="active">5</div>
+															<p>香港</p>
+														</a>
+													</li>
+																									</ul>
+											</div>
+											<div class="el-scrollbar__bar is-horizontal">
+												<div class="el-scrollbar__thumb" style="transform: translateX(0%);"></div>
+											</div>
+											<div class="el-scrollbar__bar is-vertical">
+												<div class="el-scrollbar__thumb" style="transform: translateY(0%);"></div>
+											</div>
+										</div>
+										<div x-arrow="" class="popper__arrow" style="left: 35px;"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="el-dialog__wrapper hidden" style="z-index: 2000;" id="popup_mask">
+						<div role="dialog" aria-modal="true" aria-label="dialog" class="el-dialog loginAboutPopup" style="margin-top: 15vh;">
+							<div class="el-dialog__header">
+								<span class="el-dialog__title"></span>
+								<button id="popup_close" type="button" aria-label="Close" class="el-dialog__headerbtn">
+									<i class="el-dialog__close el-icon el-icon-close"></i>
+								</button>
+							</div>
+							<div class="el-dialog__body">
+							<img src="/MDassets/img/logo.png" style="margin-left: auto; margin-right: auto; display: block;">
+								<h2 style="margin-top: 10px; color: rgb(255, 255, 255); font-size: 20px; font-weight: 300; text-align: center;">请牢记最新域名</h2>
+			<div style="margin-top: 20px; color: rgb(255, 255, 255); font-size: 18px; font-weight: 300; text-align: center;">
+				国内主用域名：cat.com
+			</div>
+			<div style="margin-top: 20px; color: rgb(255, 255, 255); font-size: 18px; font-weight: 300; text-align: center;">
+				国内备用域名：cat1.com
+			</div>								<button id="popup_closetwo" type="button" class="Buttontwo el-button publicLoginAboutButton el-button--primary">
+									<span>确定</span>
+								</button>
+							</div>
+						</div>
+					</div>
+					<script>
+						var popup_close = document.getElementById("popup_close");
+						var popup_closetwo = document.getElementById("popup_closetwo");
+						var popup_mask = document.getElementById("popup_mask");
+						var popup = sessionStorage.getItem("popup");
+						if (popup == null) {
+							popup_mask.style.display = 'block';
+							popup_close.onclick = function() {
+								popup_mask.style.display = 'none';
+								sessionStorage.setItem("popup", "1");
+							}
+							popup_closetwo.onclick = function() {
+								popup_mask.style.display = 'none';
+								sessionStorage.setItem("popup", "1");
+							}
+						};
+					</script>	
+										<div id="login" class="el-dialog__wrapper hidden" style="z-index: 2000;">
+						<div role="dialog" aria-modal="true" aria-label="dialog" class="el-dialog loginAboutPopup" style="margin-top: 15vh;">
+							<div class="el-dialog__header">
+							<span class="el-dialog__title"></span>
+								<button id="login_close" type="button" aria-label="Close" class="el-dialog__headerbtn">
+									<i class="el-dialog__close el-icon el-icon-close"></i>
+								</button>
+							</div>
+							<form id="madouym-login" class="el-dialog__body">
+								<h3 class="publicPopupTitle">欢迎您的到来!</h3>
+								<div class="el-input">
+									<input type="text" id="login_name" name="user_name" autocomplete="off" placeholder="请输入邮箱或手机号" class="el-input__inner">
+								</div>
+								<div class="el-input el-input--suffix">
+									<input type="password" id="login_pwd" name="user_pwd" autocomplete="off" placeholder="请输入密码" class="el-input__inner">
+									<span class="el-input__suffix"><span class="el-input__suffix-inner"></span></span>
+								</div> 
+								<button id="btn_login" type="button" class="Buttontwo el-button  el-button--primary publicLoginAboutButton">
+									<span>登录</span>
+								</button>
+								<div class="publicLoginBottomButton split">
+									<a id="reset_btn" class="el-link el-link--primary"><span class="el-link--inner">忘记密码</span></a> 
+									<a id="login_cutover" class="el-link el-link--primary"><span class="el-link--inner">没有账号？去注册</span></a>
+								</div>
+							</form>
+						</div>
+					</div>
+					<script>
+						$(function(){
+							$('#btn_login').click(function() {
+								if ($('#login_name').val()  == '') { layer.msg('请输入用户！'); $("#login_name").focus(); return false; }
+								if ($('#login_pwd').val()  == '') { layer.msg('请输入密码！'); $("#login_pwd").focus(); return false; }
+								if ($('#verify').val()  == '') { layer.msg('请输入验证码！'); $("#verify").focus(); return false; }
+
+								$.ajax({
+									url: "/index.php/user/login.html",
+									type: "post",
+									dataType: "json",
+									data: $('#madouym-login').serialize(),
+									beforeSend: function () {
+										$("#btn_login").val("登录中...");
+									},
+									success: function (r) {
+										if(r.code==1){
+											location.href="/index.php/user/index.html";
+										}
+										else{
+											layer.msg(r.msg);
+											$('#verify_img').click();
+										}
+									}
+								});
+
+							});
+						});
+					</script>
+										<div id="signup" class="el-dialog__wrapper hidden" style="z-index: 2000;">
+						<div role="dialog" aria-modal="true" aria-label="dialog" class="el-dialog loginAboutPopup" style="margin-top: 15vh;">
+							<div class="el-dialog__header">
+								<span class="el-dialog__title"></span>
+								<button id="signup_close" type="button" aria-label="Close" class="el-dialog__headerbtn">
+									<i class="el-dialog__close el-icon el-icon-close"></i>
+								</button>
+							</div>
+							<form class="el-dialog__body" id="madouym-signup">
+								<h3 class="publicPopupTitle">欢迎您的到来!</h3>
+								<div class="el-input">
+									<input type="text" id="signup_name" name="user_name" autocomplete="off" placeholder="请输入邮箱或手机号" class="el-input__inner">
+								</div>
+								<div class="el-input el-input--suffix">
+									<input type="password" id="signup_pwd" name="user_pwd" autocomplete="off" placeholder="请输入密码" class="el-input__inner">
+									<span class="el-input__suffix"><span class="el-input__suffix-inner"></span></span>
+								</div>
+								<div class="el-input el-input--suffix">
+									<input type="password" id="signup_pwd2" name="user_pwd2" autocomplete="off" placeholder="请重复密码" class="el-input__inner">
+									<span class="el-input__suffix"><span class="el-input__suffix-inner"></span></span>
+								</div> 
+								<button id="btn_signup" type="button" class="Buttontwo el-button publicLoginAboutButton el-button--primary">
+									<span>注册</span>
+								</button>
+								<div class="publicLoginBottomButton split">
+									<a id="signup_cutover" class="el-link el-link--primary"><span class="el-link--inner">已有账号？直接登录</span></a>
+								</div>
+							</form>
+						</div>
+					</div>
+					<script>
+						$(function(){
+							$('#btn_signup').click(function() {
+								if ($('#signup_name').val()  == '') { layer.msg('请输入用户！'); $("#signup_name").focus(); return false; }
+								if ($('#signup_pwd').val()  == '') { layer.msg('请输入密码！'); $("#signup_pwd").focus(); return false; }
+								if ($('#signup_pwd2').val()  == '') { layer.msg('请重复输入密码！'); $("#signup_pwd2").focus(); return false; }
+								if ($('#verify').val()  == '') { layer.msg('请输入验证码！'); $("#verify").focus(); return false; }
+								$.ajax({
+									url: "/index.php/user/reg.html",
+									type: "post",
+									dataType: "json",
+									data: $('#madouym-signup').serialize(),
+									beforeSend: function () {
+										$("#btn_signup").val("注册中...");
+									},
+									success: function (r) {
+										layer.msg(r.msg);
+										if(r.code==1){
+											location.href="/index.php/user/login.html";
+										}
+										else{
+											$('#verify_img').click();
+										}
+									}
+								});
+							});
+						});
+					</script>
+										<div id="reset" class="el-dialog__wrapper hidden" style="z-index: 2002;">
+						<div role="dialog" aria-modal="true" aria-label="dialog" class="el-dialog loginAboutPopup" style="margin-top: 15vh;">
+							<div class="el-dialog__header"><span class="el-dialog__title"></span>
+								<button id="reset_close" type="button" aria-label="Close" class="el-dialog__headerbtn">
+									<i class="el-dialog__close el-icon el-icon-close"></i>
+								</button>
+							</div>
+							<div class="el-dialog__body">
+								<h3 class="publicPopupTitle">欢迎您的到来!</h3>
+								<div class="el-input">
+									<input type="text" id="user_name" name="user_name" autocomplete="off" placeholder="请输入用户名" class="el-input__inner">
+								</div>
+								<div class="el-input">
+									<input type="text" id="user_question" name="user_question" autocomplete="off" placeholder="请输入问题" class="el-input__inner">
+								</div>
+								<div class="el-input">
+									<input type="text" id="user_answer" name="user_answer" autocomplete="off" placeholder="请输入答案" class="el-input__inner">
+								</div>
+								<div class="el-input el-input--suffix">
+									<input type="password" id="user_pwd" name="user_pwd" autocomplete="off" placeholder="请输入密码" class="el-input__inner">
+									<span class="el-input__suffix"><span class="el-input__suffix-inner"></span></span>
+								</div>
+								<div class="el-input el-input--suffix">
+									<input type="password" id="user_pwd2" name="user_pwd2" autocomplete="off" placeholder="请重复密码" class="el-input__inner">
+									<span class="el-input__suffix"><span class="el-input__suffix-inner"></span></span>
+								</div> 
+								<button id="btn_submit" type="button" class="Buttontwo el-button publicLoginAboutButton el-button--primary">
+									<span>重置密码</span>
+								</button>
+							</div>
+						</div>
+					</div>
+					<script>
+						$(function(){
+								$("body").bind('keyup',function(event) {
+									if(event.keyCode==13){ $('#btnLogin').click(); }
+								});
+								$('#btn_submit').click(function() {
+									if ($('#user_name').val()  == '') { layer.msg('请输入用户名！'); $("#user_name").focus(); return false; }
+									if ($('#user_question').val()  == '') { layer.msg('请输入找回问题！'); $("#user_question").focus(); return false; }
+									if ($('#user_answer').val()  == '') { layer.msg('请输入找回答案！'); $("#user_answer").focus(); return false; }
+									if ($('#user_pwd').val()  == '') { layer.msg('请输入新密码！'); $("#user_pwd").focus(); return false; }
+									if ($('#user_pwd2').val()  == '') { layer.msg('请输入确认新密码！'); $("#user_pwd").focus(); return false; }
+									if ($('#verify').val()  == '') { layer.msg('请输入验证码！'); $("#verify").focus(); return false; }
+
+									$.ajax({
+										url: "/index.php/user/findpass.html",
+										type: "post",
+										dataType: "json",
+										data: $('#fm').serialize(),
+										beforeSend: function () {
+											$("#btn_submit").val("loading...");
+										},
+										success: function (r) {
+											if(r.code==1){
+												location.href="/index.php/user/index.html";
+											}
+											else{
+												layer.msg(r.msg);
+											}
+										},
+										complete: function () {
+											$('#verify').click();
+											$("#btn_submit").val("立即找回");
+										}
+									});
+
+								});
+							});
+					</script> 
+				</div>
+				<div class="bigBannerBg">
+					<div class="swiper-container">
+						<div class="swiper-wrapper">
+														<div class="swiper-slide">
+								<div class="indexBannerImgBox">
+									<a href="" target="_blank">
+										<img src="https://cdn.jsdelivr.net/gh/madouym/banner/2.png" class="aesImgTag">
+									</a>
+								</div>
+							</div>
+														<div class="swiper-slide">
+								<div class="indexBannerImgBox">
+									<a href="" target="_blank">
+										<img src="/upload/website/20221208-1/fb75c4679ef9118e577c0d488aae9a95.png" class="aesImgTag">
+									</a>
+								</div>
+							</div>
+														<div class="swiper-slide">
+								<div class="indexBannerImgBox">
+									<a href="https://madouym.com" target="_blank">
+										<img src="https://cdn.jsdelivr.net/gh/madouym/banner/3.png" class="aesImgTag">
+									</a>
+								</div>
+							</div>
+													</div>
+						<div class="swiper-pagination"></div>
+						<div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide" aria-disabled="false"></div>
+						<div class="swiper-button-next" tabindex="-1" role="button" aria-label="Next slide" aria-disabled="true"></div>
+						
+					</div>
+				</div>
+				<div class="publicBigMainContentBox">
+					<div class="">
+						<div id="indexInfo" class="publicAllContentBg">
+							<div id="publicIndexVideoListModule" class="publicIndexVideoListModule">
+								<div class="top">
+									<div class="left">
+									<i class="van-icon"><img src="/MDassets/img/free.png" class="van-icon__image"></i>
+										<p class="title">限时免费</p>
+									</div>
+									<div class="right">
+										<a class="change v_change"><i class="el-icon-refresh"></i>换一批</a>
+										<a href="/index.php/vod/type/id/6.html" class="more"><i class="el-icon-circle-plus-outline"></i>更多</a>
+									</div>
+								</div>
+								<div id="publicVideoListModule" class="publicAllContentBg">
+									<div class="videoListBox needClear cbox_list">
+																				<a href="/index.php/vod/play/id/178/sid/1/nid/1.html" class="videoListStyle cbox1">
+											<div class="imgArea">
+												<div class="el-image elImageClass aesElImgClass">
+													<img src="/upload/vod/20230406-1/ceecb9d6472cf1d62e6d7203a724c59e.jpg"  class="el-image__inner" style="object-fit: fill;">
+												</div>
+												<div class="bottomInfo">
+													<div class="left"></div>
+													<div class="time"></div>
+												</div>
+												<div class="popup">
+													<img src="/MDassets/img/play.png">
+												</div>
+											</div>
+											
+											<p class="title">【免费】日本测试</p>
+											<ul class="bottomSignBox">
+												<li>
+													<p class="one"><i class="van-icon"><img src="/MDassets/img/views.png" class="van-icon__image"></i>
+														5889													</p>
+												</li>
+												<li >
+													<p class="two"><i class="van-icon"><img src="/MDassets/img/freetwo.png" class="van-icon__image"></i>
+														免费
+													</p>
+												</li>
+											</ul>
+											<ul class="bottomSignBox hover">
+												<li>
+													<p class="one hover"><i class="van-icon"><img src="/MDassets/img/redviews.png" class="van-icon__image"></i>
+														5889													</p>
+												</li>
+												<li>
+													<p class="two hover"><i class="van-icon"><img src="/MDassets/img/greenfree.png" class="van-icon__image"></i>
+														免费
+													</p>
+												</li>
+											</ul>
+										</a>
+																				<a href="/index.php/vod/play/id/156/sid/1/nid/1.html" class="videoListStyle cbox1">
+											<div class="imgArea">
+												<div class="el-image elImageClass aesElImgClass">
+													<img src="/upload/vod/20230406-1/2d862b640a0d0ef18c22bd05fe3fd871.jpg"  class="el-image__inner" style="object-fit: fill;">
+												</div>
+												<div class="bottomInfo">
+													<div class="left"></div>
+													<div class="time">04:51</div>
+												</div>
+												<div class="popup">
+													<img src="/MDassets/img/play.png">
+												</div>
+											</div>
+											
+											<p class="title">【免费】二次元动漫漂亮小姐姐156</p>
+											<ul class="bottomSignBox">
+												<li>
+													<p class="one"><i class="van-icon"><img src="/MDassets/img/views.png" class="van-icon__image"></i>
+														10139													</p>
+												</li>
+												<li >
+													<p class="two"><i class="van-icon"><img src="/MDassets/img/freetwo.png" class="van-icon__image"></i>
+														免费
+													</p>
+												</li>
+											</ul>
+											<ul class="bottomSignBox hover">
+												<li>
+													<p class="one hover"><i class="van-icon"><img src="/MDassets/img/redviews.png" class="van-icon__image"></i>
+														10139													</p>
+												</li>
+												<li>
+													<p class="two hover"><i class="van-icon"><img src="/MDassets/img/greenfree.png" class="van-icon__image"></i>
+														免费
+													</p>
+												</li>
+											</ul>
+										</a>
+																			</div>
+								</div>
+							</div>
+							
+							
+							<div id="publicIndexVideoListModule" class="publicIndexVideoListModule">
+								<div class="top">
+									<div class="left">
+										<i class="van-icon"><img src="/MDassets/img/official.png" class="van-icon__image"></i>
+										<p class="title">官方严选</p>
+									</div>
+									<div class="right">
+										<a class="change v_change"><i class="el-icon-refresh"></i>换一批</a>
+										<a href="/index.php/vod/search/by/score.html" class="more"><i class="el-icon-circle-plus-outline"></i>更多</a>
+									</div>
+								</div>
+								<div id="publicVideoListModule" class="publicAllContentBg">
+									<div class="videoListBox needClear cbox_list">
+																				<a href="/index.php/vod/play/id/180/sid/1/nid/1.html" class="videoListStyle cbox1">
+											<div class="imgArea">
+												<div class="el-image elImageClass aesElImgClass">
+													<img src="/upload/vod/20230408-1/af0dcc378c31a55b1cfc4a1e06e86bc1.jpg" class="el-image__inner" style="object-fit: fill;">
+												</div>
+												<div class="bottomInfo">
+													<div class="left"></div>
+													<div class="time"></div>
+												</div>
+												<div class="popup">
+													<img src="/MDassets/img/play.png">
+												</div>
+											</div>
+											<p class="title">富贵人生</p>
+		<ul class="bottomSignBox">
+												<li>
+													<p class="one"><i class="van-icon"><img src="/MDassets/img/views.png" class="van-icon__image"></i>
+														7423													</p>
+												</li>
+												<li >
+													<p class="three"><i class="van-icon"><img src="/MDassets/img/three.png" class="van-icon__image"></i>
+														VIP免费
+													</p>
+												</li>
+											</ul>
+											<ul  class="bottomSignBox hover">
+												<li >
+													<p class="one hover"><i class="van-icon"><img src="/MDassets/img/redviews.png" class="van-icon__image"></i>
+														7423													</p>
+												</li>
+												<li >
+													<p class="three hover"><i class="van-icon"><img src="/MDassets/img/threetwo.png" class="van-icon__image"></i>
+														VIP免费
+													</p>
+												</li>
+											</ul>
+	<!--											-->
+<!--											<ul class="bottomSignBox">
+												<li>
+													<p class="one"><i class="van-icon"><img src="/MDassets/img/views.png" class="van-icon__image"></i>
+														7423													</p>
+												</li>
+												<li >
+													<p class="two"><i class="van-icon"><img src="/MDassets/img/freetwo.png" class="van-icon__image"></i>
+														免费
+													</p>
+												</li>
+											</ul>
+											<ul class="bottomSignBox hover">
+												<li>
+													<p class="one hover"><i class="van-icon"><img src="/MDassets/img/redviews.png" class="van-icon__image"></i>
+														7423													</p>
+												</li>
+												<li>
+													<p class="two hover"><i class="van-icon"><img src="/MDassets/img/greenfree.png" class="van-icon__image"></i>
+														免费
+													</p>
+												</li>
+											</ul>-->
+<!--											-->
+										</a>
+
+																				<a href="/index.php/vod/play/id/178/sid/1/nid/1.html" class="videoListStyle cbox1">
+											<div class="imgArea">
+												<div class="el-image elImageClass aesElImgClass">
+													<img src="/upload/vod/20230406-1/ceecb9d6472cf1d62e6d7203a724c59e.jpg" class="el-image__inner" style="object-fit: fill;">
+												</div>
+												<div class="bottomInfo">
+													<div class="left"></div>
+													<div class="time"></div>
+												</div>
+												<div class="popup">
+													<img src="/MDassets/img/play.png">
+												</div>
+											</div>
+											<p class="title">日本测试</p>
+		<ul class="bottomSignBox">
+												<li>
+													<p class="one"><i class="van-icon"><img src="/MDassets/img/views.png" class="van-icon__image"></i>
+														5889													</p>
+												</li>
+												<li >
+													<p class="three"><i class="van-icon"><img src="/MDassets/img/three.png" class="van-icon__image"></i>
+														VIP免费
+													</p>
+												</li>
+											</ul>
+											<ul  class="bottomSignBox hover">
+												<li >
+													<p class="one hover"><i class="van-icon"><img src="/MDassets/img/redviews.png" class="van-icon__image"></i>
+														5889													</p>
+												</li>
+												<li >
+													<p class="three hover"><i class="van-icon"><img src="/MDassets/img/threetwo.png" class="van-icon__image"></i>
+														VIP免费
+													</p>
+												</li>
+											</ul>
+	<!--											-->
+<!--											<ul class="bottomSignBox">
+												<li>
+													<p class="one"><i class="van-icon"><img src="/MDassets/img/views.png" class="van-icon__image"></i>
+														5889													</p>
+												</li>
+												<li >
+													<p class="two"><i class="van-icon"><img src="/MDassets/img/freetwo.png" class="van-icon__image"></i>
+														免费
+													</p>
+												</li>
+											</ul>
+											<ul class="bottomSignBox hover">
+												<li>
+													<p class="one hover"><i class="van-icon"><img src="/MDassets/img/redviews.png" class="van-icon__image"></i>
+														5889													</p>
+												</li>
+												<li>
+													<p class="two hover"><i class="van-icon"><img src="/MDassets/img/greenfree.png" class="van-icon__image"></i>
+														免费
+													</p>
+												</li>
+											</ul>-->
+<!--											-->
+										</a>
+
+																				<a href="/index.php/vod/play/id/179/sid/1/nid/1.html" class="videoListStyle cbox1">
+											<div class="imgArea">
+												<div class="el-image elImageClass aesElImgClass">
+													<img src="/upload/vod/20230406-1/eb58f1a66c29186c4260014d041f17d5.jpg" class="el-image__inner" style="object-fit: fill;">
+												</div>
+												<div class="bottomInfo">
+													<div class="left"></div>
+													<div class="time"></div>
+												</div>
+												<div class="popup">
+													<img src="/MDassets/img/play.png">
+												</div>
+											</div>
+											<p class="title">爱你一万年</p>
+		<ul class="bottomSignBox">
+												<li>
+													<p class="one"><i class="van-icon"><img src="/MDassets/img/views.png" class="van-icon__image"></i>
+														6862													</p>
+												</li>
+												<li >
+													<p class="three"><i class="van-icon"><img src="/MDassets/img/three.png" class="van-icon__image"></i>
+														VIP免费
+													</p>
+												</li>
+											</ul>
+											<ul  class="bottomSignBox hover">
+												<li >
+													<p class="one hover"><i class="van-icon"><img src="/MDassets/img/redviews.png" class="van-icon__image"></i>
+														6862													</p>
+												</li>
+												<li >
+													<p class="three hover"><i class="van-icon"><img src="/MDassets/img/threetwo.png" class="van-icon__image"></i>
+														VIP免费
+													</p>
+												</li>
+											</ul>
+	<!--											-->
+<!--											<ul class="bottomSignBox">
+												<li>
+													<p class="one"><i class="van-icon"><img src="/MDassets/img/views.png" class="van-icon__image"></i>
+														6862													</p>
+												</li>
+												<li >
+													<p class="two"><i class="van-icon"><img src="/MDassets/img/freetwo.png" class="van-icon__image"></i>
+														免费
+													</p>
+												</li>
+											</ul>
+											<ul class="bottomSignBox hover">
+												<li>
+													<p class="one hover"><i class="van-icon"><img src="/MDassets/img/redviews.png" class="van-icon__image"></i>
+														6862													</p>
+												</li>
+												<li>
+													<p class="two hover"><i class="van-icon"><img src="/MDassets/img/greenfree.png" class="van-icon__image"></i>
+														免费
+													</p>
+												</li>
+											</ul>-->
+<!--											-->
+										</a>
+
+																				<a href="/index.php/vod/play/id/183/sid/1/nid/1.html" class="videoListStyle cbox1">
+											<div class="imgArea">
+												<div class="el-image elImageClass aesElImgClass">
+													<img src="/upload/vod/20230418-1/88455b3fb308f1a7aec3a96618157de1.png" class="el-image__inner" style="object-fit: fill;">
+												</div>
+												<div class="bottomInfo">
+													<div class="left"></div>
+													<div class="time"></div>
+												</div>
+												<div class="popup">
+													<img src="/MDassets/img/play.png">
+												</div>
+											</div>
+											<p class="title">测卧底警</p>
+		<ul class="bottomSignBox">
+												<li>
+													<p class="one"><i class="van-icon"><img src="/MDassets/img/views.png" class="van-icon__image"></i>
+														7985													</p>
+												</li>
+												<li >
+													<p class="three"><i class="van-icon"><img src="/MDassets/img/three.png" class="van-icon__image"></i>
+														VIP免费
+													</p>
+												</li>
+											</ul>
+											<ul  class="bottomSignBox hover">
+												<li >
+													<p class="one hover"><i class="van-icon"><img src="/MDassets/img/redviews.png" class="van-icon__image"></i>
+														7985													</p>
+												</li>
+												<li >
+													<p class="three hover"><i class="van-icon"><img src="/MDassets/img/threetwo.png" class="van-icon__image"></i>
+														VIP免费
+													</p>
+												</li>
+											</ul>
+	<!--											-->
+<!--											<ul class="bottomSignBox">
+												<li>
+													<p class="one"><i class="van-icon"><img src="/MDassets/img/views.png" class="van-icon__image"></i>
+														7985													</p>
+												</li>
+												<li >
+													<p class="two"><i class="van-icon"><img src="/MDassets/img/freetwo.png" class="van-icon__image"></i>
+														免费
+													</p>
+												</li>
+											</ul>
+											<ul class="bottomSignBox hover">
+												<li>
+													<p class="one hover"><i class="van-icon"><img src="/MDassets/img/redviews.png" class="van-icon__image"></i>
+														7985													</p>
+												</li>
+												<li>
+													<p class="two hover"><i class="van-icon"><img src="/MDassets/img/greenfree.png" class="van-icon__image"></i>
+														免费
+													</p>
+												</li>
+											</ul>-->
+<!--											-->
+										</a>
+
+																				<a href="/index.php/vod/play/id/184/sid/1/nid/1.html" class="videoListStyle cbox1">
+											<div class="imgArea">
+												<div class="el-image elImageClass aesElImgClass">
+													<img src="/upload/vod/20230418-1/d6af68af34019d40da0957fc4c4a71a2.png" class="el-image__inner" style="object-fit: fill;">
+												</div>
+												<div class="bottomInfo">
+													<div class="left"></div>
+													<div class="time"></div>
+												</div>
+												<div class="popup">
+													<img src="/MDassets/img/play.png">
+												</div>
+											</div>
+											<p class="title">千与千寻</p>
+		<ul class="bottomSignBox">
+												<li>
+													<p class="one"><i class="van-icon"><img src="/MDassets/img/views.png" class="van-icon__image"></i>
+														9809													</p>
+												</li>
+												<li >
+													<p class="three"><i class="van-icon"><img src="/MDassets/img/three.png" class="van-icon__image"></i>
+														VIP免费
+													</p>
+												</li>
+											</ul>
+											<ul  class="bottomSignBox hover">
+												<li >
+													<p class="one hover"><i class="van-icon"><img src="/MDassets/img/redviews.png" class="van-icon__image"></i>
+														9809													</p>
+												</li>
+												<li >
+													<p class="three hover"><i class="van-icon"><img src="/MDassets/img/threetwo.png" class="van-icon__image"></i>
+														VIP免费
+													</p>
+												</li>
+											</ul>
+	<!--											-->
+<!--											<ul class="bottomSignBox">
+												<li>
+													<p class="one"><i class="van-icon"><img src="/MDassets/img/views.png" class="van-icon__image"></i>
+														9809													</p>
+												</li>
+												<li >
+													<p class="two"><i class="van-icon"><img src="/MDassets/img/freetwo.png" class="van-icon__image"></i>
+														免费
+													</p>
+												</li>
+											</ul>
+											<ul class="bottomSignBox hover">
+												<li>
+													<p class="one hover"><i class="van-icon"><img src="/MDassets/img/redviews.png" class="van-icon__image"></i>
+														9809													</p>
+												</li>
+												<li>
+													<p class="two hover"><i class="van-icon"><img src="/MDassets/img/greenfree.png" class="van-icon__image"></i>
+														免费
+													</p>
+												</li>
+											</ul>-->
+<!--											-->
+										</a>
+
+																				<a href="/index.php/vod/play/id/156/sid/1/nid/1.html" class="videoListStyle cbox1">
+											<div class="imgArea">
+												<div class="el-image elImageClass aesElImgClass">
+													<img src="/upload/vod/20230406-1/2d862b640a0d0ef18c22bd05fe3fd871.jpg" class="el-image__inner" style="object-fit: fill;">
+												</div>
+												<div class="bottomInfo">
+													<div class="left"></div>
+													<div class="time">04:51</div>
+												</div>
+												<div class="popup">
+													<img src="/MDassets/img/play.png">
+												</div>
+											</div>
+											<p class="title">二次元动漫漂亮小姐姐156</p>
+		<ul class="bottomSignBox">
+												<li>
+													<p class="one"><i class="van-icon"><img src="/MDassets/img/views.png" class="van-icon__image"></i>
+														10139													</p>
+												</li>
+												<li >
+													<p class="three"><i class="van-icon"><img src="/MDassets/img/three.png" class="van-icon__image"></i>
+														VIP免费
+													</p>
+												</li>
+											</ul>
+											<ul  class="bottomSignBox hover">
+												<li >
+													<p class="one hover"><i class="van-icon"><img src="/MDassets/img/redviews.png" class="van-icon__image"></i>
+														10139													</p>
+												</li>
+												<li >
+													<p class="three hover"><i class="van-icon"><img src="/MDassets/img/threetwo.png" class="van-icon__image"></i>
+														VIP免费
+													</p>
+												</li>
+											</ul>
+	<!--											-->
+<!--											<ul class="bottomSignBox">
+												<li>
+													<p class="one"><i class="van-icon"><img src="/MDassets/img/views.png" class="van-icon__image"></i>
+														10139													</p>
+												</li>
+												<li >
+													<p class="two"><i class="van-icon"><img src="/MDassets/img/freetwo.png" class="van-icon__image"></i>
+														免费
+													</p>
+												</li>
+											</ul>
+											<ul class="bottomSignBox hover">
+												<li>
+													<p class="one hover"><i class="van-icon"><img src="/MDassets/img/redviews.png" class="van-icon__image"></i>
+														10139													</p>
+												</li>
+												<li>
+													<p class="two hover"><i class="van-icon"><img src="/MDassets/img/greenfree.png" class="van-icon__image"></i>
+														免费
+													</p>
+												</li>
+											</ul>-->
+<!--											-->
+										</a>
+
+																				<a href="/index.php/vod/play/id/182/sid/1/nid/1.html" class="videoListStyle cbox1">
+											<div class="imgArea">
+												<div class="el-image elImageClass aesElImgClass">
+													<img src="/upload/vod/20230418-1/0c7d162c7d8d57fd1b81f259cd104991.png" class="el-image__inner" style="object-fit: fill;">
+												</div>
+												<div class="bottomInfo">
+													<div class="left"></div>
+													<div class="time"></div>
+												</div>
+												<div class="popup">
+													<img src="/MDassets/img/play.png">
+												</div>
+											</div>
+											<p class="title">懂你更精彩</p>
+		<ul class="bottomSignBox">
+												<li>
+													<p class="one"><i class="van-icon"><img src="/MDassets/img/views.png" class="van-icon__image"></i>
+														20													</p>
+												</li>
+												<li >
+													<p class="three"><i class="van-icon"><img src="/MDassets/img/three.png" class="van-icon__image"></i>
+														VIP免费
+													</p>
+												</li>
+											</ul>
+											<ul  class="bottomSignBox hover">
+												<li >
+													<p class="one hover"><i class="van-icon"><img src="/MDassets/img/redviews.png" class="van-icon__image"></i>
+														20													</p>
+												</li>
+												<li >
+													<p class="three hover"><i class="van-icon"><img src="/MDassets/img/threetwo.png" class="van-icon__image"></i>
+														VIP免费
+													</p>
+												</li>
+											</ul>
+	<!--											-->
+<!--											<ul class="bottomSignBox">
+												<li>
+													<p class="one"><i class="van-icon"><img src="/MDassets/img/views.png" class="van-icon__image"></i>
+														20													</p>
+												</li>
+												<li >
+													<p class="two"><i class="van-icon"><img src="/MDassets/img/freetwo.png" class="van-icon__image"></i>
+														免费
+													</p>
+												</li>
+											</ul>
+											<ul class="bottomSignBox hover">
+												<li>
+													<p class="one hover"><i class="van-icon"><img src="/MDassets/img/redviews.png" class="van-icon__image"></i>
+														20													</p>
+												</li>
+												<li>
+													<p class="two hover"><i class="van-icon"><img src="/MDassets/img/greenfree.png" class="van-icon__image"></i>
+														免费
+													</p>
+												</li>
+											</ul>-->
+<!--											-->
+										</a>
+
+																			</div>
+								</div>
+							</div>
+							<div id="publicIndexVideoListModule" class="publicIndexVideoListModule">
+								<div class="top">
+									<div class="left"><i class="van-icon"><img src="/MDassets/img/hot.png" class="van-icon__image"></i>
+										<p class="title">人气排行</p>
+									</div>
+									<div class="right">
+										<a class="change v_change"><i class="el-icon-refresh"></i>换一批</a>
+										<a href="/index.php/vod/search/by/hits.html" class="more"><i class="el-icon-circle-plus-outline"></i>更多</a>
+									</div>
+								</div>
+								<div id="publicVideoListModule" class="publicAllContentBg">
+									<div class="videoListBox needClear cbox_list">
+																				<a href="/index.php/vod/play/id/156/sid/1/nid/1.html" class="videoListStyle cbox1">
+											<div class="imgArea">
+												<div class="el-image elImageClass aesElImgClass">
+													<img src="/upload/vod/20230406-1/2d862b640a0d0ef18c22bd05fe3fd871.jpg" class="el-image__inner" style="object-fit: fill;">
+												</div>
+												<div class="bottomInfo">
+													<div class="left"></div>
+													<div class="time">04:51</div>
+												</div>
+												<div class="popup">
+													<img src="/MDassets/img/play.png">
+												</div>
+											</div>
+											<p class="title">二次元动漫漂亮小姐姐156</p>
+		<ul class="bottomSignBox">
+												<li>
+													<p class="one"><i class="van-icon"><img src="/MDassets/img/views.png" class="van-icon__image"></i>
+														10139													</p>
+												</li>
+												<li >
+													<p class="three"><i class="van-icon"><img src="/MDassets/img/three.png" class="van-icon__image"></i>
+														VIP免费
+													</p>
+												</li>
+											</ul>
+											<ul  class="bottomSignBox hover">
+												<li >
+													<p class="one hover"><i class="van-icon"><img src="/MDassets/img/redviews.png" class="van-icon__image"></i>
+														10139													</p>
+												</li>
+												<li >
+													<p class="three hover"><i class="van-icon"><img src="/MDassets/img/threetwo.png" class="van-icon__image"></i>
+														VIP免费
+													</p>
+												</li>
+											</ul>
+	<!--											-->
+<!--											<ul class="bottomSignBox">
+												<li>
+													<p class="one"><i class="van-icon"><img src="/MDassets/img/views.png" class="van-icon__image"></i>
+														10139													</p>
+												</li>
+												<li >
+													<p class="two"><i class="van-icon"><img src="/MDassets/img/freetwo.png" class="van-icon__image"></i>
+														免费
+													</p>
+												</li>
+											</ul>
+											<ul class="bottomSignBox hover">
+												<li>
+													<p class="one hover"><i class="van-icon"><img src="/MDassets/img/redviews.png" class="van-icon__image"></i>
+														10139													</p>
+												</li>
+												<li>
+													<p class="two hover"><i class="van-icon"><img src="/MDassets/img/greenfree.png" class="van-icon__image"></i>
+														免费
+													</p>
+												</li>
+											</ul>-->
+<!--											-->
+										</a>
+
+																				<a href="/index.php/vod/play/id/184/sid/1/nid/1.html" class="videoListStyle cbox1">
+											<div class="imgArea">
+												<div class="el-image elImageClass aesElImgClass">
+													<img src="/upload/vod/20230418-1/d6af68af34019d40da0957fc4c4a71a2.png" class="el-image__inner" style="object-fit: fill;">
+												</div>
+												<div class="bottomInfo">
+													<div class="left"></div>
+													<div class="time"></div>
+												</div>
+												<div class="popup">
+													<img src="/MDassets/img/play.png">
+												</div>
+											</div>
+											<p class="title">千与千寻</p>
+		<ul class="bottomSignBox">
+												<li>
+													<p class="one"><i class="van-icon"><img src="/MDassets/img/views.png" class="van-icon__image"></i>
+														9809													</p>
+												</li>
+												<li >
+													<p class="three"><i class="van-icon"><img src="/MDassets/img/three.png" class="van-icon__image"></i>
+														VIP免费
+													</p>
+												</li>
+											</ul>
+											<ul  class="bottomSignBox hover">
+												<li >
+													<p class="one hover"><i class="van-icon"><img src="/MDassets/img/redviews.png" class="van-icon__image"></i>
+														9809													</p>
+												</li>
+												<li >
+													<p class="three hover"><i class="van-icon"><img src="/MDassets/img/threetwo.png" class="van-icon__image"></i>
+														VIP免费
+													</p>
+												</li>
+											</ul>
+	<!--											-->
+<!--											<ul class="bottomSignBox">
+												<li>
+													<p class="one"><i class="van-icon"><img src="/MDassets/img/views.png" class="van-icon__image"></i>
+														9809													</p>
+												</li>
+												<li >
+													<p class="two"><i class="van-icon"><img src="/MDassets/img/freetwo.png" class="van-icon__image"></i>
+														免费
+													</p>
+												</li>
+											</ul>
+											<ul class="bottomSignBox hover">
+												<li>
+													<p class="one hover"><i class="van-icon"><img src="/MDassets/img/redviews.png" class="van-icon__image"></i>
+														9809													</p>
+												</li>
+												<li>
+													<p class="two hover"><i class="van-icon"><img src="/MDassets/img/greenfree.png" class="van-icon__image"></i>
+														免费
+													</p>
+												</li>
+											</ul>-->
+<!--											-->
+										</a>
+
+																				<a href="/index.php/vod/play/id/183/sid/1/nid/1.html" class="videoListStyle cbox1">
+											<div class="imgArea">
+												<div class="el-image elImageClass aesElImgClass">
+													<img src="/upload/vod/20230418-1/88455b3fb308f1a7aec3a96618157de1.png" class="el-image__inner" style="object-fit: fill;">
+												</div>
+												<div class="bottomInfo">
+													<div class="left"></div>
+													<div class="time"></div>
+												</div>
+												<div class="popup">
+													<img src="/MDassets/img/play.png">
+												</div>
+											</div>
+											<p class="title">测卧底警</p>
+		<ul class="bottomSignBox">
+												<li>
+													<p class="one"><i class="van-icon"><img src="/MDassets/img/views.png" class="van-icon__image"></i>
+														7985													</p>
+												</li>
+												<li >
+													<p class="three"><i class="van-icon"><img src="/MDassets/img/three.png" class="van-icon__image"></i>
+														VIP免费
+													</p>
+												</li>
+											</ul>
+											<ul  class="bottomSignBox hover">
+												<li >
+													<p class="one hover"><i class="van-icon"><img src="/MDassets/img/redviews.png" class="van-icon__image"></i>
+														7985													</p>
+												</li>
+												<li >
+													<p class="three hover"><i class="van-icon"><img src="/MDassets/img/threetwo.png" class="van-icon__image"></i>
+														VIP免费
+													</p>
+												</li>
+											</ul>
+	<!--											-->
+<!--											<ul class="bottomSignBox">
+												<li>
+													<p class="one"><i class="van-icon"><img src="/MDassets/img/views.png" class="van-icon__image"></i>
+														7985													</p>
+												</li>
+												<li >
+													<p class="two"><i class="van-icon"><img src="/MDassets/img/freetwo.png" class="van-icon__image"></i>
+														免费
+													</p>
+												</li>
+											</ul>
+											<ul class="bottomSignBox hover">
+												<li>
+													<p class="one hover"><i class="van-icon"><img src="/MDassets/img/redviews.png" class="van-icon__image"></i>
+														7985													</p>
+												</li>
+												<li>
+													<p class="two hover"><i class="van-icon"><img src="/MDassets/img/greenfree.png" class="van-icon__image"></i>
+														免费
+													</p>
+												</li>
+											</ul>-->
+<!--											-->
+										</a>
+
+																				<a href="/index.php/vod/play/id/180/sid/1/nid/1.html" class="videoListStyle cbox1">
+											<div class="imgArea">
+												<div class="el-image elImageClass aesElImgClass">
+													<img src="/upload/vod/20230408-1/af0dcc378c31a55b1cfc4a1e06e86bc1.jpg" class="el-image__inner" style="object-fit: fill;">
+												</div>
+												<div class="bottomInfo">
+													<div class="left"></div>
+													<div class="time"></div>
+												</div>
+												<div class="popup">
+													<img src="/MDassets/img/play.png">
+												</div>
+											</div>
+											<p class="title">富贵人生</p>
+		<ul class="bottomSignBox">
+												<li>
+													<p class="one"><i class="van-icon"><img src="/MDassets/img/views.png" class="van-icon__image"></i>
+														7423													</p>
+												</li>
+												<li >
+													<p class="three"><i class="van-icon"><img src="/MDassets/img/three.png" class="van-icon__image"></i>
+														VIP免费
+													</p>
+												</li>
+											</ul>
+											<ul  class="bottomSignBox hover">
+												<li >
+													<p class="one hover"><i class="van-icon"><img src="/MDassets/img/redviews.png" class="van-icon__image"></i>
+														7423													</p>
+												</li>
+												<li >
+													<p class="three hover"><i class="van-icon"><img src="/MDassets/img/threetwo.png" class="van-icon__image"></i>
+														VIP免费
+													</p>
+												</li>
+											</ul>
+	<!--											-->
+<!--											<ul class="bottomSignBox">
+												<li>
+													<p class="one"><i class="van-icon"><img src="/MDassets/img/views.png" class="van-icon__image"></i>
+														7423													</p>
+												</li>
+												<li >
+													<p class="two"><i class="van-icon"><img src="/MDassets/img/freetwo.png" class="van-icon__image"></i>
+														免费
+													</p>
+												</li>
+											</ul>
+											<ul class="bottomSignBox hover">
+												<li>
+													<p class="one hover"><i class="van-icon"><img src="/MDassets/img/redviews.png" class="van-icon__image"></i>
+														7423													</p>
+												</li>
+												<li>
+													<p class="two hover"><i class="van-icon"><img src="/MDassets/img/greenfree.png" class="van-icon__image"></i>
+														免费
+													</p>
+												</li>
+											</ul>-->
+<!--											-->
+										</a>
+
+																				<a href="/index.php/vod/play/id/179/sid/1/nid/1.html" class="videoListStyle cbox1">
+											<div class="imgArea">
+												<div class="el-image elImageClass aesElImgClass">
+													<img src="/upload/vod/20230406-1/eb58f1a66c29186c4260014d041f17d5.jpg" class="el-image__inner" style="object-fit: fill;">
+												</div>
+												<div class="bottomInfo">
+													<div class="left"></div>
+													<div class="time"></div>
+												</div>
+												<div class="popup">
+													<img src="/MDassets/img/play.png">
+												</div>
+											</div>
+											<p class="title">爱你一万年</p>
+		<ul class="bottomSignBox">
+												<li>
+													<p class="one"><i class="van-icon"><img src="/MDassets/img/views.png" class="van-icon__image"></i>
+														6862													</p>
+												</li>
+												<li >
+													<p class="three"><i class="van-icon"><img src="/MDassets/img/three.png" class="van-icon__image"></i>
+														VIP免费
+													</p>
+												</li>
+											</ul>
+											<ul  class="bottomSignBox hover">
+												<li >
+													<p class="one hover"><i class="van-icon"><img src="/MDassets/img/redviews.png" class="van-icon__image"></i>
+														6862													</p>
+												</li>
+												<li >
+													<p class="three hover"><i class="van-icon"><img src="/MDassets/img/threetwo.png" class="van-icon__image"></i>
+														VIP免费
+													</p>
+												</li>
+											</ul>
+	<!--											-->
+<!--											<ul class="bottomSignBox">
+												<li>
+													<p class="one"><i class="van-icon"><img src="/MDassets/img/views.png" class="van-icon__image"></i>
+														6862													</p>
+												</li>
+												<li >
+													<p class="two"><i class="van-icon"><img src="/MDassets/img/freetwo.png" class="van-icon__image"></i>
+														免费
+													</p>
+												</li>
+											</ul>
+											<ul class="bottomSignBox hover">
+												<li>
+													<p class="one hover"><i class="van-icon"><img src="/MDassets/img/redviews.png" class="van-icon__image"></i>
+														6862													</p>
+												</li>
+												<li>
+													<p class="two hover"><i class="van-icon"><img src="/MDassets/img/greenfree.png" class="van-icon__image"></i>
+														免费
+													</p>
+												</li>
+											</ul>-->
+<!--											-->
+										</a>
+
+																				<a href="/index.php/vod/play/id/178/sid/1/nid/1.html" class="videoListStyle cbox1">
+											<div class="imgArea">
+												<div class="el-image elImageClass aesElImgClass">
+													<img src="/upload/vod/20230406-1/ceecb9d6472cf1d62e6d7203a724c59e.jpg" class="el-image__inner" style="object-fit: fill;">
+												</div>
+												<div class="bottomInfo">
+													<div class="left"></div>
+													<div class="time"></div>
+												</div>
+												<div class="popup">
+													<img src="/MDassets/img/play.png">
+												</div>
+											</div>
+											<p class="title">日本测试</p>
+		<ul class="bottomSignBox">
+												<li>
+													<p class="one"><i class="van-icon"><img src="/MDassets/img/views.png" class="van-icon__image"></i>
+														5889													</p>
+												</li>
+												<li >
+													<p class="three"><i class="van-icon"><img src="/MDassets/img/three.png" class="van-icon__image"></i>
+														VIP免费
+													</p>
+												</li>
+											</ul>
+											<ul  class="bottomSignBox hover">
+												<li >
+													<p class="one hover"><i class="van-icon"><img src="/MDassets/img/redviews.png" class="van-icon__image"></i>
+														5889													</p>
+												</li>
+												<li >
+													<p class="three hover"><i class="van-icon"><img src="/MDassets/img/threetwo.png" class="van-icon__image"></i>
+														VIP免费
+													</p>
+												</li>
+											</ul>
+	<!--											-->
+<!--											<ul class="bottomSignBox">
+												<li>
+													<p class="one"><i class="van-icon"><img src="/MDassets/img/views.png" class="van-icon__image"></i>
+														5889													</p>
+												</li>
+												<li >
+													<p class="two"><i class="van-icon"><img src="/MDassets/img/freetwo.png" class="van-icon__image"></i>
+														免费
+													</p>
+												</li>
+											</ul>
+											<ul class="bottomSignBox hover">
+												<li>
+													<p class="one hover"><i class="van-icon"><img src="/MDassets/img/redviews.png" class="van-icon__image"></i>
+														5889													</p>
+												</li>
+												<li>
+													<p class="two hover"><i class="van-icon"><img src="/MDassets/img/greenfree.png" class="van-icon__image"></i>
+														免费
+													</p>
+												</li>
+											</ul>-->
+<!--											-->
+										</a>
+
+																				<a href="/index.php/vod/play/id/182/sid/1/nid/1.html" class="videoListStyle cbox1">
+											<div class="imgArea">
+												<div class="el-image elImageClass aesElImgClass">
+													<img src="/upload/vod/20230418-1/0c7d162c7d8d57fd1b81f259cd104991.png" class="el-image__inner" style="object-fit: fill;">
+												</div>
+												<div class="bottomInfo">
+													<div class="left"></div>
+													<div class="time"></div>
+												</div>
+												<div class="popup">
+													<img src="/MDassets/img/play.png">
+												</div>
+											</div>
+											<p class="title">懂你更精彩</p>
+		<ul class="bottomSignBox">
+												<li>
+													<p class="one"><i class="van-icon"><img src="/MDassets/img/views.png" class="van-icon__image"></i>
+														20													</p>
+												</li>
+												<li >
+													<p class="three"><i class="van-icon"><img src="/MDassets/img/three.png" class="van-icon__image"></i>
+														VIP免费
+													</p>
+												</li>
+											</ul>
+											<ul  class="bottomSignBox hover">
+												<li >
+													<p class="one hover"><i class="van-icon"><img src="/MDassets/img/redviews.png" class="van-icon__image"></i>
+														20													</p>
+												</li>
+												<li >
+													<p class="three hover"><i class="van-icon"><img src="/MDassets/img/threetwo.png" class="van-icon__image"></i>
+														VIP免费
+													</p>
+												</li>
+											</ul>
+	<!--											-->
+<!--											<ul class="bottomSignBox">
+												<li>
+													<p class="one"><i class="van-icon"><img src="/MDassets/img/views.png" class="van-icon__image"></i>
+														20													</p>
+												</li>
+												<li >
+													<p class="two"><i class="van-icon"><img src="/MDassets/img/freetwo.png" class="van-icon__image"></i>
+														免费
+													</p>
+												</li>
+											</ul>
+											<ul class="bottomSignBox hover">
+												<li>
+													<p class="one hover"><i class="van-icon"><img src="/MDassets/img/redviews.png" class="van-icon__image"></i>
+														20													</p>
+												</li>
+												<li>
+													<p class="two hover"><i class="van-icon"><img src="/MDassets/img/greenfree.png" class="van-icon__image"></i>
+														免费
+													</p>
+												</li>
+											</ul>-->
+<!--											-->
+										</a>
+
+																			</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="publicFooterModule" class="publicAllContentBg">
+					<div class="footerBg">
+						<div class="footerBox">
+							<div class="left">
+								<div class="content">
+									<div class="top">
+										<span>
+											<div id="iphonepop" class="el-popover el-popper bottomPopupClass hidden" style="width: 50px; transform-origin: center bottom; z-index: 2005; left: 30px; top: -131px; " x-placement="top-end">
+												<div class="bottomImgBox">
+													<img src="https://ae03.alicdn.com/kf/H892a9900947a437797e27242afe060a4z.jpg">
+												</div>
+													 <div class="popper__arrow" style="left: 82.5px;"></div>
+											</div>
+											<p id="iphone" class="bottomButton el-popover__reference" tabindex="0">
+												<i class="van-icon">
+												<img src="/MDassets/img/ios.png" class="van-icon__image">
+												</i>iphone下载
+											</p>
+										</span>
+									</div>
+									<div class="bottom">
+										<span>
+											<div id="androidpop" class="el-popover el-popper bottomPopupClass hidden" style="width: 50px; transform-origin: center bottom; z-index: 2005; left: 30px; top: -46px; " x-placement="top-end">
+												<div class="bottomImgBox">
+													<img src="https://ae03.alicdn.com/kf/H892a9900947a437797e27242afe060a4z.jpg">
+												</div>
+												 <div class="popper__arrow" style="left: 82.5px;"></div>
+											</div>
+											<p id="android" class="bottomButton el-popover__reference" tabindex="0">
+												<i class="van-icon">
+												<img src="/MDassets/img/android.png" class="van-icon__image">
+												</i>Android下载
+											</p>
+										</span>
+									</div>
+								</div> <img src="/MDassets/img/down_bg.png">
+							</div>
+							<div class="right">
+								<ul class="top">
+									<li>
+										<a href="https://xydai.cn" class="footerOptionBox">
+											<div class="left"><img src="/MDassets/img/concur.png" alt="加盟"></div>
+											<div class="right">
+												<p class="top">代理加盟</p>
+												<p class="bottom">优质合作伙伴共同成长</p>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="/index.php/label/question.html" class="footerOptionBox" target="_blank">
+											<div class="left"><img src="/MDassets/img/wt.png" alt="问题"></div>
+											<div class="right">
+												<p class="top">常见问题</p>
+												<p class="bottom">及时在线解决问题</p>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="http://wpa.qq.com/msgrd?v=3&uin=1747597875&site=qq&menu=yes" class="footerOptionBox" target="_blank">
+											<div class="left"><img src="/MDassets/img/kefu.png" alt="客服"></div>
+											<div class="right">
+												<p class="top">在线客服</p>
+												<p class="bottom">7*24小时免费在线咨询</p>
+											</div>
+										</a>
+									</li>
+								</ul>
+								<div class="bottom">
+									<div class="left">
+										<p>广告服务</p> 
+										<span class="publicTopHeaderLine"></span>
+										<p>千寻</p>
+									</div>
+									<p class="right">Copyright©2021.All Rights Reserved.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<script src="/MDassets/js/MDsystem.js"></script>
+				<script src="/MDassets/js/layer.js"></script>
+				<script>
+				function favs(id){
+					var userstatus ="";
+					$.get("/index.php/user/ajax_ulog/?ac=set&mid=1&id="+id+"&type=2",function(data){
+						if(data.msg=="获取成功"){
+							layer.msg('已收藏');
+						}else if(userstatus=="0"){
+							layer.msg('请先登录');
+						}else if(userstatus=="1"){
+							layer.msg('收藏成功');
+						}
+					},"json");
+				}
+				function actorfavs(id){
+					var userstatus ="";
+					$.get("/index.php/user/ajax_ulog/?ac=set&mid=8&id="+id+"&type=2",function(data){
+						if(data.msg=="获取成功"){
+							layer.msg('已收藏');
+						}else if(userstatus=="0"){
+							layer.msg('请先登录');
+						}else if(userstatus=="1"){
+							layer.msg('收藏成功');
+						}
+					},"json");
+				}
+				</script>
+				<div style="display: none;">统计代码</div>
+			</div>
+		</div>
+	</body>
+</html>

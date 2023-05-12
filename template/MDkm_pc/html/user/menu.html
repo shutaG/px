@@ -1,0 +1,81 @@
+								<div class="leftSideBox">
+									<div class="userInfoBox">
+										<p class="name">{$user.user_name}</p>
+										<ul class="middle">
+											<li>
+												<p>积分(个)</p>
+												<h3>{if condition="$GLOBALS['user']['user_id']" gt 0}{$user.user_points}{else/}*{/if}</h3>
+											</li>
+											<li>
+												<p>VIP剩(天)</p>
+												{if condition="$GLOBALS['user']['user_id']" gt 0}
+												<h3 id="span_dt_dt"></h3>
+												{else/}
+												<h3>*</h3>
+												{/if}
+												
+											</li>
+										</ul>
+										<a href="{:mac_url('user/upgrade')}" class="buttonLine">
+											<p>{if condition="$GLOBALS['user']['group_id'] eq 3"}续费VIP{else}充值VIP{/if}</p>
+										</a>
+									</div>
+
+									<div class="navBox">
+										<ul>
+											<a href="{:mac_url('user/index')}">
+												<p {if strpos($_SERVER["REQUEST_URI"],'user/index')}class="active"{/if}>个人中心</p>
+											</a>
+											<a href="{:mac_url('user/info')}">
+												<p {if strpos($_SERVER["REQUEST_URI"],'info')}class="active"{/if}>修改密码</p>
+											</a>
+											<a href="{:mac_url('user/favs')}">
+												<p {if strpos($_SERVER["REQUEST_URI"],'favs')}class="active"{/if}>收藏中心</p>
+											</a>
+											<a href="{:mac_url('user/plays')}">
+												<p {if strpos($_SERVER["REQUEST_URI"],'plays')}class="active"{/if}>播放记录</p>
+											</a>
+											<a href="{:mac_url('user/upgrade')}">
+												<p {if strpos($_SERVER["REQUEST_URI"],'upgrade')}class="active"{/if}>升级会员</p>
+											</a>
+											<a href="{:mac_url('user/buy')}">
+												<p {if strpos($_SERVER["REQUEST_URI"],'buy')}class="active"{/if}>卡密兑换</p>
+											</a>
+											<a href="{:mac_url('label/question')}">
+												<p {if strpos($_SERVER["REQUEST_URI"],'question')}class="active"{/if}>常见问题</p>
+											</a>
+											<a href="{$mdym.serve}">
+												<p>在线客服</p>
+											</a>
+											<a href="{:mac_url('user/logout')}">
+												<p>退出登录</p>
+											</a>
+										</ul>
+									</div>
+								</div>
+								<script type="text/javascript">
+                                 function show_date_time(){ 
+                                 window.setTimeout("show_date_time()", 1000); 
+                                 BirthDay=new Date("{$obj.user_end_time|date='Y-m-d',###}");
+                                 today=new Date(); 
+                                 timeold=(BirthDay.getTime()-today.getTime()); 
+                                 sectimeold=timeold/1000 
+                                 secondsold=Math.floor(sectimeold); 
+                                 msPerDay=24*60*60*1000 
+                                 e_daysold=timeold/msPerDay 
+                                 daysold=Math.floor(e_daysold); 
+                                 e_hrsold=(e_daysold-daysold)*24; 
+                                 hrsold=Math.floor(e_hrsold); 
+                                 e_minsold=(e_hrsold-hrsold)*60; 
+                                 minsold=Math.floor((e_hrsold-hrsold)*60); 
+                                 seconds=Math.floor((e_minsold-minsold)*60); 
+                                if(daysold<0)
+                                {
+                                span_dt_dt.innerHTML="0";
+                                }
+                                else{
+                                 span_dt_dt.innerHTML=""+daysold+"" ; 
+                                 }
+                                } 
+                                 show_date_time(); 
+                                </script>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-title" content="">
+		<title>常见问题 - 会员中心 - {$maccms.site_name}</title>
+		<meta name="keywords" content="{$maccms.site_keywords}" />
+		<meta name="description" content="{$maccms.site_description}" />
+		{include file="system/include"}
+	</head>
+	<body>
+		<div id="app">
+			<div class="publicAllContentBg fullHeight">
+				<div class="publicAllNavbarClass van-nav-bar">
+					<div onclick="javascript:history.back(-1);" class="van-nav-bar__left">
+						<i class="van-icon van-icon-arrow-left van-nav-bar__arrow"></i>
+					</div>
+					<div class="van-nav-bar__title van-ellipsis">常见问题</div>
+					<div class="van-nav-bar__right"></div>
+				</div>
+				<div class="publicNeedXPaddingBg">
+					<ul class="questionList">
+						<li>
+							<a href="{:mac_url('label/questionone')}">
+								<p>支付/登录</p>
+							</a>
+						</li>
+						<li>
+							<a href="{:mac_url('label/questiontwo')}">
+								<p>会员注册</p>
+							</a>
+						</li>
+						<li>
+							<a href="{:mac_url('label/questionthree')}">
+								<p>会员等级</p>
+							</a>
+						</li>
+						<li>
+							<a href="{:mac_url('label/questionfour')}">
+								<p>积分使用</p>
+							</a>
+						</li>
+						<li>
+							<a href="{:mac_url('label/questionfives')}">
+								<p>缓存点使用(未开放)</p>
+							</a>
+						</li>
+						<li>
+							<a href="{:mac_url('label/questionsix')}">
+								<p>观看影片</p>
+							</a>
+						</li>
+						<li>
+							<a href="{:mac_url('label/questionseven')}">
+								<p>联系客服</p>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		{include file="system/common"}
+	</body>
+</html>

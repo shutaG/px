@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<title>会员注册 - {$maccms.site_name}</title>
+		<meta name="keywords" content="{$maccms.site_keywords}" />
+		<meta name="description" content="{$maccms.site_description}" />
+		{include file="system/include"}
+	</head>
+	<body>
+		<div id="app">
+			<div id="index" class="publicAllContentBg">
+				<div id="publicHeaderModule" class="publicAllContentBg">
+					{include file="system/headtop"}
+					{include file="system/headlist"}
+					{include file="system/popup"}
+					{include file="system/login"}
+					<div id="signup" class="el-dialog__wrapper" style="z-index: 2000;">
+						<div role="dialog" aria-modal="true" aria-label="dialog" class="el-dialog loginAboutPopup" style="margin-top: 15vh;">
+							<div class="el-dialog__header">
+								<span class="el-dialog__title"></span>
+								<button id="signup_close" type="button" aria-label="Close" class="el-dialog__headerbtn">
+									<i class="el-dialog__close el-icon el-icon-close"></i>
+								</button>
+							</div>
+							<form class="el-dialog__body" id="madouym-signup">
+								<h3 class="publicPopupTitle">欢迎您的到来!</h3>
+								<div class="el-input">
+									<input type="text" id="signup_name" name="user_name" autocomplete="off" placeholder="请输入邮箱或手机号" class="el-input__inner">
+								</div>
+								<div class="el-input el-input--suffix">
+									<input type="password" id="signup_pwd" name="user_pwd" autocomplete="off" placeholder="请输入密码" class="el-input__inner">
+									<span class="el-input__suffix"><span class="el-input__suffix-inner"></span></span>
+								</div>
+								<div class="el-input el-input--suffix">
+									<input type="password" id="signup_pwd2" name="user_pwd2" autocomplete="off" placeholder="请重复密码" class="el-input__inner">
+									<span class="el-input__suffix"><span class="el-input__suffix-inner"></span></span>
+								</div> 
+								<button id="btn_signup" type="button" class="Buttontwo el-button publicLoginAboutButton el-button--primary">
+									<span>注册</span>
+								</button>
+								<div class="publicLoginBottomButton split">
+									<a id="signup_cutover" class="el-link el-link--primary"><span class="el-link--inner">已有账号？直接登录</span></a>
+								</div>
+							</form>
+						</div>
+					</div>
+					<script>
+						$(function(){
+							$('#btn_signup').click(function() {
+								if ($('#signup_name').val()  == '') { layer.msg('请输入用户！'); $("#signup_name").focus(); return false; }
+								if ($('#signup_pwd').val()  == '') { layer.msg('请输入密码！'); $("#signup_pwd").focus(); return false; }
+								if ($('#signup_pwd2').val()  == '') { layer.msg('请重复输入密码！'); $("#signup_pwd2").focus(); return false; }
+								if ($('#verify').val()  == '') { layer.msg('请输入验证码！'); $("#verify").focus(); return false; }
+								$.ajax({
+									url: "{:mac_url('user/reg')}",
+									type: "post",
+									dataType: "json",
+									data: $('#madouym-signup').serialize(),
+									beforeSend: function () {
+										$("#btn_signup").val("注册中...");
+									},
+									success: function (r) {
+										layer.msg(r.msg);
+										if(r.code==1){
+											location.href="{:mac_url('user/login')}";
+										}
+										else{
+											$('#verify_img').click();
+										}
+									}
+								});
+							});
+						});
+					</script>
+					{include file="system/reset"}
+				</div>
+				{include file="module/banner"}
+				<div class="publicBigMainContentBox">
+					<div class="">
+						<div id="indexInfo" class="publicAllContentBg">
+							<div id="publicIndexVideoListModule" class="publicIndexVideoListModule">
+								<div class="top">
+									<div class="left">
+									<i class="van-icon"><img src="{$maccms.path}MDassets/img/free.png" class="van-icon__image"></i>
+										<p class="title">限时免费</p>
+									</div>
+									<div class="right">
+										<a class="change v_change"><i class="el-icon-refresh"></i>换一批</a>
+										<a class="more"><i class="el-icon-circle-plus-outline"></i>更多</a>
+									</div>
+								</div>
+								<div id="publicVideoListModule" class="publicAllContentBg">
+									<div class="videoListBox needClear cbox_list">
+										{include file="module/free"}
+									</div>
+								</div>
+							</div>
+							<div id="publicIndexVideoListModule" class="publicIndexVideoListModule">
+								<div class="top">
+									<div class="left">
+										<i class="van-icon"><img src="{$maccms.path}MDassets/img/official.png" class="van-icon__image"></i>
+										<p class="title">官方严选</p>
+									</div>
+									<div class="right">
+										<a class="change v_change"><i class="el-icon-refresh"></i>换一批</a>
+										<a class="more"><i class="el-icon-circle-plus-outline"></i>更多</a>
+									</div>
+								</div>
+								<div id="publicVideoListModule" class="publicAllContentBg">
+									<div class="videoListBox needClear cbox_list">
+										{maccms:vod num="'.($mdym['index']['num']).'" by="score" order="desc"}
+										{include file="module/vodlistone"}
+										{/maccms:vod}
+										{maccms:vod num="'.($mdym['index']['num']).'" by="score" start="'.($mdym['index']['num']+1).'" order="desc"}
+										{include file="module/vodlisttwo"}
+										{/maccms:vod}
+										{maccms:vod num="'.($mdym['index']['num']).'" by="score" start="'.($mdym['index']['num']*2+1).'" order="desc"}
+										{include file="module/vodlistthree"}
+										{/maccms:vod}
+									</div>
+								</div>
+							</div>
+							<div id="publicIndexVideoListModule" class="publicIndexVideoListModule">
+								<div class="top">
+									<div class="left"><i class="van-icon"><img src="{$maccms.path}MDassets/img/hot.png" class="van-icon__image"></i>
+										<p class="title">人气排行</p>
+									</div>
+									<div class="right">
+										<a class="change v_change"><i class="el-icon-refresh"></i>换一批</a>
+										<a class="more"><i class="el-icon-circle-plus-outline"></i>更多</a>
+									</div>
+								</div>
+								<div id="publicVideoListModule" class="publicAllContentBg">
+									<div class="videoListBox needClear cbox_list">
+										{maccms:vod num="'.($mdym['index']['num']).'" by="hits" order="desc"}
+										{include file="module/vodlistone"}
+										{/maccms:vod}
+										{maccms:vod num="'.($mdym['index']['num']).'" by="hits" start="'.($mdym['index']['num']+1).'" order="desc"}
+										{include file="module/vodlisttwo"}
+										{/maccms:vod}
+										{maccms:vod num="'.($mdym['index']['num']).'" by="hits" start="'.($mdym['index']['num']*2+1).'" order="desc"}
+										{include file="module/vodlistthree"}
+										{/maccms:vod}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				{include file="system/footer"}
+			</div>
+		</div>
+	</body>
+</html>

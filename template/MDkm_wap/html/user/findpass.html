@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-title" content="">
+		<title>忘记密码 - {$maccms.site_name}</title>
+		<meta name="keywords" content="{$maccms.site_keywords}" />
+		<meta name="description" content="{$maccms.site_description}" />
+		{include file="system/include"}
+	</head>
+	<body class="van-overflow-hidden">
+		<div id="app">
+			<div id="login" class="publicAllContentBg fullHeight login">
+				<div class="loginButtonBox"></div>
+				<div class="van-overlay" style="z-index: 2001;"></div>
+				<div class="van-popup van-popup--round van-popup--bottom" style="z-index: 2002;">
+					<div class="loginFormBg">
+						<h3>忘记密码</h3>
+						<div class="loginFormBox">
+						<form method="post" id="fm" action="">
+							<div class="van-cell van-cell--borderless van-field">
+								<div class="van-cell__value van-cell__value--alone van-field__value">
+									<div class="van-field__body"><input type="text" id="user_name" name="user_name" autocomplete="off" placeholder="请输入用户名" class="van-field__control"></div>
+								</div>
+							</div>
+							<div class="van-cell van-cell--borderless van-field">
+								<div class="van-cell__value van-cell__value--alone van-field__value">
+									<div class="van-field__body"><input type="text" id="user_question" name="user_question" autocomplete="off" placeholder="请输入问题" class="van-field__control"></div>
+								</div>
+							</div>
+							<div class="van-cell van-cell--borderless van-field">
+								<div class="van-cell__value van-cell__value--alone van-field__value">
+									<div class="van-field__body"><input type="text" id="user_answer" name="user_answer" autocomplete="off" placeholder="请输入答案" class="van-field__control"></div>
+								</div>
+							</div>
+							
+							<div class="van-cell van-cell--borderless van-field">
+								<div class="van-cell__value van-cell__value--alone van-field__value">
+									<div class="van-field__body"><input type="password" id="user_pwd" name="user_pwd" autocomplete="off" placeholder="请输入您的密码" class="van-field__control"></div>
+								</div>
+							</div>
+							<div class="van-cell van-cell--borderless van-field">
+								<div class="van-cell__value van-cell__value--alone van-field__value">
+									<div class="van-field__body"><input type="password" id="user_pwd2" name="user_pwd2" autocomplete="off" placeholder="请重复您的密码" class="van-field__control"></div>
+								</div>
+							</div>
+							<div class="buttonLine">
+								<button id="btn_submit" type="button" class="van-button van-button--info van-button--normal van-button--block"
+								 style="color: rgb(255, 255, 255); background: linear-gradient(to right, rgb(230, 66, 122), rgb(252, 103, 103)); border: 0px;">
+									<div class="van-button__content">
+										<span class="van-button__text">重置密码</span>
+									</div>
+								</button>
+							</div>
+						</form>
+						</div>
+						<div class="bottomLine">
+							<a href="{:mac_url('user/reg')}" class="loginAboutTextLine">尚未注册？<span>点击注册</span></a>
+							<a href="{:mac_url('user/login')}" class="loginAboutTextLine">已有账号？立即登录</a>
+						</div>
+					</div>
+					<i onclick="javascript:history.back(-1);" role="button" tabindex="0" class="van-icon van-icon-cross van-popup__close-icon van-popup__close-icon--top-right"></i>
+				</div>
+			</div>
+		</div>
+		<script>
+						$(function(){
+								$("body").bind('keyup',function(event) {
+									if(event.keyCode==13){ $('#btnLogin').click(); }
+								});
+								$('#btn_submit').click(function() {
+									if ($('#user_name').val()  == '') { layer.msg('请输入用户名！'); $("#user_name").focus(); return false; }
+									if ($('#user_question').val()  == '') { layer.msg('请输入找回问题！'); $("#user_question").focus(); return false; }
+									if ($('#user_answer').val()  == '') { layer.msg('请输入找回答案！'); $("#user_answer").focus(); return false; }
+									if ($('#user_pwd').val()  == '') { layer.msg('请输入新密码！'); $("#user_pwd").focus(); return false; }
+									if ($('#user_pwd2').val()  == '') { layer.msg('请输入确认新密码！'); $("#user_pwd").focus(); return false; }
+									if ($('#verify').val()  == '') { layer.msg('请输入验证码！'); $("#verify").focus(); return false; }
+
+									$.ajax({
+										url: "{:mac_url('user/findpass')}",
+										type: "post",
+										dataType: "json",
+										data: $('#fm').serialize(),
+										beforeSend: function () {
+											$("#btn_submit").val("loading...");
+										},
+										success: function (r) {
+											if(r.code==1){
+												location.href="{:mac_url('user/index')}";
+											}
+											else{
+												layer.msg(r.msg);
+											}
+										},
+										complete: function () {
+											$('#verify').click();
+											$("#btn_submit").val("立即找回");
+										}
+									});
+
+								});
+							});
+					</script> 
+		{include file="system/common"}
+	</body>
+</html>

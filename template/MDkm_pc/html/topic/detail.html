@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<title>{$obj.topic_name}专题详情- {$maccms.site_name}</title>
+		<meta name="keywords" content="{$obj.topic_name}电影专题,{$obj.topic_name}电视剧专题,{$obj.topic_name}综艺专题,{$obj.topic_name}动漫专题,{$obj.topic_name}推荐专题" />
+		<meta name="description" content="本站提供{$obj.topic_name},最新最全精品专题数据" />
+		{include file="system/include"}
+	</head>
+	<body>
+		<div id="app">
+			<div id="index" class="publicAllContentBg">
+				{include file="system/header"}
+				<div class="publicBigMainContentBox">
+					<div class="">
+						<div id="specialContent" class="publicAllContentBg">
+							<div class="topTitleLine">
+								<p class="left">{$obj.topic_name}</p>
+							</div>
+							<div id="publicVideoListModule" class="publicAllContentBg">
+								<div class="videoListBox">
+								{maccms:foreach name="$obj.vod_list"}
+								{include file="module/vodlist"}
+								{/maccms:foreach}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				{include file="system/footer"}
+			</div>
+		</div>
+		
+	</body>
+</html>

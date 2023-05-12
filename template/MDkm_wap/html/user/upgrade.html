@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-title" content="">
+		<title>在线充值 - 会员中心 - {$maccms.site_name}</title>
+		<meta name="keywords" content="{$maccms.site_keywords}" />
+		<meta name="description" content="{$maccms.site_description}" />
+		{include file="system/include"}
+	</head>
+	<body>
+		<div id="app">
+			<div id="rechargeIndex" class="publicAllContentBg fullHeight">
+				<div class="publicAllNavbarClass van-nav-bar">
+					<div onclick="javascript:history.back(-1);" class="van-nav-bar__left">
+						<i class="van-icon van-icon-arrow-left van-nav-bar__arrow"></i>
+					</div>
+					<div class="van-nav-bar__title van-ellipsis">充值</div>
+					<div class="van-nav-bar__right"></div>
+				</div>
+				<div  class="publicNeedXPaddingBg">
+					<div  class="van-tabs van-tabs--line">
+						<div class="van-tabs__wrap">
+							<div role="tablist" class="van-tabs__nav van-tabs__nav--line" style="border-color: rgb(245, 75, 100); background: transparent;">
+
+								<div role="tab" class="van-tab van-tab--active on" aria-selected="true" style="color: rgb(234, 241, 255);flex: auto;">
+									<span class="van-tab__text van-tab__text--ellipsis">一键充值</span>
+								</div>
+
+								<div role="tab"  class="van-tab " style="color: rgb(234, 241, 255);flex: auto;">
+									<span class="van-tab__text van-tab__text--ellipsis">升级会员(微积分)</span>
+								</div>
+
+							</div>
+						</div>
+						<div class="van-tabs__content">
+
+
+							<div role="tabpanel" class="van-tab__pane" style="">
+								<ul class="rechargeList">
+									<li class="btn-pay" data-price="{$GLOBALS['config']['site']['site_point_0']}">
+										<div class="rechargeStyle">
+											<p class="top"><span >￥</span>{$GLOBALS['config']['site']['site_point_0']}</p>
+											<p class="bottom">体验卡-{$GLOBALS['config']['site']['site_time_0']}天</p>
+										</div>
+									</li>
+									<li class="btn-pay" data-price="{$GLOBALS['config']['site']['site_point_1']}">
+										<div class="rechargeStyle">
+											<p class="top"><span >￥</span>{$GLOBALS['config']['site']['site_point_1']}</p>
+											<p class="bottom">月卡-{$GLOBALS['config']['site']['site_time_1']}天</p>
+										</div>
+									</li>
+									<li class="btn-pay" data-price="{$GLOBALS['config']['site']['site_point_2']}">
+										<div class="rechargeStyle">
+											<p class="top"><span >￥</span>{$GLOBALS['config']['site']['site_point_2']}</p>
+											<p class="bottom">季卡-{$GLOBALS['config']['site']['site_time_2']}天</p>
+										</div>
+									</li>
+									<li class="btn-pay" data-price="{$GLOBALS['config']['site']['site_point_3']}">
+										<div class="rechargeStyle">
+											<p class="top"><span >￥</span>{$GLOBALS['config']['site']['site_point_3']}</p>
+											<p class="bottom">年卡-{$GLOBALS['config']['site']['site_time_3']}天</p>
+										</div>
+									</li>
+
+								</ul>
+							</div>
+
+							<div role="tabpanel" class="van-tab__pane" style="display: none">
+								<ul class="rechargeList">
+									{volist name="group_list" id="vo"}
+											{if condition="$vo.group_id gt 2 && $vo.group_status eq 1"}
+											<li class="grade" data-id="{$vo.group_id}" data-name="{$vo.group_name}" data-points="{$vo.group_points_day}" data-long="day">
+												<div class="rechargeStyle">
+													<p class="top"><span>￥</span>{$vo.group_points_day}</p>
+													<p class="bottom">{$vo.group_name}-包天</p>
+												</div>
+											</li>
+											<li class="grade" data-id="{$vo.group_id}" data-name="{$vo.group_name}" data-points="{$vo.group_points_week}" data-long="week">
+												<div class="rechargeStyle">
+													<p class="top"><span>￥</span>{$vo.group_points_week}</p>
+													<p class="bottom">{$vo.group_name}-包周</p>
+												</div>
+											</li>
+											<li class="grade" data-id="{$vo.group_id}" data-name="{$vo.group_name}" data-points="{$vo.group_points_month}" data-long="month">
+												<div class="rechargeStyle">
+													<p class="top"><span>￥</span>{$vo.group_points_month}</p>
+													<p class="bottom">{$vo.group_name}-包月</p>
+												</div>
+											</li>
+											<li class="grade" data-id="{$vo.group_id}" data-name="{$vo.group_name}" data-points="{$vo.group_points_year}" data-long="year">
+												<div class="rechargeStyle">
+													<p class="top"><span>￥</span>{$vo.group_points_year}</p>
+													<p class="bottom">{$vo.group_name}-包年</p>
+												</div>
+											</li>
+											{/if}
+										{/volist}
+								</ul>
+							</div>
+						</div>
+					</div>
+
+
+					<ul class="tipList">
+						<li>
+							<p>1.建议您在充值之前先记录好账号，以便在更换设备时可同步帐号资料，请在栏目进行注册登录；</p>
+						</li>
+						<li>
+							<p>2.会员充值成功后，不能退款、提现或转赠他人；</p>
+						</li>
+						<li>
+							<p>3.购买后若长时间无变化，请点击左侧栏目-在线客服进行处理；</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<script>
+				$('.van-tab').click(function() {
+					var i = $(this).index();
+					if(i==1){
+						layer.ready(function(){
+							layer.msg('暂不支持微积分');
+						});
+						return false;
+					}
+					$(this).addClass('van-tab--active on').siblings().removeClass('van-tab--active on');
+					$('.van-tab__pane').eq(i).show().siblings().hide();
+
+				});
+			</script>
+			<script>
+				$('.grade').click(function(){
+					var that=$(this);
+					var group_id = that.attr('data-id');
+					var group_name = that.attr('data-name');
+					var long = that.attr('data-long');
+					var points = that.attr('data-points');
+					layer.confirm('确定要升级到【'+group_name+'】吗,需要花费【'+points+'】积分', {
+					title:'提示',btn: ['确定','取消'] //按钮
+					}, function(){
+						$.ajax({
+							url: "{:url('user/upgrade')}",
+							type: "post",
+							dataType: "json",
+							data: {group_id: group_id,long:long },
+							beforeSend: function () {
+								$("#btn_submit").val("loading...");
+							},
+							success: function (r) {
+								layer.msg(r.msg);
+								if (r.code == 1) {
+									location.reload();
+								}
+							},
+							complete: function () {
+								$("#btn_submit").val("提交");
+							}
+						});
+
+					});
+				});
+				$('.btn-pay').click(function(){
+				var that=$(this);
+				var price = that.attr('data-price');
+				if(Number(price)<1){
+					return;
+				}
+				layer.confirm('确定要在线升级VIP吗？', {
+				title:'提示',btn: ['确定','取消'] //按钮
+				}, function(){
+					$.ajax({
+						url: "{:mac_url('user/buy')}",
+						type: "post",
+						dataType: "json",
+						data: {price: price,flag:'pay'},
+						beforeSend: function () {
+							$("#btn_submit_pay").val("loading...");
+						},
+						success: function (r) {
+							if (r.code == 1) {
+								location.href="{:mac_url('user/pay')}?order_code=" + r.data.order_code;
+							}
+							else{
+								layer.msg(r.msg);
+							}
+						},
+						complete: function () {
+							$("#btn_submit_pay").val("提交");
+						}
+					});
+				});
+			});
+			</script>
+			{include file="system/common"}
+		</div>
+	</body>
+</html>

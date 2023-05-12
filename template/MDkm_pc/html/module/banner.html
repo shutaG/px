@@ -1,0 +1,19 @@
+<div class="bigBannerBg">
+					<div class="swiper-container">
+						<div class="swiper-wrapper">
+							{maccms:website order="desc" type="'.($mdym['type']['bannerpc']).'" }
+							<div class="swiper-slide">
+								<div class="indexBannerImgBox">
+									<a href="{$vo.website_jumpurl}" target="_blank">
+										<img src="{:mac_url_img($vo.website_logo)}" class="aesImgTag">
+									</a>
+								</div>
+							</div>
+							{/maccms:website}
+						</div>
+						<div class="swiper-pagination"></div>
+						<div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide" aria-disabled="false"></div>
+						<div class="swiper-button-next" tabindex="-1" role="button" aria-label="Next slide" aria-disabled="true"></div>
+						
+					</div>
+				</div>

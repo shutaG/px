@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<title>{$maccms.site_name}</title>
+		<meta name="keywords" content="{$maccms.site_keywords}" />
+		<meta name="description" content="{$maccms.site_description}" />
+		{include file="system/include"}
+	</head>
+	<body>
+		<div id="app">
+			<div id="index" class="publicAllContentBg">
+				{include file="system/header"}
+				<div class="publicBigMainContentBox">
+					<div class="">
+						<div id="userCenterIndex" class="publicAllContentBg">
+							<div class="allBgBox">
+								{include file="user/menu"}
+								<div class="rightSideBox">
+									<form id="changePwd" name="changePwd" class="publicAllContentBg fullHeight" method="post" action="" >
+										<div class="formBg">
+											<div class="formLine">
+												<div class="el-input el-input--suffix">
+													<input type="password" name="user_pwd" autocomplete="off" placeholder="请输入旧密码" class="el-input__inner">
+													<span class="el-input__suffix"><span class="el-input__suffix-inner"></span></span>
+												</div>
+											</div>
+											<div class="formLine">
+												<div class="el-input el-input--suffix">
+													<input type="password" name="user_pwd1" autocomplete="off" placeholder="请输入新密码" class="el-input__inner">
+													<span class="el-input__suffix"><span class="el-input__suffix-inner"></span></span>
+												</div>
+											</div>
+											<div class="formLine">
+												<div class="el-input el-input--suffix">
+													<input type="password" name="user_pwd2" autocomplete="off" placeholder="请确认新密码" class="el-input__inner">
+													<span class="el-input__suffix"><span class="el-input__suffix-inner"></span></span>
+												</div>
+											</div>
+											<div class="buttonLine">
+												<button id="info_submit" type="button" class="el-button el-button--default is-plain" 
+												style="width: 100%; background-color: rgb(245, 75, 100); color: rgb(255, 255, 255); border-color: rgb(245, 75, 100);">
+													<span>修改密码</span>
+												</button>
+											</div>
+										</div>
+									</form>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				{include file="system/footer"}
+			</div>
+		</div>
+	
+	<script type="text/javascript">
+
+	$('.btn_unbind').click(function(){
+		var ac = $(this).attr('ac');
+		if(ac!='email' && ac!='phone'){
+			layer.msg('参数错误');
+		}
+		if(confirm('确认解除绑定吗？此操作不可恢复？')) {
+			$.ajax({
+				url: "{:url('user/unbind')}",
+				type: "post",
+				dataType: "json",
+				data: {ac: ac},
+				beforeSend: function () {
+					//开启loading
+				},
+				success: function (r) {
+					layer.msg(r.msg);
+					if(r.code==1){
+						location.href="{:url('user/info')}";
+					}
+				},
+				complete: function () {
+					//结束loading
+				}
+			});
+		}
+	});
+
+	$("#info_submit").click(function() {
+		var data = $("#changePwd").serialize();
+		$.ajax({
+			url: "{:url('user/info')}",
+			type: "post",
+			dataType: "json",
+			data: data,
+			beforeSend: function () {
+				//开启loading
+				//$(".loading_box").css("display","block");
+				$("#info_submit").val("loading...");
+			},
+			success: function (r) {
+				layer.msg(r.msg);
+				if(r.code==1){
+					location.href="{:url('user/info')}";
+				}
+			},
+			complete: function () {
+				//结束loading
+				//$(".loading_box").css("display","none");
+				$("#info_submit").val("提交");
+			}
+		});
+	});
+
+</script>
+	</body>
+</html>

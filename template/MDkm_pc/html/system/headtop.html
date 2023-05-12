@@ -1,0 +1,43 @@
+<div class="topHeaderBg">
+						<div class="topHeaderBox">
+							<div class="left">
+								<a href="" target="_blank">网站公告</a> 
+								<span class="publicTopHeaderLine"></span> 
+								<a href="{:mac_url('label/question')}">常见问题</a>
+								<span class="publicTopHeaderLine"></span> 
+								<a href="{$mdym.serve}" target="_blank">在线客服</a>
+							</div>
+							<div class="right">
+								<p><i class="van-icon"><img src="{$maccms.path}MDassets/img/ios.png" class="van-icon__image"></i> 
+								<a href="{$mdym.load.appurl}" target="_blank" style="color: rgb(104, 108, 117);">APP下载</a></p>
+								<span class="publicTopHeaderLine"></span>
+								<p><i class="van-icon"><img  src="{$maccms.path}MDassets/img/proxy.png" class="van-icon__image"></i> 
+								<a href="{$mdym.join}" target="_blank" style="color: rgb(104, 108, 117);">代理加盟</a></p>
+							</div>
+						</div>
+					</div>
+					<div class="middleHeaderBg">
+						<div class="middleHeaderBox">
+							<div class="left"><img src="{$mdym.logo}" alt="logo"></div>
+							<div class="right">
+								<a {if condition="$GLOBALS['user']['user_id']" gt 0}href="{:mac_url('user/upgrade')}"{else/}id="login_btn"{/if}  class="recharge"><i class="van-icon"><img src="{$maccms.path}MDassets/img/diamond.png" class="van-icon__image"></i>
+									会员充值
+								</a>
+								{if condition="$GLOBALS['user']['user_id']" gt 0}
+								<a href="{:mac_url('user/index')}" style="margin-left: 20px; display: flex; align-items: center;">
+								    <span style="padding: 0px;">
+										<i id="userpop" class="userLoginIcon van-icon el-popover__reference"
+										 tabindex="0" style="font-size: 18px;"><img src="{$maccms.path}MDassets/img/user.png" class="van-icon__image"></i>
+									</span>
+									<p  class="userNameShow">会员中心</p>
+								</a>
+								{else/}
+								<div class="topLoginButtonLine"><i class="van-icon"><img src="{$maccms.path}MDassets/img/user.png" class="van-icon__image"></i>
+									<p id="login_btn">登录</p> 
+									<span style="margin: 0px 6px;">/</span>
+									<p id="signup_btn">注册</p>
+								</div>
+								{/if}
+							</div>
+						</div>
+					</div>

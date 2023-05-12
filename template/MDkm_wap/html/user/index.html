@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-title" content="">
+		<title>会员中心 - {$maccms.site_name}</title>
+		<meta name="keywords" content="{$maccms.site_keywords}" />
+		<meta name="description" content="{$maccms.site_description}" />
+		{include file="system/include"}
+	</head>
+	<body>
+		<div id="app">
+			<div class="publicAllContentBg allIndex fullHeight">
+				<div class="publicAllNavbarClass van-nav-bar">
+					<div class="van-nav-bar__left"></div>
+					<div class="van-nav-bar__title van-ellipsis">个人中心</div>
+					<div class="van-nav-bar__right"></div>
+				</div>
+				<div class="van-pull-refresh">
+					<div class="van-pull-refresh__track" style="transition-duration: 0ms;">
+						<div class="van-pull-refresh__head"></div>
+						<div class="publicNeedXPaddingBg">
+							<div class="userCenterIndexCell van-cell" style="white-space: pre-line;">
+								<div class="van-cell__title"><span>公告</span>
+									<div class="van-cell__label">{$mdym.usergonggao}</div>
+								</div>
+							</div>
+							<div class="userInfoBox">
+								<ul class="middle">
+									<li>
+										<p>积分(个)</p>
+										<h3>{$obj.user_points}</h3>
+										<a href="{:mac_url('user/upgrade')}" class="button">充值</a>
+									</li>
+									<li>
+										<p>VIP剩(天)</p>
+										{if condition="$GLOBALS['user']['user_id']" gt 0}
+										<h3 id="span_dt_dt"></h3>
+										{else/}
+										<h3>*</h3>
+										{/if}
+										<a href="{:mac_url('user/upgrade')}" class="button">续期</a>
+									</li>
+								</ul>
+								<div class="name">
+									<p>{$obj.user_name}</p>
+								</div>
+							</div>
+							<ul class="functionList">
+								<li>
+									<a href="{:mac_url('user/info')}" class="functionListStyle">
+										<div class="icon">
+											<i class="van-icon" style="color: rgb(160, 164, 174); font-size: 24px;">
+												<img src="{$maccms.path}MDassets/img/pass.png" class="van-icon__image">
+											</i>
+										</div>
+										<p>修改密码</p>
+									</a>
+								</li>
+								<li>
+									<a href="{:mac_url('user/plays')}" class="functionListStyle">
+										<div class="icon">
+											<i class="van-icon" style="color: rgb(160, 164, 174); font-size: 24px;">
+												<img src="{$maccms.path}MDassets/img/plays.png" class="van-icon__image">
+											</i>
+										</div>
+										<p>播放记录</p>
+									</a>
+								</li>
+								<li>
+									<a href="{:mac_url('user/favs')}" class="functionListStyle">
+										<div class="icon">
+											<i class="van-icon" style="color: rgb(160, 164, 174); font-size: 24px;">
+												<img src="{$maccms.path}MDassets/img/favs.png" class="van-icon__image">
+											</i>
+										</div>
+										<p>我的收藏</p>
+									</a>
+								</li>
+								<li>
+									<a href="{:mac_url('label/question')}" class="functionListStyle">
+										<div class="icon">
+											<i class="van-icon" style="color: rgb(160, 164, 174); font-size: 24px;">
+												<img src="{$maccms.path}MDassets/img/question.png" class="van-icon__image">
+											</i>
+										</div>
+										<p>常见问题</p>
+									</a>
+								</li>
+								<li>
+									<a href="{:mac_url('user/upgrade')}" class="functionListStyle">
+										<div class="icon">
+											<i class="van-icon van-icon-paid" style="color: rgb(160, 164, 174); font-size: 24px;"></i>
+										</div>
+										<p>升级会员</p>
+									</a>
+								</li>
+								<li>
+									<a href="{$mdym.serve}" class="functionListStyle">
+										<div class="icon">
+											<i class="van-icon van-icon-service-o" style="color: rgb(160, 164, 174); font-size: 24px;"></i>
+										</div>
+										<p>在线客服</p>
+									</a>
+								</li>
+								<li>
+									<a href="{:url('user/buy')}" class="functionListStyle">
+										<div class="icon">
+											<i class="van-icon van-icon-smile-o" style="color: rgb(160, 164, 174); font-size: 24px;"></i>
+										</div>
+										<p>卡密兑换</p>
+									</a>
+								</li>
+								<li>
+									<a href="{:url('user/logout')}" class="functionListStyle">
+										<div class="icon">
+											<i class="van-icon" style="color: rgb(160, 164, 174); font-size: 24px;">
+												<img src="{$maccms.path}MDassets/img/loginout.png" class="van-icon__image">
+											</i>
+										</div>
+										<p>登出账号</p>
+									</a>
+								</li>
+							</ul>
+							<div id="rechargeIndex" class="publicAllContentBg">
+								<p class="topSign"></p>
+								<ul class="tipList">
+									<li>
+										<p>推广注册：</p>
+										<div class="el-input el-input-group el-input-group--append">
+											<input id="url" type="text" autocomplete="off" value="{$maccms.http_type}{$maccms.site_url}{:mac_url('user/reg')}?uid={$obj.user_id}"
+											 class="el-input__inner">
+											<div onclick="copyUrl()" class="el-input-group__append" style="background-color: rgb(245, 75, 100);">
+												<button type="button" class="el-button getCode el-button--primary">
+													<span style="color: #ffffff;">复制</span>
+												</button>
+											</div>
+										</div>
+									</li>
+									<li>
+										<p>推广访问：</p>
+										<div class="el-input el-input-group el-input-group--append">
+											<input id="url2" type="text" autocomplete="off" value="{$maccms.http_type}{$maccms.site_url}{:mac_url('user/visit')}?uid={$obj.user_id}"
+											 class="el-input__inner">
+											<div onclick="copyUrl2()" class="el-input-group__append" style="background-color: rgb(245, 75, 100);">
+												<button type="button" class="el-button getCode el-button--primary">
+													<span style="color: #ffffff;">复制</span>
+												</button>
+											</div>
+										</div>
+									</li>
+								</ul>
+								<ul class="tipList">
+									<li>
+										<p>1.建议您在充值之前先注册登录，以便在更换设备时可同步帐号资料，请在栏目进行注册登录；</p>
+									</li>
+									<li>
+										<p>2.积分充值成功后，不能退款、提现或转赠他人；</p>
+									</li>
+									<li>
+										<p>3.购买后若长时间无变化，请点击左侧栏目-在线客服进行处理；</p>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			{include file="system/footer"}
+		</div>
+		{include file="system/common"}
+		<script>
+			function copyUrl() {
+				var Url = document.getElementById("url");
+				Url.select(); /*选择对象*/
+				document.execCommand("Copy"); /*执行浏览器复制命令*/
+				layer.msg("你的推广地址已复制，用 Ctrl+V 粘贴到浏览器打开链接");
+			}
+
+			function copyUrl2() {
+				var Url = document.getElementById("url2");
+				Url.select(); /*选择对象*/
+				document.execCommand("Copy"); /*执行浏览器复制命令*/
+				layer.msg("你的推广地址已复制，用 Ctrl+V 粘贴到浏览器打开链接");
+			}
+		</script>
+		<script type="text/javascript">
+			function show_date_time() {
+				window.setTimeout("show_date_time()", 1000);
+				BirthDay = new Date("{$obj.user_end_time|date='Y-m-d',###}");
+				today = new Date();
+				timeold = (BirthDay.getTime() - today.getTime());
+				sectimeold = timeold / 1000
+				secondsold = Math.floor(sectimeold);
+				msPerDay = 24 * 60 * 60 * 1000
+				e_daysold = timeold / msPerDay
+				daysold = Math.floor(e_daysold);
+				e_hrsold = (e_daysold - daysold) * 24;
+				hrsold = Math.floor(e_hrsold);
+				e_minsold = (e_hrsold - hrsold) * 60;
+				minsold = Math.floor((e_hrsold - hrsold) * 60);
+				seconds = Math.floor((e_minsold - minsold) * 60);
+				if (daysold < 0) {
+					span_dt_dt.innerHTML = "0";
+				} else {
+					span_dt_dt.innerHTML = "" + daysold + "";
+				}
+			}
+			show_date_time();
+		</script>
+	</body>
+</html>

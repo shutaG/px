@@ -1,0 +1,29 @@
+<div class="el-pagination is-background" style="margin-top: 20px;">
+	{if$__PAGING__['page_current']==1}
+	<button type="button" disabled="disabled" class="btn-prev"><i class="el-icon el-icon-arrow-left"></i></button>
+	{else}
+	<a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_prev}">
+		<button type="button" class="btn-prev"><i class="el-icon el-icon-arrow-left"></i></button>
+	</a>
+	{/if}
+	<ul class="el-pager">
+		{maccms:foreach name="$__PAGING__.page_num" id="num"}
+		{if condition="$__PAGING__['page_current'] eq $num"}
+		<a href="javascript:;">
+			<li class="number active">{$num}</li>
+		</a>
+		{else}
+		<a href="{$__PAGING__.page_url|mac_url_page=$num}">
+			<li class="number">{$num}</li>
+		</a>
+		{/if}
+		{/maccms:foreach}
+		<li class="el-icon more btn-quicknext el-icon-more"></li>
+		<a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_total}">
+			<li class="number">{$__PAGING__.page_total}</li>
+		</a>
+	</ul>
+	<a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_next}">
+		<button href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_next}" type="button" class="btn-next"><i class="el-icon el-icon-arrow-right"></i></button>
+	</a>
+</div>

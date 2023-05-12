@@ -1,0 +1,56 @@
+{maccms:vod num="'.($mdym['free']['num']).'" type="'.($mdym['type']['free']).'" by="time" order="desc"}
+										<a href="{:mac_url_vod_play($vo)}" class="videoListStyle cbox1">
+											<div class="imgArea">
+												<div class="el-image elImageClass aesElImgClass">
+													<img src="{:mac_url_img($vo.vod_pic)}"  class="el-image__inner" style="object-fit: fill;">
+												</div>
+												<div class="bottomInfo">
+													<div class="left"></div>
+													<div class="time">{$vo.vod_duration}</div>
+												</div>
+												<div class="popup">
+													<img src="{$maccms.path}MDassets/img/play.png">
+												</div>
+											</div>
+											
+											<p class="title">【免费】{$vo.vod_name}</p>
+											{include file="module/freemark"}
+										</a>
+										{/maccms:vod}
+										{maccms:vod num="4" type="'.($mdym['type']['free']).'" by="time" start="'.($mdym['free']['num']+1).'" order="desc"}
+										<a href="{:mac_url_vod_play($vo)}" class="videoListStyle cbox2 hidden">
+											<div class="imgArea">
+												<div class="el-image elImageClass aesElImgClass">
+													<img src="{:mac_url_img($vo.vod_pic)}"  class="el-image__inner" style="object-fit: fill;">
+												</div>
+												<div class="bottomInfo">
+													<div class="left"></div>
+													<div class="time">{$vo.vod_duration}</div>
+												</div>
+												<div class="popup">
+													<img src="{$maccms.path}MDassets/img/play.png">
+												</div>
+											</div>
+											<p class="title">【免费】{$vo.vod_name}</p>
+											
+											{include file="module/freemark"}
+										</a>
+										{/maccms:vod}
+										{maccms:vod num="4" type="'.($mdym['type']['free']).'" by="time" start="'.($mdym['free']['num']*2+1).'" order="desc"}
+										<a href="{:mac_url_vod_play($vo)}" class="videoListStyle cbox3 hidden">
+											<div class="imgArea">
+												<div class="el-image elImageClass aesElImgClass">
+													<img src="{:mac_url_img($vo.vod_pic)}"  class="el-image__inner" style="object-fit: fill;">
+												</div>
+												<div class="bottomInfo">
+													<div class="left"></div>
+													<div class="time">{$vo.vod_duration}</div>
+												</div>
+												<div class="popup">
+													<img src="{$maccms.path}MDassets/img/play.png">
+												</div>
+											</div>
+											<p class="title">【免费】{$vo.vod_name}</p>
+											{include file="module/freemark"}
+										</a>
+										{/maccms:vod}

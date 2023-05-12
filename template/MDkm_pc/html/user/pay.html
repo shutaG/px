@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<title>在线充值 - 会员中心 - {$maccms.site_name}</title>
+		<meta name="keywords" content="{$maccms.site_keywords}" />
+		<meta name="description" content="{$maccms.site_description}" />
+		{include file="system/include"}
+	</head>
+	<body>
+		<div id="app">
+			<div id="index" class="publicAllContentBg">
+				{include file="system/header"}
+				<div class="publicBigMainContentBox">
+					<div class="">
+						<div id="userCenterIndex" class="publicAllContentBg">
+							<div class="allBgBox">
+								{include file="user/menu"}
+								<div class="rightSideBox">
+								 
+									<div id="rechargeIndex" class="publicAllContentBg">
+										<p class="topSign">在线充值</p>
+										<ul class="rechargeList"></ul>
+										<form method="post" target="_blank" action="{:mac_url('user/gopay')}"> 
+										<input type="hidden" name="order_id" value="{$info.order_id}" /> 
+										<input type="hidden" name="order_code" value="{$info.order_code}" /> 
+										<ul class="tipList">
+											<li>
+												<div class="formLine">
+												<p>订单编号：</p>
+												<div class="el-input el-input--suffix">
+													<input type="text" autocomplete="off" value="{$info.order_code}" class="el-input__inner" readonly="readonly">
+													<span class="el-input__suffix"><span class="el-input__suffix-inner"></span></span>
+												</div>
+											</div>
+											</li>
+											<li>
+												<div class="formLine">
+												<p>订单金额：</p>
+												<div class="el-input el-input--suffix">
+													<input type="text" autocomplete="off" value="{$info.order_price}元" class="el-input__inner" readonly="readonly">
+													<span class="el-input__suffix"><span class="el-input__suffix-inner"></span></span>
+												</div>
+											</div>
+											</li>
+											<li>
+												<div class="formLine">
+												<p>支付方式：</p>
+												<div class="el-input el-input--suffix">
+													<select name="payment" id="payment"  class="el-input__inner">
+											<option value="">请选择...</option>
+											{volist name="ext_list" id="vo"}
+											<option value="{$key}">{$vo}支付</option>
+											{/volist}
+										</select>
+													<span class="el-input__suffix"><span class="el-input__suffix-inner"></span></span>
+												</div>
+											</div>
+											</li>
+											<li id="paytype_box" style="display:none;">
+												<div class="formLine">
+												<p>支付类型：</p>
+												<div class="el-input el-input--suffix">
+													<select class="paytype" id="paytype" name="paytype" style="height:30px;line-height: 30px;width:100%; outline: none; border: none;">
+										</select>
+													<span class="el-input__suffix"><span class="el-input__suffix-inner"></span></span>
+												</div>
+											</div>
+											</li>
+											<div class="buttonLine">
+												<button type="submit" class="el-button el-button--default is-plain" style="width: 100%; background-color: rgb(245, 75, 100); color: rgb(255, 255, 255); border-color: rgb(245, 75, 100);">
+													<span>支付</span>
+												</button>
+											</div>
+											
+										</ul>
+										
+											</form> 
+										<br/>
+										<ul class="tipList">
+											<li>
+												<p>1.获取足够积分可以兑换相应时长的会员</p>
+											</li>
+											<li>
+												<p>2.会员充值成功后，不能退还、提现或转赠他人；</p>
+											</li>
+											<li>
+												<p>3.兑换后若长时间无变化，请点击左侧栏目-在线客服进行处理；</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				{include file="system/footer"}
+			</div>
+		</div>
+<script>
+	var codepay_type = '{maccms:foreach name=":explode(',',$config.codepay.type)"}<option value ="{$vo}">{if condition="$vo==1"}支付宝二维码{elseif condition="$vo==2"/}QQ钱包二维{elseif condition="$vo==3"/}微信二维码{/if}</option>{/maccms:foreach}';
+	var yipay_type = '{maccms:foreach name=":explode(',',$config.yipay.type)"}<option value ="{$vo}">{if condition="$vo==1"}支付宝{elseif condition="$vo==2"/}QQ钱包{elseif condition="$vo==3"/}微信{elseif condition="$vo==4"/}财付通{/if}</option>{/maccms:foreach}';
+	var zhapay_type ='{maccms:foreach name=":explode(',',$config.zhapay.type)"}<option value ="{$vo}">{if condition="$vo==1"}微信{elseif condition="$vo==2"/}支付宝{/if}</option> {/maccms:foreach}';
+
+	$("#payment").change(function() {
+		$('#paytype').html('');
+		if($("#payment").val()=="codepay" || $("#payment").val()=="zhapay"|| $("#payment").val()=="yipay"){
+			if($("#payment").val()=="codepay") {
+				$('#paytype').html(codepay_type);
+			}
+			if($("#payment").val()=="zhapay") {
+				$('#paytype').html(zhapay_type);
+			}
+			if($("#payment").val()=="yipay") {
+				$('#paytype').html(yipay_type);
+			}
+
+			$("#paytype_box").slideDown();
+		}
+		else{
+			$("#paytype_box").slideUp();
+		}
+	});
+
+	$(".paytype").change(function() {
+		$('#paytype').val( $(this).val() );
+	});
+</script>
+	</body>
+</html>

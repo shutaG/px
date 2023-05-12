@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-title" content="">
+		<title>专题列表 - {$maccms.site_name}</title>
+		<meta name="keywords" content="{$maccms.site_keywords}" />
+		<meta name="description" content="{$maccms.site_description}" />
+		{include file="system/include"}
+	</head>
+	<body>
+		<div id="app">
+			<div id="specialIndex" class="publicAllContentBg allIndex fullHeight">
+				{include file="system/headtop"}
+				<div  class="van-pull-refresh">
+					<div class="van-pull-refresh__track" style="transition-duration: 0ms;">
+						<div class="van-pull-refresh__head"></div>
+						<div class="publicNeedXPaddingBg marginTop">
+							<div id="scrollSpecialList" class="publicAllContentBg">
+								<div class="publicContentHeaderBox">
+									<div class="left"><i class="van-icon"><img src="{$maccms.path}MDassets/img/topic.png" class="van-icon__image"></i>精选专题</div>
+									<a href="{:mac_url('topic/index')}" class="right">
+										查看更多
+									</a>
+								</div>
+								<ul class="topicListBox">
+									{maccms:topic num="4" paging="yes" order="desc" by="time"}
+									<li>
+										<a href="{:mac_url_topic_detail($vo)}" class="topicListStyle">
+											<div class="imgArea">
+												<div class="aseImgVanImage van-image">
+													<img src="{$vo.topic_pic|mac_url_img}" class="van-image__img" style="object-fit: cover;">
+												</div>
+											</div>
+											<p class="title">{$vo.topic_name}</p>
+										</a>
+									</li>
+									{/maccms:topic}
+								</ul>
+							</div>
+							<div  id="artistScrollList" class="publicAllContentBg">
+								<div class="publicContentHeaderBox">
+									<div class="left"><i class="van-icon"><img src="{$maccms.path}MDassets/img/actor.png" class="van-icon__image"></i>知名演员</div>
+									<a href="{:mac_url('actor/index')}" class="right">
+										查看更多
+									</a>
+								</div>
+								<ul class="bottomList">
+									{maccms:actor num="5" order="desc" by="time"}
+									<li>
+										<a href="{$vo|mac_url_actor_detail}" class="indexIconNavListStyle">
+											<div class="icon">
+												<img src="{$vo.actor_pic|mac_url_img}" class="aesImgTag" style="width: 100%;">
+											</div>
+											<p class="text">{$vo.actor_name}</p>
+										</a>
+									</li>
+									{/maccms:actor}	
+								</ul>
+							</div>
+						</div>
+						<ul class="artistListBox">
+							{maccms:actor num="5" order="desc" by="time" }
+							<li>
+								<div id="publicSpecialArtistModule" class="publicAllContentBg specialArtistModule">
+									<div class="topLine">
+										<div class="left">
+											<div class="icon">
+												<img src="{$vo.actor_pic|mac_url_img}" class="aesImgTag" style="width: 100%;">
+											</div>
+											<div class="info">
+												<p class="name">{$vo.actor_name}</p>
+												<!--<p class="length">收录视频<span >{:mac_data_count(0,'all','actor')}</span>部</p>-->
+											</div>
+										</div>
+										<a href="{:mac_url_actor_detail($vo)}" class="right">
+											<i class="van-icon van-icon-ellipsis" style="color: rgb(160, 164, 174); font-size: 20px;"></i>
+										</a>
+									</div>
+									<div id="publicVideoListModule" class="publicAllContentBg">
+										<div class="videoListBox">
+											{maccms:vod num="4" actor="'.$vo['actor_name'].'" order="desc" by="time" }
+											{include file="module/vodlist"}
+											{/maccms:vod}
+										</div>
+									</div>
+								</div>
+								
+							</li>
+							{/maccms:actor}	
+			
+
+						</ul>
+					</div>
+				</div>
+			</div>
+			{include file="system/footer"}
+		</div>
+		{include file="system/common"}
+	</body>
+</html>

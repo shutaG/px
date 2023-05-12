@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<title>卡密兑换 - 会员中心 - {$maccms.site_name}</title>
+		<meta name="keywords" content="{$maccms.site_keywords}" />
+		<meta name="description" content="{$maccms.site_description}" />
+		{include file="system/include"}
+	</head>
+	<body>
+		<div id="app">
+			<div id="index" class="publicAllContentBg">
+				{include file="system/header"}
+				<div class="publicBigMainContentBox">
+					<div class="">
+						<div id="userCenterIndex" class="publicAllContentBg">
+							<div class="allBgBox">
+								{include file="user/menu"}
+								<div class="rightSideBox">
+									<div id="rechargeIndex" class="publicAllContentBg">
+										<p class="topSign">卡密兑换</p>
+										<ul class="rechargeList"></ul>
+										<div class="formBg">
+											<div class="formLine">
+												<div class="el-input el-input--suffix">
+													<input type="text" name="card_no" autocomplete="off" placeholder="请输入卡密" class="el-input__inner">
+													<span class="el-input__suffix"><span class="el-input__suffix-inner"></span></span>
+												</div>
+											</div>
+											<div class="buttonLine">
+												<div id="btn_submit_card" class="submit">
+													<p class="bottom">立即兑换</p>
+												</div>
+											</div>
+											
+										</div>
+
+										<ul class="tipList">
+											<li>
+												<p>1.获取足够积分可以兑换相应时长的会员</p>
+											</li>
+											<li>
+												<p>2.卡密兑换成功后，不能退还、提现或转赠他人；</p>
+											</li>
+											<li>
+												<p>3.卡密兑换后若长时间未到账，请点击左侧栏目-在线客服进行处理；</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				{include file="system/footer"}
+			</div>
+		</div>
+		<script>
+			$('#btn_submit_card').click(function(){
+				var that=$(this);
+				var no = $('input[name="card_no"]').val();
+				if(no==''){
+					layer.msg('请输入充值卡密');
+					return;
+				}
+				layer.confirm('确定要使用充值卡充值吗？', {
+				title:'提示',btn: ['确定','取消'] //按钮
+				}, function(){
+					$.ajax({
+						url: "{:url('user/buy')}",
+						type: "post",
+						dataType: "json",
+						data: {card_no: no,flag:'card'},
+						beforeSend: function () {
+							$("#btn_submit_card").val("loading...");
+						},
+						success: function (r) {
+							layer.msg(r.msg);
+						},
+						complete: function () {
+							$("#btn_submit_card").val("提交");
+						}
+					});
+				});
+			});
+		</script>
+	</body>
+</html>

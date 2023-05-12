@@ -1,0 +1,34 @@
+<div class="el-dialog__wrapper hidden" style="z-index: 2000;" id="popup_mask">
+						<div role="dialog" aria-modal="true" aria-label="dialog" class="el-dialog loginAboutPopup" style="margin-top: 15vh;">
+							<div class="el-dialog__header">
+								<span class="el-dialog__title"></span>
+								<button id="popup_close" type="button" aria-label="Close" class="el-dialog__headerbtn">
+									<i class="el-dialog__close el-icon el-icon-close"></i>
+								</button>
+							</div>
+							<div class="el-dialog__body">
+							<img src="{$mdym.logo}" style="margin-left: auto; margin-right: auto; display: block;">
+								{$mdym.gonggao}
+								<button id="popup_closetwo" type="button" class="Buttontwo el-button publicLoginAboutButton el-button--primary">
+									<span>确定</span>
+								</button>
+							</div>
+						</div>
+					</div>
+					<script>
+						var popup_close = document.getElementById("popup_close");
+						var popup_closetwo = document.getElementById("popup_closetwo");
+						var popup_mask = document.getElementById("popup_mask");
+						var popup = sessionStorage.getItem("popup");
+						if (popup == null) {
+							popup_mask.style.display = 'block';
+							popup_close.onclick = function() {
+								popup_mask.style.display = 'none';
+								sessionStorage.setItem("popup", "1");
+							}
+							popup_closetwo.onclick = function() {
+								popup_mask.style.display = 'none';
+								sessionStorage.setItem("popup", "1");
+							}
+						};
+					</script>	

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-title" content="">
+		<title>{$obj.type_title} - {$maccms.site_name}</title>
+		<meta name="keywords" content="{$obj.type_key}" />
+		<meta name="description" content="{$obj.type_des}" />
+		{include file="system/include"}
+	</head>
+	<body>
+		<div id="app">
+			<div id="index" class="publicAllContentBg allIndex fullHeight">
+				{include file="system/headtop"}
+				<div class="indexTopTabBox">
+					{include file="system/headlist"}
+					<div id="indexMenuVideoModule" class="publicAllContentBg fullHeight">
+						<div id="publicVideoListModule" class="publicAllContentBg">
+							<div class="videoListBox">
+								{maccms:vod num="16" paging="yes" pageurl="vod/type" half="4" order="desc" by="time"}
+								{include file="module/vodlist"}
+								{/maccms:vod}
+							</div>
+						</div>
+						{include file="system/paging"}
+					</div>
+				</div>
+			</div>
+			{include file="system/footer"}
+		</div>
+		{include file="system/common"}
+	</body>
+</html>

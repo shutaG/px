@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<title>{$maccms.site_name}-明星库</title>
+		<meta name="keywords" content="{$maccms.site_keywords}" />
+		<meta name="description" content="{$maccms.site_description}" />
+		{include file="system/include"}
+	</head>
+	<body>
+		<div id="app">
+			<div id="index" class="publicAllContentBg">
+				{include file="system/header"}
+				<div class="publicBigMainContentBox">
+					<div class="">
+						<div id="actorList" class="publicAllContentBg">
+							<ul class="singerListBox">
+								{maccms:actor num="20" order="desc" by="time"}
+								<li>
+									<a href="{$vo|mac_url_actor_detail}" class="singerListStyle">
+										<div  class="img">
+											<img src="{$vo.actor_pic|mac_url_img}" class="aesImgTag">
+										</div>
+										<p class="name">{$vo.actor_name}</p>
+									</a>
+								</li>
+								{/maccms:actor}	
+							</ul>
+						</div>
+					</div>
+				</div>
+				{include file="system/footer"}
+			</div>
+		</div>
+	</body>
+</html>

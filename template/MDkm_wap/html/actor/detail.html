@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-title" content="">
+    <title>{$obj.actor_name}个人资料_{$obj.actor_name}演过的电视剧_{$obj.actor_name}电影全集-{$maccms.site_name}</title>
+	<meta name="keywords" content="{$obj.actor_name}个人资料,{$obj.actor_name}演过的电视剧,{$obj.actor_name}电影全集,{$obj.actor_name}最新电影,{$obj.actor_name}最新电视剧">
+	<meta name="description" content="{$maccms.site_name}演示站为你收集了{$obj.actor_name}个人资料包括了{$obj.actor_name}最新演过的电视剧,{$obj.actor_name}电影全集,以及{$obj.actor_name}图片剧照最近动态等信息希望你能喜欢。">
+    {include file="system/include"}
+</head>
+<body>
+<div id="app">
+    <div id="specialContent" class="publicAllContentBg fullHeight">
+        <div class="publicAllNavbarClass van-nav-bar">
+            <div onclick="javascript:history.back(-1);" class="van-nav-bar__left">
+                <i class="van-icon van-icon-arrow-left van-nav-bar__arrow"></i>
+                <span class="van-nav-bar__text">返回</span>
+            </div>
+            <div class="van-nav-bar__title van-ellipsis">{$obj.actor_name}</div>
+            <div class="van-nav-bar__right"></div>
+        </div>
+        <div class="publicNeedXPaddingBg">
+            <div role="feed" class="van-list">
+                <div id="publicVideoListModule" class="publicAllContentBg">
+                    <div class="videoListBox">
+						{maccms:vod num="1000" actor="'.$obj['actor_name'].'" order="desc" by="time"}
+                        {include file="module/vodlist"}
+                       {/maccms:vod}
+                    </div>
+                </div>
+                <div class="van-list__placeholder"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="system/common"}
+</body>
+</html>

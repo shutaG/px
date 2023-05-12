@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-title" content="">
+		<title>专题首页 - 精品专题 - 推荐专题 - {$maccms.site_name}</title>
+		<meta name="keywords" content="电影专题,电视剧专题,综艺专题,动漫专题,推荐专题,专题收录" />
+		<meta name="description" content="本站提供最新最全精品专题数据" />
+		{include file="system/include"}
+	</head>
+	<body>
+		<div id="app">
+			<div id="specialList" class="publicAllContentBg fullHeight">
+				<div class="publicAllNavbarClass van-nav-bar">
+					<div onclick="javascript:history.back(-1);" class="van-nav-bar__left">
+						<i class="van-icon van-icon-arrow-left van-nav-bar__arrow"></i>
+						<span class="van-nav-bar__text">返回</span>
+					</div>
+					<div class="van-nav-bar__title van-ellipsis">专题列表</div>
+					<div class="van-nav-bar__right"></div>
+				</div>
+				<div class="publicNeedXPaddingBg">
+					<div role="feed" class="van-list">
+						<ul class="specialListBox">
+							{maccms:topic order="desc" by="time"}
+							<li>
+								<a href="{:mac_url_topic_detail($vo)}" class="specialListStyle">
+									<div class="img">
+										<div class="aseImgVanImage van-image">
+											<img src="{$vo.topic_pic|mac_url_img}" class="van-image__img" style="object-fit: cover;">
+										</div>
+									</div>
+									<div class="text">
+										<p class="top">{$vo.topic_name}</p>
+									</div>
+								</a>
+							</li>
+							{/maccms:topic}
+						</ul>
+						<div class="van-list__placeholder"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{include file="system/common"}
+	</body>
+</html>

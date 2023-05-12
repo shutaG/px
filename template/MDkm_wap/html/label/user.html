@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-title" content="">
+		<title>会员中心 - {$maccms.site_name}</title>
+		<meta name="keywords" content="{$maccms.site_keywords}" />
+		<meta name="description" content="{$maccms.site_description}" />
+		{include file="system/include"}
+	</head>
+	<body>
+		<div id="app">
+			<div class="publicAllContentBg allIndex fullHeight">
+				<div  class="publicAllNavbarClass van-nav-bar">
+					<div class="van-nav-bar__left"></div>
+					<div class="van-nav-bar__title van-ellipsis">个人中心</div>
+					<div class="van-nav-bar__right"></div>
+				</div>
+				<div  class="van-pull-refresh">
+					<div class="van-pull-refresh__track" style="transition-duration: 0ms;">
+						<div class="van-pull-refresh__head"></div>
+						<div class="publicNeedXPaddingBg">
+							<div class="userCenterIndexCell van-cell" style="white-space: pre-line;">
+								<div class="van-cell__title"><span >公告</span>
+									<div class="van-cell__label">{$mdym.usergonggao}</div>
+								</div>
+							</div>
+							<div class="userInfoBox">
+								<ul onclick="logins()" class="middle">
+									<li>
+										<p>积分(个)</p>
+										<h3>*</h3>
+										<div class="button">充值</div>
+									</li>
+									<li>
+										<p>VIP剩(天)</p>
+										<h3>*</h3>
+										<div class="button">续期</div>
+									</li>
+								</ul>
+								<div class="name unLogin">请先登录</div>
+							</div>
+							<ul onclick="logins()" class="functionList">
+								<li>
+									<div class="functionListStyle">
+										<div class="icon">
+											<i class="van-icon" style="color: rgb(160, 164, 174); font-size: 24px;">
+												<img src="{$maccms.path}MDassets/img/pass.png" class="van-icon__image">
+											</i>
+										</div>
+										<p >修改密码</p>
+									</div>
+								</li>
+								<li>
+									<div class="functionListStyle">
+										<div class="icon">
+											<i class="van-icon" style="color: rgb(160, 164, 174); font-size: 24px;">
+												<img src="{$maccms.path}MDassets/img/plays.png" class="van-icon__image">
+											</i>
+										</div>
+										<p>播放记录</p>
+									</div>
+								</li>
+								<li>
+									<div class="functionListStyle">
+										<div class="icon">
+											<i class="van-icon" style="color: rgb(160, 164, 174); font-size: 24px;">
+												<img src="{$maccms.path}MDassets/img/favs.png" class="van-icon__image">
+											</i>
+										</div>
+										<p>我的收藏</p>
+									</div>
+								</li>
+								<li>
+									<div class="functionListStyle">
+										<div class="icon">
+											<i class="van-icon" style="color: rgb(160, 164, 174); font-size: 24px;">
+												<img src="{$maccms.path}MDassets/img/question.png" class="van-icon__image">
+											</i>
+										</div>
+										<p>常见问题</p>
+									</div>
+								</li>
+								<li>
+									<div class="functionListStyle">
+										<div class="icon">
+											<i class="van-icon van-icon-paid" style="color: rgb(160, 164, 174); font-size: 24px;"></i>
+										</div>
+										<p>升级会员</p>
+									</div>
+								</li>
+								<li>
+									<div class="functionListStyle">
+										<div class="icon">
+											<i class="van-icon van-icon-service-o" style="color: rgb(160, 164, 174); font-size: 24px;"></i>
+										</div>
+										<p>在线客服</p>
+									</div>
+								</li>
+								<li>
+									<div class="functionListStyle">
+										<div class="icon">
+											<i class="van-icon van-icon-smile-o" style="color: rgb(160, 164, 174); font-size: 24px;"></i>
+										</div>
+										<p>卡密兑换</p>
+									</div>
+								</li>
+								<li>
+									<a href="{:mac_url('user/login')}" class="functionListStyle">
+										<div class="icon">
+											<i class="van-icon van-icon-user-o" style="color: rgb(160, 164, 174); font-size: 24px;"></i>
+										</div>
+										<p>登录账号</p>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			{include file="system/footer"}
+		</div>
+		<script>
+			if (MAC.Cookie.Get('user_id') != undefined && MAC.Cookie.Get('user_id') != '{:mac_url('user/index')}') {
+				window.location.href = "{:mac_url('user/index')}";
+			}
+			function logins(){
+				layer.msg("未登录");
+				window.location.href = "{:mac_url('user/login')}";
+			}
+		</script>
+		{include file="system/common"}
+	</body>
+</html>

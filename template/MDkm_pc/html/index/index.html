@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<title>{$maccms.site_name}</title>
+		<meta name="keywords" content="{$maccms.site_keywords}" />
+		<meta name="description" content="{$maccms.site_description}" />
+		{include file="system/include"}
+	</head>
+	<body>
+		<div id="app">
+			<div id="index" class="publicAllContentBg">
+				{include file="system/header"}
+				{include file="module/banner"}
+				<div class="publicBigMainContentBox">
+					<div class="">
+						<div id="indexInfo" class="publicAllContentBg">
+							<div id="publicIndexVideoListModule" class="publicIndexVideoListModule">
+								<div class="top">
+									<div class="left">
+									<i class="van-icon"><img src="{$maccms.path}MDassets/img/free.png" class="van-icon__image"></i>
+										<p class="title">限时免费</p>
+									</div>
+									<div class="right">
+										<a class="change v_change"><i class="el-icon-refresh"></i>换一批</a>
+										<a href="{:mac_url('/vod/type/id/'.($mdym['type']['free']).'')}" class="more"><i class="el-icon-circle-plus-outline"></i>更多</a>
+									</div>
+								</div>
+								<div id="publicVideoListModule" class="publicAllContentBg">
+									<div class="videoListBox needClear cbox_list">
+										{include file="module/free"}
+									</div>
+								</div>
+							</div>
+							
+							
+							<div id="publicIndexVideoListModule" class="publicIndexVideoListModule">
+								<div class="top">
+									<div class="left">
+										<i class="van-icon"><img src="{$maccms.path}MDassets/img/official.png" class="van-icon__image"></i>
+										<p class="title">官方严选</p>
+									</div>
+									<div class="right">
+										<a class="change v_change"><i class="el-icon-refresh"></i>换一批</a>
+										<a href="{:mac_url_search(['wd'=>$param['wd'],'area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>'score' ],'vod')}" class="more"><i class="el-icon-circle-plus-outline"></i>更多</a>
+									</div>
+								</div>
+								<div id="publicVideoListModule" class="publicAllContentBg">
+									<div class="videoListBox needClear cbox_list">
+										{maccms:vod num="'.($mdym['index']['num']).'" by="score" order="desc"}
+										{include file="module/vodlistone"}
+										{/maccms:vod}
+										{maccms:vod num="'.($mdym['index']['num']).'" by="score" start="'.($mdym['index']['num']+1).'" order="desc"}
+										{include file="module/vodlisttwo"}
+										{/maccms:vod}
+										{maccms:vod num="'.($mdym['index']['num']).'" by="score" start="'.($mdym['index']['num']*2+1).'" order="desc"}
+										{include file="module/vodlistthree"}
+										{/maccms:vod}
+									</div>
+								</div>
+							</div>
+							<div id="publicIndexVideoListModule" class="publicIndexVideoListModule">
+								<div class="top">
+									<div class="left"><i class="van-icon"><img src="{$maccms.path}MDassets/img/hot.png" class="van-icon__image"></i>
+										<p class="title">人气排行</p>
+									</div>
+									<div class="right">
+										<a class="change v_change"><i class="el-icon-refresh"></i>换一批</a>
+										<a href="{:mac_url_search(['wd'=>$param['wd'],'area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>'hits' ],'vod')}" class="more"><i class="el-icon-circle-plus-outline"></i>更多</a>
+									</div>
+								</div>
+								<div id="publicVideoListModule" class="publicAllContentBg">
+									<div class="videoListBox needClear cbox_list">
+										{maccms:vod num="'.($mdym['index']['num']).'" by="hits" order="desc"}
+										{include file="module/vodlistone"}
+										{/maccms:vod}
+										{maccms:vod num="'.($mdym['index']['num']).'" by="hits" start="'.($mdym['index']['num']+1).'" order="desc"}
+										{include file="module/vodlisttwo"}
+										{/maccms:vod}
+										{maccms:vod num="'.($mdym['index']['num']).'" by="hits" start="'.($mdym['index']['num']*2+1).'" order="desc"}
+										{include file="module/vodlistthree"}
+										{/maccms:vod}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				{include file="system/footer"}
+			</div>
+		</div>
+	</body>
+</html>

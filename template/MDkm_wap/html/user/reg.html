@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-title" content="">
+		<title>快猫视频-re01.cc回家导航</title>
+		{include file="system/include"}
+	</head>
+	<body class="van-overflow-hidden">
+		<div id="app">
+			<div id="login" class="publicAllContentBg fullHeight login">
+				<div class="loginButtonBox"></div>
+				<div class="van-overlay" style="z-index: 2001;"></div>
+				<div class="van-popup van-popup--round van-popup--bottom" style="z-index: 2002;">
+					<div class="loginFormBg">
+						<h3>注册</h3>
+						<form id="madouym-signup" class="loginFormBox">
+							<div  class="van-cell van-cell--borderless van-field">
+								<div class="van-cell__value van-cell__value--alone van-field__value">
+									<div class="van-field__body">
+										<input type="text" id="signup_name" name="user_name" autocomplete="off" placeholder="请输入您的手机号或邮箱" class="van-field__control">
+									</div>
+								</div>
+							</div>
+							<div class="van-cell van-cell--borderless van-field">
+								<div class="van-cell__value van-cell__value--alone van-field__value">
+									<div class="van-field__body">
+										<input type="password" id="signup_pwd" name="user_pwd" autocomplete="off" placeholder="请输入您的密码" class="van-field__control">
+									</div>
+								</div>
+							</div>
+							<div class="van-cell van-cell--borderless van-field">
+								<div class="van-cell__value van-cell__value--alone van-field__value">
+									<div class="van-field__body">
+										<input type="password" id="signup_pwd2" name="user_pwd2" autocomplete="off" placeholder="请重复您的密码" class="van-field__control">
+									</div>
+								</div>
+							</div>
+							<div id="btn_signup" class="buttonLine">
+								<button type="button" class="van-button van-button--info van-button--normal van-button--block"
+								 style="color: rgb(255, 255, 255); background: linear-gradient(to right, rgb(230, 66, 122), rgb(252, 103, 103)); border: 0px;">
+									<div class="van-button__content">
+										<span class="van-button__text">注册账号</span>
+									</div>
+								</button>
+							</div>
+						</form>
+						<div class="bottomLine">
+							<a href="{:mac_url('user/login')}" class="loginAboutTextLine">已有账号，直接登录</a>
+						</div>
+					</div>
+					<i onclick="javascript:history.back(-1);" role="button" tabindex="0" class="van-icon van-icon-cross van-popup__close-icon van-popup__close-icon--top-right"></i>
+				</div>
+			</div>
+			
+		</div>
+							<script>
+						$(function(){
+							$('#btn_signup').click(function() {
+								if ($('#signup_name').val()  == '') { layer.msg('请输入用户！'); $("#signup_name").focus(); return false; }
+								if ($('#signup_pwd').val()  == '') { layer.msg('请输入密码！'); $("#signup_pwd").focus(); return false; }
+								if ($('#signup_pwd2').val()  == '') { layer.msg('请重复输入密码！'); $("#signup_pwd2").focus(); return false; }
+								if ($('#verify').val()  == '') { layer.msg('请输入验证码！'); $("#verify").focus(); return false; }
+								$.ajax({
+									url: "{:mac_url('user/reg')}",
+									type: "post",
+									dataType: "json",
+									data: $('#madouym-signup').serialize(),
+									beforeSend: function () {
+										$("#btn_signup").val("注册中...");
+									},
+									success: function (r) {
+										layer.msg(r.msg);
+										if(r.code==1){
+											location.href="{:mac_url('user/login')}";
+										}
+										else{
+											$('#verify_img').click();
+										}
+									}
+								});
+							});
+						});
+					</script>
+		{include file="system/common"}
+	</body>
+</html>

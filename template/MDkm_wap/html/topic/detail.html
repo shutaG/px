@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-title" content="">
+    <title>专题首页 - 精品专题 - 推荐专题 - {$maccms.site_name}</title>
+    <meta name="keywords" content="电影专题,电视剧专题,综艺专题,动漫专题,推荐专题,专题收录" />
+    <meta name="description" content="本站提供最新最全精品专题数据" />
+    {include file="system/include"}
+</head>
+<body>
+<div id="app">
+    <div id="specialContent" class="publicAllContentBg fullHeight">
+        <div class="publicAllNavbarClass van-nav-bar">
+            <div onclick="javascript:history.back(-1);" class="van-nav-bar__left">
+                <i class="van-icon van-icon-arrow-left van-nav-bar__arrow"></i>
+                <span class="van-nav-bar__text">返回</span>
+            </div>
+            <div class="van-nav-bar__title van-ellipsis">{$obj.topic_name}</div>
+            <div class="van-nav-bar__right"></div>
+        </div>
+        <div class="publicNeedXPaddingBg">
+            <div role="feed" class="van-list">
+                <div id="publicVideoListModule" class="publicAllContentBg">
+                    <div class="videoListBox">
+						{maccms:foreach name="$obj.vod_list" paging="yes"}
+                        {include file="module/vodlist"}
+                        {/maccms:foreach}
+                    </div>
+                </div>
+                <div class="van-list__placeholder"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="system/common"}
+</body>
+</html>

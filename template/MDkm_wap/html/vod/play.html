@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-title" content="">
+		<title>在线播放{$obj.vod_name} {$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']} - 高清资源 - {$maccms.site_name}</title>
+		<meta name="keywords" content="{$obj.vod_name}{$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']}免费在线观看,{$obj.vod_name}剧情介绍" />
+		<meta name="description" content="{$obj.vod_name}{$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']}免费在线观看,{$obj.vod_name}剧情介绍" />
+		{include file="system/include"}
+	</head>
+	<body>
+		<div id="app">
+<!--			<?php echo var_dump($mdym['type']); ?>-->
+			<div id="videoContent" class="publicAllContentBg">
+				<div class="van-nav-bar van-nav-bar--fixed" style="z-index: 999999;">
+					<div onclick="javascript:history.back(-1);" class="van-nav-bar__left">
+						<i class="van-icon van-icon-arrow-left van-nav-bar__arrow"></i>
+					</div>
+					<div class="van-nav-bar__title van-ellipsis"></div>
+					<div class="van-nav-bar__right"></div>
+				</div>
+				{if condition="$mdym.free.state eq '0'"}
+				{if condition="$GLOBALS['user']['group_id'] eq 3"}
+					<div class="beforeVideoStartBg">
+					<div class="madouym">
+					{$player_data} {$player_js}
+					</div>
+					<script type="text/javascript">
+						try {
+							if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+								document.write('<style>.madouym{width:100%;height:210px;position: fixed;z-index: 99999;}</style>');
+							} else {
+								document.write('<style>.madouym{width:100%;height:575px;}</style>');
+							}
+						} catch(e) {}
+					</script>
+				</div>
+				<div style="max-width: 100%; width: 100%; height: 210px;"></div>
+				{else}
+				{if condition="$GLOBALS['user']['group_id'] eq 1"}
+				{if condition="$obj.type_id == $mdym['type']['free']"}
+				<div class="beforeVideoStartBg">
+					<div class="madouym">
+					{$player_data} {$player_js}
+					</div>
+					<script type="text/javascript">
+						try {
+							if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+								document.write('<style>.madouym{width:100%;height:210px;position: fixed;z-index: 99999;}</style>');
+							} else {
+								document.write('<style>.madouym{width:100%;height:575px;}</style>');
+							}
+						} catch(e) {}
+					</script>
+				</div>
+				<div style="max-width: 100%; width: 100%; height: 210px;"></div>
+				{else}
+
+				<div class="beforeVideoStartBg">
+					<img src="{:mac_url_img($obj.vod_pic)}" class="aesImgTag" style="width: 100%;">
+					<div class="unLoginBox">
+						<p class="textLine">免费注册 精彩视频免费看</p>
+						<p class="textLine">赶快加入 体验更多精彩</p>
+						<a href="{:mac_url('user/login')}" class="linkOutButton vip">登录/注册</a>
+					</div>
+				</div>
+				{/if}
+				{else if condition="$GLOBALS['user']['group_id'] eq 2"}
+				{if condition="$obj.vod_points_play eq ''"}
+				{if condition="$obj.type_id == $mdym['type']['free']"}
+				<div class="beforeVideoStartBg">
+					<div class="madouym">
+					{$player_data} {$player_js}
+					</div>
+					<script type="text/javascript">
+						try {
+							if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+								document.write('<style>.madouym{width:100%;height:210px;position: fixed;z-index: 99999;}</style>');
+							} else {
+								document.write('<style>.madouym{width:100%;height:575px;}</style>');
+							}
+						} catch(e) {}
+					</script>
+				</div>
+				<div style="max-width: 100%; width: 100%; height: 210px;"></div>
+				{else}
+				<div class="userStatusBg">
+					<div class="unLoginBox">
+						<p class="textLine">会员免广告，极速秒播</p>
+						<p class="textLine">海量视频任意看</p>
+						<div class="buttonLine">
+							<a href="{:mac_url('user/upgrade')}" class="linkOutButton vip">
+							<i class="van-icon">
+								<img src="{$maccms.path}MDassets/img/vips.png" class="van-icon__image">
+							</i>去开通VIP</a>
+						</div>
+					</div>
+					<div class="backImg">
+						<img src="{:mac_url_img($obj.vod_pic)}" class="aesImgTag" style="width: 100%;">
+					</div>
+				</div>
+				{/if}
+				{else}
+				<div class="beforeVideoStartBg">
+					<div class="madouym">
+					{$player_data} {$player_js}
+					</div>
+					<script type="text/javascript">
+						try {
+							if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+								document.write('<style>.madouym{width:100%;height:210px;position: fixed;z-index: 99999;}</style>');
+							} else {
+								document.write('<style>.madouym{width:100%;height:575px;}</style>');
+							}
+						} catch(e) {}
+					</script>
+				</div>
+				<div style="max-width: 100%; width: 100%; height: 210px;"></div>
+				{/if}
+				{/if}
+				{/if}
+				{else}
+
+				{if condition="$obj.type_id == $mdym['type']['free']"}
+				<div class="beforeVideoStartBg">
+					<div class="madouym">
+						<!--默认执行-->
+						{$player_data} {$player_js}
+					</div>
+					<script type="text/javascript">
+						try {
+							if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+								document.write('<style>.madouym{width:100%;height:210px;position: fixed;z-index: 99999;}</style>');
+							} else {
+								document.write('<style>.madouym{width:100%;height:575px;}</style>');
+							}
+						} catch(e) {}
+					</script>
+					<div style="max-width: 100%; width: 100%; height: 210px;"></div>
+				{else/}
+					<div class="userStatusBg">
+						<div class="unLoginBox">
+							<p class="textLine">会员免广告，极速秒播</p>
+							<p class="textLine">海量视频任意看</p>
+							<div class="buttonLine">
+								<a href="{:mac_url('user/upgrade')}" class="linkOutButton vip">
+									<i class="van-icon">
+										<img src="{$maccms.path}MDassets/img/vips.png" class="van-icon__image">
+									</i>去开通VIP</a>
+							</div>
+						</div>
+						<div class="backImg">
+							<img src="{:mac_url_img($obj.vod_pic)}" class="aesImgTag" style="width: 100%;">
+						</div>
+					</div>
+				{/if}
+				</div>
+				{/if}
+				<div class="publicNeedXPaddingBg marginTop">
+					<div class="videoTitle">
+						<p>{$obj.vod_name}</p>
+						<div class="collect">
+							<i class="btn-favs van-icon van-icon-like-o" data-type="2" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}"></i>
+							<i style="display:none ;color: rgb(245, 75, 100);" class="btn-favs van-icon van-icon-like" data-type="2" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}"></i>
+						</div>
+					</div>
+					<div class="videoInfoLineOneTwo">
+						<p></p>
+					</div>
+					<div  class="videoInfoLineOne">
+						<p><span class="mac_hits hits" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-type="hits"></span>次播放</p>
+						<p>{$obj.vod_time|date='Y-m-d',###}</p>
+					</div>
+					<div class="videoSignBox">
+						<ul id="tags">
+							{$obj.vod_tag|mac_url_create='tag'}
+						</ul>
+					</div>
+				</div>
+<!--				广告栏-->
+<!--				<ul>-->
+<!--					<li>-->
+<!--						<a href="https://xydai.cn" target="_blank" class="adBox">-->
+<!--							<img src="https://sc02.alicdn.com/kf/H87ec68bb32eb4f5393562cdd5e865d23v.jpg" class="aesImgTag" style="width: 100%;">-->
+<!--						</a>-->
+<!--					</li>-->
+<!--				</ul>-->
+				<div class="publicNeedXPaddingBg">
+					<div class="publicIndexVideoMoudleBox">
+						<div class="publicContentHeaderBox">
+							<div class="left">
+							<i class="van-icon">
+								<img src="{$maccms.path}MDassets/img/like.png" class="van-icon__image">
+							</i>猜你喜欢</div>
+						</div>
+						<div id="publicVideoListModule" class="publicAllContentBg">
+							<div class="videoListBox">
+								{maccms:vod num="10" type="current" order="desc" by="rnd"}
+								{include file="module/vodlist"}
+								{/maccms:vod}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{include file="system/common"}
+		<span style="display:none" class="mac_ulog_set" alt="设置播放页浏览记录" data-type="4" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-sid="{$param.sid}" data-nid="{$param.nid}"></span>
+		<script>
+        $('.btn-favs').on('click',function(){
+            if({$user.user_id}){
+                if($('.btn-favs').attr('data-ulog')==''){
+                    MAC.Ajax(maccms.path+'/index.php/user/ajax_ulog/?ac=set&mid='+$(this).attr("data-mid")+'&id='+$(this).attr("data-id")+'&type='+$(this).attr("data-type"),'get','json','',function(r){
+                        if(r.code==1){
+                            MAC.Ulog.Get({$maccms.mid},{$obj.vod_id},2,1,'',function(r){
+                                $('.btn-favs').attr('data-ulog',r.list[0].ulog_id);
+                                $('.van-icon-like-o').hide();
+                                $('.van-icon-like').show();
+								layer.msg("收藏成功");
+                            })
+                        }
+                    })
+                }else{
+                    $.post("{:url('user/ulog_del')}",{ids:$('.btn-favs').attr('data-ulog'),type:2},function(data) {
+                        if (data.code == '1') {
+                            $('.van-icon-like-o').show();
+                            $('.van-icon-like').hide();
+							layer.msg("取消收藏");
+							location.reload();
+                        }else {
+
+                        }
+                    }, 'json')
+                }
+            }else{
+               window.location.href="{:mac_url('user/login')}"
+            }
+        })
+
+        {if $user.user_id != 0}
+            MAC.Ulog.Get({$maccms.mid},{$obj.vod_id},2,1,'',function(r){
+                if(r.total==1){
+                    $('.btn-favs').attr('data-ulog',r.list[0].ulog_id);
+                    $('.van-icon-like-o').hide();
+                    $('.van-icon-like').show();
+                }else{
+                    $('.btn-favs').attr('data-ulog','')
+                }
+            })
+        {/if}
+    </script>
+	</body>
+</html>

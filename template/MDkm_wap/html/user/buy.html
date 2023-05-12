@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-title" content="">
+		<title>卡密兑换 - 会员中心 - {$maccms.site_name}</title>
+		<meta name="keywords" content="{$maccms.site_keywords}" />
+		<meta name="description" content="{$maccms.site_description}" />
+		{include file="system/include"}
+	</head>
+	<body>
+		<div id="app">
+			<div id="rechargeIndex" class="publicAllContentBg fullHeight">
+				<div class="publicAllNavbarClass van-nav-bar">
+					<div onclick="javascript:history.back(-1);" class="van-nav-bar__left">
+						<i class="van-icon van-icon-arrow-left van-nav-bar__arrow"></i>
+					</div>
+					<div class="van-nav-bar__title van-ellipsis">卡密兑换</div>
+					<div class="van-nav-bar__right"></div>
+				</div>
+				<div class="publicNeedXPaddingBg">
+					<div class="van-tabs van-tabs--line">
+
+						<div id="rechargeIndex" class="publicAllContentBg">
+							<ul class="tipList">
+								<li>
+									<div class="formLine">
+										<p>卡密：</p>
+										<div class="el-input el-input--suffix">
+											<input type="text" name="card_no" autocomplete="off" placeholder="请输入卡密" class="el-input__inner">
+											<span class="el-input__suffix"><span class="el-input__suffix-inner"></span></span>
+										</div>
+									</div>
+								</li>
+
+								<div class="buttonLine">
+									<button id="btn_submit_card" type="button" class="el-button el-button--default is-plain" style="width: 100%; background-color: rgb(245, 75, 100); color: rgb(255, 255, 255); border-color: rgb(245, 75, 100);">
+										<span>立即兑换</span>
+									</button>
+								</div>
+							</ul>
+							</form>
+						</div>
+
+					</div>
+
+
+					<ul class="tipList">
+						<li>
+							<p>1.获取足够积分可以兑换相应时长的会员</p>
+						</li>
+						<li>
+							<p>2.卡密兑换成功后，不能退还、提现或转赠他人；</p>
+						</li>
+						<li>
+							<p>3.卡密兑换后若长时间未到账，请点击左侧栏目-在线客服进行处理；</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<script>
+				$('#btn_submit_card').click(function() {
+					var that = $(this);
+					var no = $('input[name="card_no"]').val();
+					if (no == '') {
+						layer.msg('请输入充值卡密');
+						return;
+					}
+					layer.confirm('确定要使用充值卡充值吗？', {
+						title: '提示',
+						btn: ['确定', '取消'] //按钮
+					}, function() {
+						$.ajax({
+							url: "{:url('user/buy')}",
+							type: "post",
+							dataType: "json",
+							data: {
+								card_no: no,
+								flag: 'card'
+							},
+							beforeSend: function() {
+								$("#btn_submit_card").val("loading...");
+							},
+							success: function(r) {
+								layer.msg(r.msg);
+							},
+							complete: function() {
+								$("#btn_submit_card").val("提交");
+							}
+						});
+					});
+				});
+			</script>
+			{include file="system/common"}
+		</div>
+	</body>
+</html>

@@ -1,0 +1,29 @@
+<div class="van-tabs van-tabs--line" id="indexTabs">
+						<div class="van-tabs__wrap">
+							<div role="tablist" class="van-tabs__nav van-tabs__nav--line" style="border-color: rgb(245, 75, 100);">
+								<a href="/" role="tab" aria-selected="true" class="van-tab {if condition="$maccms.aid eq 1"}van-tab--active on{/if}">
+									<span class="van-tab__text van-tab__text--ellipsis">推荐</span>
+								</a>
+								{maccms:type ids="parent" order="asc" by="sort"}
+								<a href="{:mac_url_type($vo)}" role="tab" class="van-tab {if condition="($vo.type_id eq $GLOBALS['type_id'] || $vo.type_id eq $GLOBALS['type_pid'])"}van-tab--active on{/if}">
+									<span class="van-tab__text van-tab__text--ellipsis">{$vo.type_name}</span>
+								</a>
+								{/maccms:type}
+							</div>
+						</div>
+						<div class="van-tabs__content">
+							<div role="tabpanel" class="van-tab__pane" style=""></div>
+							<div role="tabpanel" class="van-tab__pane" style="display: none;">
+								<!---->
+							</div>
+							<div role="tabpanel" class="van-tab__pane" style="display: none;">
+								<!---->
+							</div>
+							<div role="tabpanel" class="van-tab__pane" style="display: none;">
+								<!---->
+							</div>
+							<div role="tabpanel" class="van-tab__pane" style="display: none;">
+								<!---->
+							</div>
+						</div>
+					</div>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-title" content="">
+		<title>播放记录 - {$maccms.site_name}</title>
+		<meta name="keywords" content="{$maccms.site_keywords}" />
+		<meta name="description" content="{$maccms.site_description}" />
+		{include file="system/include"}
+	</head>
+	<body class="">
+		<div id="app">
+			<div id="myPaidVideo" class="publicAllContentBg fullHeight">
+				<div class="publicAllNavbarClass van-nav-bar">
+					<div onclick="javascript:history.back(-1);" class="van-nav-bar__left">
+						<i class="van-icon van-icon-arrow-left van-nav-bar__arrow"></i>
+					</div>
+					<div class="van-nav-bar__title van-ellipsis">播放记录</div>
+					<div class="van-nav-bar__right"></div>
+				</div>
+				<div class="publicNeedXPaddingBg">
+					<div role="feed" class="van-list">
+						<div id="publicVideoListModule" class="publicAllContentBg">
+							<div class="videoListBox">
+								{volist name="list" id="vo"}
+								{if condition="$vo.ulog_mid eq 1"}
+								{maccms:vod order="desc" by="time" ids="'.$vo['ulog_rid'].'" id="vo1" key="key1"}
+								<a href="{$vo.data.link}" class="videoListStyle">
+									<div class="imgArea">
+										<div class="aseImgVanImage van-image">
+											<img src="{:mac_url_img($vo1.vod_pic)}" class="van-image__img" style="object-fit: cover;">
+										</div>
+										<div class="bottomInfo">
+											<div class="left"></div>
+											<div class="time">{$vo1.vod_duration}</div>
+										</div>
+									</div>
+									<p class="title">{$vo1.vod_name}</p>
+									{if condition="$mdym.free.state eq '0'"}
+									{if condition="$vo1.vod_points_play eq ''"}
+									{if condition="$vo1.type_id == $mdym['type']['free']"}
+									<ul class="bottomSignBox">
+										<li>
+											<p class="one hover">
+												<i class="van-icon">
+													<img src="{$maccms.path}MDassets/img/redviews.png" class="van-icon__image">
+												</i>
+												{$vo1.vod_hits}
+											</p>
+										</li>
+										<li >
+											<p class="two hover">
+												<i class="van-icon">
+													<img src="{$maccms.path}MDassets/img/greenfree.png" class="van-icon__image">
+												</i>
+												免费
+											</p>
+										</li>
+									</ul>
+									{else}
+									<ul class="bottomSignBox hover">
+										<li >
+											<p class="one hover"><i class="van-icon"><img src="{$maccms.path}MDassets/img/redviews.png" class="van-icon__image"></i>
+												{$vo1.vod_hits}
+											</p>
+										</li>
+										<li >
+											<p class="three hover"><i class="van-icon"><img src="{$maccms.path}MDassets/img/threetwo.png" class="van-icon__image"></i>
+												VIP免费
+											</p>
+										</li>
+									</ul>
+									{/if}
+									{else}
+									<ul class="bottomSignBox">
+												<li>
+													<p class="one hover"><i class="van-icon"><img src="{$maccms.path}MDassets/img/redviews.png" class="van-icon__image"></i>
+														{$vo1.vod_hits}
+													</p>
+												</li>
+												<li >
+													<p class="four hover"><i class="van-icon"><img src="{$maccms.path}MDassets/img/fourtwo.png" class="van-icon__image"></i>
+														{$vo1.vod_points_play}金币解锁
+													</p>
+												</li>
+											</ul>
+									{/if}
+									{else}
+									<ul class="bottomSignBox">
+										<li>
+											<p class="one hover">
+												<i class="van-icon">
+													<img src="{$maccms.path}MDassets/img/redviews.png" class="van-icon__image">
+												</i>
+												{$vo1.vod_hits}
+											</p>
+										</li>
+										<li >
+											<p class="two hover">
+												<i class="van-icon">
+													<img src="{$maccms.path}MDassets/img/greenfree.png" class="van-icon__image">
+												</i>
+												免费
+											</p>
+										</li>
+									</ul>
+									{/if}
+								</a>
+								{/maccms:vod}
+								{/if}
+								{/volist}
+								
+							</div>
+						</div>
+						<div class="van-list__placeholder"></div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		{include file="system/common"}
+	</body>
+</html>

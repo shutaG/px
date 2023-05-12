@@ -1,0 +1,62 @@
+<div class="bottomHeaderNavBg">
+						<div class="bottomHeaderNavBox">
+							<div class="left">
+								<ul class="navList">
+									<li>
+										<a {if condition="$maccms.aid eq 1"} class="active"{/if} href="/"><span>首页</span></a>
+									</li>
+									<li>
+										<a href="{:mac_url('label/new')}" {if strpos($_SERVER["REQUEST_URI"],'new')}class="active"{/if}><span>最近更新</span></a>
+									</li>
+									<li>
+										<a href="{:mac_url('topic/index')}" {if$maccms.aid==30||$maccms.aid==34}class="active"{/if}><span>专题</span></a>
+									</li>
+									<li>
+										<a href="{:mac_url('actor/index')}" {if$maccms.aid==80||$maccms.aid==82||$maccms.aid==84}class="active"{/if}><span>明星</span></a>
+									</li>
+									{maccms:type ids="parent" order="asc" by="sort"}
+									<li>
+										<a {if condition="($vo.type_id eq $GLOBALS['type_id'] || $vo.type_id eq $GLOBALS['type_pid'])"} class="active"{/if} href="{:mac_url_type($vo)}"><span>{$vo.type_name}</span></a>
+									</li>
+									{/maccms:type}
+									
+								</ul>
+							</div>
+							<div class="right">
+								<div aria-haspopup="listbox" role="combobox" aria-owns="el-autocomplete-1542" class="el-autocomplete">
+									<form class="el-input el-input-group el-input-group--append el-input--prefix" method="get" action="{:mac_url('vod/search')}">
+										<input id="search" type="text" name="wd" autocomplete="off"  placeholder="{$mdym.search}" value="{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}{$param.tag}" class="el-input__inner">
+										<span class="el-input__prefix"><i class="el-icon-search"></i></span>
+										<div class="el-input-group__append">
+											<button type="submit" class="el-button el-button--default" style="background: linear-gradient(rgb(247, 131, 97) 0%, rgb(245, 75, 100) 100%); color: rgb(255, 255, 255);">
+												<span>GO</span>
+											</button>
+										</div>
+									</form>
+									<div role="region" id="searchtwo" class="el-autocomplete-suggestion el-popper hidden" style="position: absolute; top: 40px; left: 0px; transform-origin: center top; z-index: 2008; width: 215px;"  x-placement="bottom-start">
+										<div class="el-scrollbar">
+											<div class="el-autocomplete-suggestion__wrap el-scrollbar__wrap" style="margin-bottom: -17px; margin-right: -17px;">
+												<ul class="el-scrollbar__view el-autocomplete-suggestion__list">
+													{maccms:foreach name=":explode(',',$maccms.search_hot)" id="vo2" key="key2"}
+													<li>
+														<a href="{:mac_url('vod/search',['wd'=>$vo2])}" class="popperLineStyle">
+															<div class="active">{$key2+1}</div>
+															<p>{$vo2}</p>
+														</a>
+													</li>
+													{/maccms:foreach}
+												</ul>
+											</div>
+											<div class="el-scrollbar__bar is-horizontal">
+												<div class="el-scrollbar__thumb" style="transform: translateX(0%);"></div>
+											</div>
+											<div class="el-scrollbar__bar is-vertical">
+												<div class="el-scrollbar__thumb" style="transform: translateY(0%);"></div>
+											</div>
+										</div>
+										<div x-arrow="" class="popper__arrow" style="left: 35px;"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>

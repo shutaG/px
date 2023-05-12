@@ -1,0 +1,22 @@
+<div class="hidden" id="popup_mask">
+	<div class="van-overlay" style="z-index: 99999; animation-duration: 0.5s;"></div>
+	<div class="van-popup van-popup--round van-popup--center" style="animation-duration: 0.5s; height: 35%; z-index: 999999;background-color: rgba(36, 42, 55, .65);
+    border-radius: unset;">
+		<div style="width: 250px; margin-top: 30px;"><img src="{$mdym.logo}" style="margin-left: auto; margin-right: auto; display: block;">
+			{$mdym.gonggao}
+		</div>
+		<i id="mpopup_close" role="button" tabindex="0" class="van-icon van-icon-cross van-popup__close-icon van-popup__close-icon--top-left"></i>
+	</div>
+</div>
+		<script>
+			var mpopup_close = document.getElementById("mpopup_close");
+			var popup_mask = document.getElementById("popup_mask");
+			var popups = sessionStorage.getItem("popups");
+			if (popups == null) {
+				popup_mask.style.display = 'block';
+				mpopup_close.onclick = function() {
+				popup_mask.style.display = 'none';
+				sessionStorage.setItem("popups", "1");
+					}
+				};
+		</script>
